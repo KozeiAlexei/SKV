@@ -40,10 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\Entity\ICloneableFrom.cs" />
+    <Compile Include="Abstract\Model\ClientModel\IClient.cs" />
+    <Compile Include="Abstract\Entity\IEntity.cs" />
+    <Compile Include="Abstract\Model\ClientModel\IClientStatus.cs" />
+    <Compile Include="Abstract\Model\OperationModel\ICorrection.cs" />
+    <Compile Include="Abstract\Model\OperationModel\ICorrectionData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IExchange.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IExchangeData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IInventarisation.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IInventarisationData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Abstract\" />
     <Folder Include="Concrete\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
