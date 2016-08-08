@@ -4,9 +4,9 @@ using SKV.DAL.Abstract.Entity;
 
 namespace SKV.DAL.Abstract.Model.OperationModel
 {
-    public interface IOperation<TKey, TUserKey, TStatusKey>: IEntity<TKey>, ICloneableFrom<IOperation<TKey, TUserKey, TStatusKey>>
+    public interface IOperation<TKey, TUserKey, TStatusKey>: IEntity<TKey>
     {
-        int Number { get; set; }
+        int DailyNumber { get; set; }
 
         DateTime Date { get; set; }
 

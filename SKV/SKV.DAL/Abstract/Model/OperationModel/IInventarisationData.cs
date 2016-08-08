@@ -11,9 +11,9 @@ namespace SKV.DAL.Abstract.Model.OperationModel
 
         TInventarisationKey InventarisationId { get; set; }
 
-        float? FactSum { get; set; }
+        decimal FactSum { get; set; }
 
-        float? SystemSum { get; set; }
+        decimal SystemSum { get; set; }
 
         TResult Result { get; set; }
     }
