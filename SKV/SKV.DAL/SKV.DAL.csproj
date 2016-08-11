@@ -46,6 +46,14 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.7\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -57,6 +65,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\Common\ISynchronizator.cs" />
     <Compile Include="Abstract\Database\IChangeable.cs" />
     <Compile Include="Abstract\Database\ICRUD.cs" />
     <Compile Include="Abstract\Database\IDbManager.cs" />
@@ -92,6 +101,35 @@
     <Compile Include="Abstract\Model\UserModel\IUserProfile.cs" />
     <Compile Include="Abstract\Model\WindowModel\IWindow.cs" />
     <Compile Include="Abstract\Model\WindowModel\IWindowCash.cs" />
+    <Compile Include="Abstract\Repositories\CallModel\ICallRepository.cs" />
+    <Compile Include="Abstract\Repositories\CallModel\IOperatorPhoneRepository.cs" />
+    <Compile Include="Abstract\Repositories\ClientModel\IClientRepository.cs" />
+    <Compile Include="Abstract\Repositories\ClientModel\IClientStatusRepository.cs" />
+    <Compile Include="Abstract\Repositories\CommonModel\IPageRepository.cs" />
+    <Compile Include="Abstract\Repositories\CommonModel\ISystemSettingsRepository.cs" />
+    <Compile Include="Abstract\Repositories\CurrencyModel\ICurrencyCompetitorRepository.cs" />
+    <Compile Include="Abstract\Repositories\CurrencyModel\ICurrencyExchangeRuleRepository.cs" />
+    <Compile Include="Abstract\Repositories\CurrencyModel\ICurrencyRateDataRepository.cs" />
+    <Compile Include="Abstract\Repositories\CurrencyModel\ICurrencyRateRepository.cs" />
+    <Compile Include="Abstract\Repositories\CurrencyModel\ICurrencyRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IExchangeDataRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IMoneyTransferDataRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IInventarisationDataRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\ICorrectionDataRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IExchangeRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IMoneyTransferRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IInventarisationRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\ICorrectionRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IOperationRepository.cs" />
+    <Compile Include="Abstract\Repositories\OperationModel\IOperationStatusRepository.cs" />
+    <Compile Include="Abstract\Repositories\UserModel\IUserPermissionRepository.cs" />
+    <Compile Include="Abstract\Repositories\UserModel\IUserProfileRepository.cs" />
+    <Compile Include="Abstract\Repositories\UserModel\IUserRepository.cs" />
+    <Compile Include="Abstract\Repositories\UserModel\IUserRoleRepository.cs" />
+    <Compile Include="Abstract\Repositories\WindowModel\IWindowCashRepository.cs" />
+    <Compile Include="Abstract\Repositories\WindowModel\IWindowRepository.cs" />
+    <Compile Include="Concrete\EntityFramework\DatabaseContext.cs" />
+    <Compile Include="Concrete\EntityFramework\Repository.cs" />
     <Compile Include="Concrete\Model\CallModel\Call.cs" />
     <Compile Include="Concrete\Model\CallModel\OperatorPhone.cs" />
     <Compile Include="Concrete\Model\ClientModel\Client.cs" />
@@ -118,12 +156,44 @@
     <Compile Include="Concrete\Model\UserModel\UserRole.cs" />
     <Compile Include="Concrete\Model\WindowModel\Window.cs" />
     <Compile Include="Concrete\Model\WindowModel\WindowCash.cs" />
+    <Compile Include="Concrete\Repositories\CallModel\CallRepository.cs" />
+    <Compile Include="Concrete\Repositories\CallModel\OperatorPhoneRepository.cs" />
+    <Compile Include="Concrete\Repositories\ClientModel\ClientRepository.cs" />
+    <Compile Include="Concrete\Repositories\ClientModel\ClientStatusRepository.cs" />
+    <Compile Include="Concrete\Repositories\CommonModel\PageRepository.cs" />
+    <Compile Include="Concrete\Repositories\CommonModel\SystemSettingsRepository.cs" />
+    <Compile Include="Concrete\Repositories\CurrencyModel\CurrencyCompetitorRepository.cs" />
+    <Compile Include="Concrete\Repositories\CurrencyModel\CurrencyExchangeRuleRepository.cs" />
+    <Compile Include="Concrete\Repositories\CurrencyModel\CurrencyRateDataRepository.cs" />
+    <Compile Include="Concrete\Repositories\CurrencyModel\CurrencyRateRepository.cs" />
+    <Compile Include="Concrete\Repositories\CurrencyModel\CurrencyRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\MoneyTransferDataRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\InventarisationDataRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\CorrectionDataRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\CorrectionRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\ExchangeDataRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\ExchangeRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\MoneyTransferRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\InventarisationRepository.cs" />
+    <Compile Include="Concrete\Repositories\OperationModel\OperationStatusRepository.cs" />
+    <Compile Include="Concrete\Repositories\UserModel\UserPermissionRepository.cs" />
+    <Compile Include="Concrete\Repositories\UserModel\UserProfileRepository.cs" />
+    <Compile Include="Concrete\Repositories\UserModel\UserRepository.cs" />
+    <Compile Include="Concrete\Repositories\UserModel\UserRoleRepository.cs" />
+    <Compile Include="Concrete\Repositories\WindowModel\WindowCashRepository.cs" />
+    <Compile Include="Concrete\Repositories\WindowModel\WindowRepository.cs" />
+    <Compile Include="Tools\OperationHelper.cs" />
+    <Compile Include="DALDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\ClientCodeGenerator.cs" />
+    <Compile Include="Tools\DynamicCast.cs" />
+    <Compile Include="Tools\Synchronizator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

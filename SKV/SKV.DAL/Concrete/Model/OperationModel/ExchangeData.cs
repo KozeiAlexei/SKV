@@ -1,12 +1,8 @@
-﻿using SKV.DAL.Abstract.Model.OperationModel;
-using System;
-using SKV.DAL.Concrete.Model.CurrencyModel;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+
+using SKV.DAL.Abstract.Model.OperationModel;
+using SKV.DAL.Concrete.Model.CurrencyModel;
 
 namespace SKV.DAL.Concrete.Model.OperationModel
 {

@@ -1,10 +1,6 @@
-﻿using SKV.DAL.Abstract.Model.WindowModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
+using SKV.DAL.Abstract.Model.WindowModel;
 
 namespace SKV.DAL.Concrete.Model.WindowModel
 {

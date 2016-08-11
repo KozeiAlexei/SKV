@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
 
-using SKV.DAL.Abstract.Entity;
-
 namespace SKV.DAL.Abstract.Database
 {
-    public interface ICRUD<TEntity, TKey> where TEntity : IEntity<TKey>, ICloneableFrom<TEntity>
+    public interface ICRUD<TEntity, TKey>
     {
         TEntity Create(TEntity entity);
 

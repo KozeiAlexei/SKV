@@ -1,11 +1,8 @@
-﻿using SKV.DAL.Abstract.Model.UserModel;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SKV.DAL.Abstract.Model.UserModel;
 
 namespace SKV.DAL.Concrete.Model.UserModel
 {
@@ -18,6 +15,8 @@ namespace SKV.DAL.Concrete.Model.UserModel
         public virtual User UserInstance { get; set; }
 
         public string Name { get; set; }
+
+        public int? AsteriskId { get; set; }
 
 
         public DateTime LastLoginDate { get; set; }

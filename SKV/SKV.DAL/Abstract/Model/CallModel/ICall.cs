@@ -5,6 +5,7 @@ using SKV.DAL.Abstract.Entity;
 namespace SKV.DAL.Abstract.Model.CallModel
 {
     public interface ICall<TKey, TCallType> : IEntity<TKey>, ICloneableFrom<ICall<TKey, TCallType>>
+        where TCallType : struct
     {
         TCallType Type { get; set; }
 

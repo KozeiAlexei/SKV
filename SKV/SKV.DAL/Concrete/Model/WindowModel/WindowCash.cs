@@ -1,12 +1,8 @@
-﻿using SKV.DAL.Abstract.Model.WindowModel;
-using SKV.DAL.Concrete.Model.CurrencyModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SKV.DAL.Abstract.Model.WindowModel;
+using SKV.DAL.Concrete.Model.CurrencyModel;
 
 namespace SKV.DAL.Concrete.Model.WindowModel
 {

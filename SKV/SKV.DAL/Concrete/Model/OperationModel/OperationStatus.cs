@@ -1,10 +1,6 @@
-﻿using SKV.DAL.Abstract.Model.OperationModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
+using SKV.DAL.Abstract.Model.OperationModel;
 
 namespace SKV.DAL.Concrete.Model.OperationModel
 {
@@ -14,6 +10,17 @@ namespace SKV.DAL.Concrete.Model.OperationModel
         Correction,
         MoneyTransfer,
         Inventarisation
+    }
+
+    public enum ExchangeStatus
+    {
+        Claim,
+        Order,
+        Finalized,
+        CanceledByClientReason,
+        CanceledByOperatorError,
+        CanceledWithAddingToBlackList,
+        CanceledByDayExpired
     }
 
     public class OperationStatus : IOperationStatus<int, OperationType, int>

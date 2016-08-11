@@ -1,5 +1,6 @@
-﻿using SKV.DAL.Abstract.Entity;
-using System;
+﻿using System;
+
+using SKV.DAL.Abstract.Entity;
 
 namespace SKV.DAL.Abstract.Model.OperationModel
 {

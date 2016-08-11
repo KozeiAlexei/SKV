@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using SKV.DAL.Abstract.Model.UserModel;
-using SKV.DAL.Concrete.Model.CommonModel;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using Microsoft.AspNet.Identity.EntityFramework;
+
+using SKV.DAL.Abstract.Model.UserModel;
+using SKV.DAL.Concrete.Model.CommonModel;
 
 namespace SKV.DAL.Concrete.Model.UserModel
 {

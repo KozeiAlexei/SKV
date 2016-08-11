@@ -1,12 +1,10 @@
-﻿using SKV.DAL.Abstract.Model.OperationModel;
-using SKV.DAL.Concrete.Model.UserModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+using SKV.DAL.Concrete.Model.UserModel;
+using SKV.DAL.Abstract.Model.OperationModel;
 
 namespace SKV.DAL.Concrete.Model.OperationModel
 {
@@ -17,7 +15,7 @@ namespace SKV.DAL.Concrete.Model.OperationModel
 
         public int DailyNumber { get; set; }
 
-
+        [Column(TypeName = "datetime2")]
         public DateTime Date { get; set; }
 
 

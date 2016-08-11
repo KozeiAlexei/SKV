@@ -1,10 +1,6 @@
-﻿using SKV.DAL.Abstract.Model.CommonModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
+using SKV.DAL.Abstract.Model.CommonModel;
 
 namespace SKV.DAL.Concrete.Model.CommonModel
 {
