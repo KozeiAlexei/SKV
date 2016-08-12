@@ -128,6 +128,7 @@
     <Compile Include="Abstract\Repositories\UserModel\IUserRoleRepository.cs" />
     <Compile Include="Abstract\Repositories\WindowModel\IWindowCashRepository.cs" />
     <Compile Include="Abstract\Repositories\WindowModel\IWindowRepository.cs" />
+    <Compile Include="Concrete\Database\DbManager.cs" />
     <Compile Include="Concrete\EntityFramework\DatabaseContext.cs" />
     <Compile Include="Concrete\EntityFramework\Repository.cs" />
     <Compile Include="Concrete\Model\CallModel\Call.cs" />
