@@ -1,17 +1,18 @@
 ﻿using Ninject;
 using Ninject.Modules;
+
+using SKV.DAL.Tools;
 using SKV.DAL.Abstract.Common;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Concrete.EntityFramework;
 using SKV.DAL.Concrete.Model.CallModel;
+using SKV.DAL.Concrete.Model.UserModel;
+using SKV.DAL.Concrete.Model.WindowModel;
 using SKV.DAL.Concrete.Model.ClientModel;
 using SKV.DAL.Concrete.Model.CommonModel;
 using SKV.DAL.Concrete.Model.CurrencyModel;
 using SKV.DAL.Concrete.Model.OperationModel;
-using SKV.DAL.Concrete.Model.UserModel;
-using SKV.DAL.Concrete.Model.WindowModel;
-using SKV.DAL.Tools;
-using System;
+using SKV.DAL.Concrete.Database;
 
 namespace SKV.DAL
 {
@@ -61,6 +62,8 @@ namespace SKV.DAL
 
                 Bind(typeof(IRepository<Window, int>)).To(typeof(Repository<Window, int>)).InSingletonScope();
                 Bind(typeof(IRepository<WindowCash, int>)).To(typeof(Repository<WindowCash, int>)).InSingletonScope();
+
+                Bind<IDbManager>().To<DbManager>();
             }
         }
 

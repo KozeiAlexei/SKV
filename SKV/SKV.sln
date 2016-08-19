@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKV.DAL", "SKV.DAL\SKV.DAL.csproj", "{EBF46C7C-CB1C-4CD0-80CD-47AE32C9FA0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKV.BLL", "SKV.BLL\SKV.BLL.csproj", "{9759D337-D424-4166-8978-657F6ACCA2A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{EBF46C7C-CB1C-4CD0-80CD-47AE32C9FA0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBF46C7C-CB1C-4CD0-80CD-47AE32C9FA0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBF46C7C-CB1C-4CD0-80CD-47AE32C9FA0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9759D337-D424-4166-8978-657F6ACCA2A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9759D337-D424-4166-8978-657F6ACCA2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9759D337-D424-4166-8978-657F6ACCA2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9759D337-D424-4166-8978-657F6ACCA2A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
