@@ -13,7 +13,7 @@ namespace SKV.BLL
             public override void Load()
             {
                 Bind<IForexParser>().To<ForexParser>();
-                Bind<IRatesProvider>().To<ForexRatesProvider>();
+                Bind<IRatesProvider>().To<RatesProvider>();
             }
         }
 

@@ -19,8 +19,6 @@ namespace SKV.BLL.CurrencyRates
         private const string OIL_BRENT = "Нефть Brent";
         private const string EUR_USD_TICKER = "EUR/USD";
 
-        private static WebClient client = new WebClient();
-
         public IEnumerable<CurrencyRate> ParseOil()
         {
             var html = SafePageDownload(FOREX_OIL_URI);
@@ -88,6 +86,7 @@ namespace SKV.BLL.CurrencyRates
         private string SafePageDownload(string uri)
         {
             var html = default(string);
+            var client = new WebClient();
             lock (client)
             {
                 html = client.DownloadString(uri);

@@ -6,7 +6,7 @@ namespace SKV.BLL.Abstract.CurrencyRates
 {
     public interface IRatesProvider
     {
-        CurrencyRate GetRate(Currency client_currency, Currency bank_currency);
+        decimal GetRate(Currency client_currency, Currency bank_currency);
 
         IEnumerable<CurrencyRate> GetRateList();
     }

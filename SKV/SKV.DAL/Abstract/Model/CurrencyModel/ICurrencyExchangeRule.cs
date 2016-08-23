@@ -7,5 +7,7 @@ namespace SKV.DAL.Abstract.Model.CurrencyModel
         TCurrencyKey CurrencyInId { get; set; }
 
         TCurrencyKey CurrencyOutId { get; set; }
+
+        bool DisplayDirectRate { get; set; }
     }
 }

@@ -14,7 +14,10 @@ namespace SKV.DAL.Concrete.Repositories.CurrencyModel
         public IRepository<CurrencyExchangeRule, int> Repository { get; } =
             (IRepository<CurrencyExchangeRule, int>)DALDependencyResolver.Kernel.Get(typeof(IRepository<CurrencyExchangeRule, int>));
 
-        public IEnumerable<CurrencyExchangeRule> GetExchangeableCurrencyByCurrencyId(int id) =>
+        public CurrencyExchangeRule GetCurrencyExchangeRule(int curr_in_id, int curr_out_id) =>
+            Repository.Sync.Synchronize(() => Repository.Table.Where(e => e.CurrencyInId == curr_in_id && e.CurrencyOutId == curr_out_id).FirstOrDefault());
+
+        public IEnumerable<CurrencyExchangeRule> GetCurrencyExchangeRulesByCurrencyId(int id) =>
             Repository.Sync.Synchronize(() => Repository.Table.Where(e => e.CurrencyInId == id));
     }
 }

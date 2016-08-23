@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 using SKV.DAL.Abstract.Model.CurrencyModel;
 
@@ -13,6 +14,7 @@ namespace SKV.DAL.Concrete.Model.CurrencyModel
 
         public int CurrencyOutId { get; set; }
 
+        public bool DisplayDirectRate { get; set; }
 
         public void CopyFrom(ICurrencyExchangeRule<int, int> from)
         {

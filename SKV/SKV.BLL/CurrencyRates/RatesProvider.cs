@@ -12,22 +12,29 @@ using SKV.DAL;
 
 namespace SKV.BLL.CurrencyRates
 {
-    public class ForexRatesProvider : IRatesProvider, IDisposable
+    public class RatesProvider : IRatesProvider, IDisposable
     {
+        private object sync_context = new object();
+
         private Timer timer = default(Timer);
 
         private IDbManager db_manager = DALDependencyResolver.Kernel.Get<IDbManager>();
         private IForexParser parser = BLLDependencyResolver.Kernel.Get<IForexParser>();
         private IEnumerable<CurrencyRate> rates = default(IEnumerable<CurrencyRate>);
 
-        public ForexRatesProvider()
+        public RatesProvider(Func<IEnumerable<CurrencyRate>> strategy)
         {
             UpdateRates();
             timer = Tools.CreatePeriodicProcess(UpdateRates, db_manager.SystemSettings.GetSystemSettings().RatesUpdatePeriod);
         }
 
-        private void UpdateRates(object sender = null, ElapsedEventArgs e = null) =>
-            rates = parser.ParseEuroUsdRub().Union(parser.ParseOtherCurrencies());
+        private void UpdateRates(object sender = null, ElapsedEventArgs e = null)
+        {
+            lock (sync_context)
+            {
+                rates = parser.ParseEuroUsdRub().Union(parser.ParseOtherCurrencies());
+            }
+        }
 
         public void Dispose() => timer.Stop();
 

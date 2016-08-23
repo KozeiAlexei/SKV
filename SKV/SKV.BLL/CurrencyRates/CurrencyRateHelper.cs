@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace SKV.BLL.CurrencyRates
 {
-    public class SuitableRates
-    {
-        public bool IsFounded { get; set; }
+    //public class SuitableRates
+    //{
+    //    public bool IsFounded { get; set; }
 
-        public IEnumerable<CurrencyRate> Rates { get; set; }
-    }
+    //    public IEnumerable<CurrencyRate> Rates { get; set; }
+    //}
 
     public static class CurrencyRateHelper
     {
@@ -55,10 +55,6 @@ namespace SKV.BLL.CurrencyRates
 
         public static float CalculateCrossTotalRate(Currency bank_currency, Currency client_currency, float sum)
         {
-            var usd = currency_manager.GetCurrencyByShortName("USD");
-            var rub = currency_manager.GetCurrencyByShortName("RUB");
-            var eur = currency_manager.GetCurrencyByShortName("EUR");
-
             if (IsExistRate(current_total_rates, client_currency, usd))
                 return GetTotalRate(usd, client_currency, sum) * GetTotalRate(bank_currency, usd, sum);
             else if (IsExistRate(current_total_rates, client_currency, rub))
@@ -83,7 +79,8 @@ namespace SKV.BLL.CurrencyRates
             return (curr_in.StartsWith(parts[0]) && curr_out.StartsWith(parts[1])) || (curr_in.StartsWith(parts[1]) && curr_out.StartsWith(parts[0]));
         }
 
-        public static bool IsExistRate(IEnumerable<CurrencyRate> rates, Currency curr_in, Currency curr_out) => rates.Where(r => CheckMultiTicker(r.Ticker, curr_in.ShortName, curr_out.ShortName)).Any();
+        public static bool CheckTicker(string ticker, string curr_in, string curr_out)
 
+        public static bool IsExistRate(IEnumerable<CurrencyRate> rates, Currency curr_in, Currency curr_out) => rates.Where(r => CheckMultiTicker(r.Ticker, curr_in.ShortName, curr_out.ShortName)).Any();
     }
 }
