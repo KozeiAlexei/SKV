@@ -1,19 +1,19 @@
-﻿using SKV.BLL.Abstract.CurrencyRates;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SKV.DAL.Concrete.Model.CurrencyModel;
-using Ninject;
 using System.Timers;
-using SKV.DAL.Abstract.Database;
-using SKV.DAL;
+using System.Collections.Generic;
 
+using SKV.DAL;
+using SKV.DAL.Abstract.Database;
+using SKV.DAL.Concrete.Model.CurrencyModel;
+
+using SKV.BLL.Abstract.CurrencyRates;
+
+using Ninject;
 
 namespace SKV.BLL.CurrencyRates
 {
-    public class CurrencyRateManager
+    public class CurrencyRateManager : ICurrencyRateManager
     {
         private class SuitableRates
         {

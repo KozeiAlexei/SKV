@@ -45,12 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstract\CurrencyRates\IForexParser.cs" />
-    <Compile Include="Abstract\CurrencyRates\IRatesProvider.cs" />
+    <Compile Include="Abstract\CurrencyRates\ICurrencyRateManager.cs" />
     <Compile Include="BLLDependencyResolver.cs" />
-    <Compile Include="CurrencyRates\CurrencyRateHelper.cs" />
     <Compile Include="CurrencyRates\CurrencyRateManager.cs" />
     <Compile Include="CurrencyRates\ForexParser.cs" />
-    <Compile Include="CurrencyRates\RatesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticData.cs" />
     <Compile Include="Tools.cs" />
