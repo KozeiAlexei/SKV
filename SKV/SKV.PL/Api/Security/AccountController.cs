@@ -18,7 +18,7 @@ using SKV.PL.Providers;
 using SKV.PL.Results;
 using SKV.PL;
 using SKV.BLL.Identity;
-using SKV.DAL.Concrete.Model.UserModel;
+using SKV.VML.ViewModels.Account;
 
 namespace SKV.Api.Security
 {
@@ -26,10 +26,7 @@ namespace SKV.Api.Security
     [RoutePrefix("api/Security/Account")]
     public class AccountController : ApiController
     {
-        private string LocalLoginProvider { get; } = "@LoginProvider";
-
         private IdentityUserManager user_manager;
-
 
 
         public AccountController() { }
@@ -41,6 +38,7 @@ namespace SKV.Api.Security
         }
 
 
+        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         public IdentityUserManager UserManager
         {
@@ -48,23 +46,11 @@ namespace SKV.Api.Security
             private set { user_manager = value; }
         }
 
-        public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
-
-
-        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
-        [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
-        {
-            return new UserInfoViewModel
-            {
-                Email = User.Identity.GetUserName()
-            };
-        }
 
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
-            Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            Request.GetOwinContext().Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
 
@@ -72,101 +58,30 @@ namespace SKV.Api.Security
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordBindingModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
-                model.NewPassword);
+            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
 
             if (!result.Succeeded)
-            {
                 return GetErrorResult(result);
-            }
 
             return Ok();
         }
 
-        [Route("SetPassword")]
-        public async Task<IHttpActionResult> SetPassword(SetPasswordBindingModel model)
+
+        [Route("Register")] [AllowAnonymous]
+        public async Task<IHttpActionResult> Register(RegisterAccountViewModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            IdentityResult result = await UserManager.AddPasswordAsync(User.Identity.GetUserId(), model.NewPassword);
+            var result = await UserManager.RegisterAsync(model);
 
             if (!result.Succeeded)
-            {
                 return GetErrorResult(result);
-            }
 
             return Ok();
         }
-
-        
-        [Route("RemoveLogin")]
-        public async Task<IHttpActionResult> RemoveLogin(RemoveLoginBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            IdentityResult result;
-
-            if (model.LoginProvider == LocalLoginProvider)
-            {
-                result = await UserManager.RemovePasswordAsync(User.Identity.GetUserId());
-            }
-            else
-            {
-                result = await UserManager.RemoveLoginAsync(User.Identity.GetUserId(),
-                    new UserLoginInfo(model.LoginProvider, model.ProviderKey));
-            }
-
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
-
-            return Ok();
-        }
-
-        [AllowAnonymous]
-        [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterBindingModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var user = new User()
-            {
-                Email = model.Email,
-                UserName = model.Email,
-                Profile = new UserProfile()
-                {
-                    Name = model.Name,
-                    LastLoginDate = DateTime.Now,
-                    RegistrationDate = DateTime.Now,
-                }
-            };
-
-
-            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
-
-            if (!result.Succeeded)
-            {
-                return GetErrorResult(result);
-            }
-
-            return Ok();
-        }
-
-        
 
         protected override void Dispose(bool disposing)
         {
@@ -179,44 +94,26 @@ namespace SKV.Api.Security
             base.Dispose(disposing);
         }
 
-        #region Вспомогательные приложения
-
-        private IAuthenticationManager Authentication
-        {
-            get { return Request.GetOwinContext().Authentication; }
-        }
-
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {
             if (result == null)
-            {
                 return InternalServerError();
-            }
 
             if (!result.Succeeded)
             {
                 if (result.Errors != null)
                 {
                     foreach (string error in result.Errors)
-                    {
                         ModelState.AddModelError("", error);
-                    }
                 }
 
                 if (ModelState.IsValid)
-                {
-                    // Ошибки ModelState для отправки отсутствуют, поэтому просто возвращается пустой BadRequest.
                     return BadRequest();
-                }
 
                 return BadRequest(ModelState);
             }
 
             return null;
         }
-
-       
-
-        #endregion
     }
 }

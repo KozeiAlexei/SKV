@@ -1,29 +1,40 @@
-﻿using Microsoft.Owin;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OAuth;
+using Ninject;
+using SKV.DAL;
 using SKV.DAL.Concrete.EntityFramework;
 using SKV.DAL.Concrete.Model.UserModel;
+using SKV.VML.ViewModels.Account;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SKV.BLL.Identity
 {
-    public class IdentityUserManager : UserManager<User>
+    public class IdentityUserManager : IDisposable
     {
-        public IdentityUserManager(IUserStore<User> store) : base(store) { }
+        private UserManager<User> UserManager { get; set; }
 
+        public static IdentityUserManager Create(IdentityFactoryOptions<IdentityUserManager> options, IOwinContext context) =>
+            new IdentityUserManager(options, context);
 
-        public static IdentityUserManager Create(IdentityFactoryOptions<IdentityUserManager> options, IOwinContext context)
+        public IdentityUserManager(IdentityFactoryOptions<IdentityUserManager> options, IOwinContext context)
         {
-            var manager = new IdentityUserManager(new UserStore<User>(context.Get<DatabaseContext>()));
+            UserManager = new UserManager<User>(new UserStore<User>(DALDependencyResolver.Kernel.Get<DatabaseContext>()));
 
-            manager.UserValidator = new UserValidator<User>(manager)
+            UserManager.UserValidator = new UserValidator<User>(UserManager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
-            manager.PasswordValidator = new PasswordValidator
+            UserManager.PasswordValidator = new PasswordValidator
             {
                 RequiredLength = 6,
                 RequireNonLetterOrDigit = true,
@@ -34,9 +45,48 @@ namespace SKV.BLL.Identity
 
             var data_protection_provider = options.DataProtectionProvider;
             if (data_protection_provider != null)
-                manager.UserTokenProvider = new DataProtectorTokenProvider<User>(data_protection_provider.Create("SKVAutomatisation 2.0"));
-
-            return manager;
+                UserManager.UserTokenProvider = new DataProtectorTokenProvider<User>(data_protection_provider.Create("DPP"));
         }
+
+
+        public async Task<IdentityResult> ChangePasswordAsync(string user_id, string old_password, string new_password) =>
+            await UserManager.ChangePasswordAsync(user_id, old_password, new_password);
+
+        public async Task<IdentityResult> RegisterAsync(RegisterAccountViewModel model)
+        {
+            var user = new User()
+            {
+                Email = model.Email,
+                UserName = model.Email,
+                Profile = new UserProfile()
+                {
+                    Name = model.Name,
+                    LastLoginDate = DateTime.Now,
+                    RegistrationDate = DateTime.Now,
+                }
+            };
+
+
+            return await UserManager.CreateAsync(user, model.Password);
+        }
+
+        public async Task<OAuthUserModel> OAuthUserFindAsync(string user_name, string password)
+        {
+            var user = await UserManager.FindAsync(user_name, password);
+            var oauth_user = default(OAuthUserModel);
+
+            if (user != null)
+            {
+                oauth_user = new OAuthUserModel()
+                {
+                    OAuthIdentity = await user.GenerateUserIdentityAsync(UserManager, OAuthDefaults.AuthenticationType),
+                    CookiesIdentity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType)
+                };
+            }
+            
+            return await Task.FromResult(oauth_user);
+        }
+
+        public void Dispose() => UserManager.Dispose();
     }
 }

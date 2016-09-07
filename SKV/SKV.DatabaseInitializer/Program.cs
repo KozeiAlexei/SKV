@@ -57,7 +57,7 @@ namespace SKV.DatabaseInitializer
 
             db.SaveChanges();
 
-            var user_manager = new IdentityUserManager(new UserStore<User>(db));
+            var user_manager = new UserManager<User>(new UserStore<User>(db));
             var user = new User()
             {
                 Email = string.Empty,

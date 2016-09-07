@@ -16,84 +16,70 @@ namespace SKV.PL.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly string _publicClientId;
+        private readonly string public_client_id;
 
-        public ApplicationOAuthProvider(string publicClientId)
+        public ApplicationOAuthProvider(string public_client_id)
         {
-            if (publicClientId == null)
-            {
-                throw new ArgumentNullException("publicClientId");
-            }
+            if (public_client_id == null)
+                throw new ArgumentNullException("public_client_id");
 
-            _publicClientId = publicClientId;
+            this.public_client_id = public_client_id;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            var userManager = context.OwinContext.GetUserManager<IdentityUserManager>();
+            var user_manager = context.OwinContext.GetUserManager<IdentityUserManager>();
 
-            var user = await userManager.FindAsync(context.UserName, context.Password);
+            var oauth_user = await user_manager.OAuthUserFindAsync(context.UserName, context.Password);
 
-            if (user == null)
+            if (oauth_user == null)
             {
                 context.SetError("invalid_grant", "Имя пользователя или пароль указаны неправильно.");
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
-               OAuthDefaults.AuthenticationType);
-            ClaimsIdentity cookiesIdentity = await user.GenerateUserIdentityAsync(userManager,
-                CookieAuthenticationDefaults.AuthenticationType);
+            AuthenticationProperties properties = CreateProperties(context.UserName);
+            AuthenticationTicket ticket = new AuthenticationTicket(oauth_user.OAuthIdentity, properties);
 
-            AuthenticationProperties properties = CreateProperties(user.UserName);
-            AuthenticationTicket ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
+            context.Request.Context.Authentication.SignIn(oauth_user.CookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
-            {
                 context.AdditionalResponseParameters.Add(property.Key, property.Value);
-            }
 
             return Task.FromResult<object>(null);
         }
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            // Учетные данные владельца ресурса не содержат идентификатор клиента.
             if (context.ClientId == null)
-            {
                 context.Validated();
-            }
 
             return Task.FromResult<object>(null);
         }
 
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
-            if (context.ClientId == _publicClientId)
+            if (context.ClientId == public_client_id)
             {
-                Uri expectedRootUri = new Uri(context.Request.Uri, "/");
+                var expected_root_uri = new Uri(context.Request.Uri, "/");
 
-                if (expectedRootUri.AbsoluteUri == context.RedirectUri)
-                {
+                if (expected_root_uri.AbsoluteUri == context.RedirectUri)
                     context.Validated();
-                }
             }
 
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string user_name)
         {
-            IDictionary<string, string> data = new Dictionary<string, string>
+            return new AuthenticationProperties(new Dictionary<string, string>
             {
-                { "UserName", userName }
-            };
-            return new AuthenticationProperties(data);
+                { "UserName", user_name }
+            });
         }
     }
 }
