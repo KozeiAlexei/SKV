@@ -1,0 +1,61 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html ng-app="SKV">
+<head>
+    <meta charset="UTF-8">
+    <title>@Resources.Resource.LoginTitle</title>
+  
+    @Html.Partial("IncludedDataPartital")
+</head>
+<body class="fixed-left login-page" ng-controller="LoginController as LoginCtrl">
+    <div class="container">
+        <div class="full-content-center">
+            <p class="text-center"><a href="#"><img src="~/Content/Admin/assets/img/login-logo.png" alt="Logo"></a></p>
+            <div class="login-wrap animated flipInX">
+                <div class="login-block">
+                    <img src="~/Content/Admin/images/users/default-user.png" class="img-circle not-logged-avatar">
+                    <section id="loginForm">
+                        <form role="form">
+
+                            <div class="form-group login-input">
+                                <i class="fa fa-user overlay"></i>
+                                <input id="UserName" type="text" class="form-control text-input" placeholder="@Resources.Resource.Login" ng-model="LoginCtrl.Model.UserName" />
+                            </div>
+
+                            <div class="form-group login-input">
+                                <i class="fa fa-key overlay"></i>
+                                <input id="Password" type="password" class="form-control text-input" placeholder="@Resources.Resource.Password" ng-model="LoginCtrl.Model.Password" ng-required="LoginCtrl.ValidationErrors.Password" />
+                            </div>
+
+                            <div id="LoginSuccessfull">
+                                @Resources.Resource.LoginSuccessfull
+                                .
+                                @Resources.Resource.SystemLoading
+                            </div>
+
+                            <div id="LoginError">
+                                @Resources.Resource.LoginError
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <button ng-click="LoginCtrl.Login()" class="btn btn-success btn-block">@Resources.Resource.LoginButton</button>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    
+</body>
+</html>
+
+

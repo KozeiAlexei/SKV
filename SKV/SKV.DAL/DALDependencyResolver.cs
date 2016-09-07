@@ -5,6 +5,7 @@ using SKV.DAL.Tools;
 using SKV.DAL.Abstract.Common;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Concrete.EntityFramework;
+using SKV.DAL.Concrete.Model.UIModel;
 using SKV.DAL.Concrete.Model.CallModel;
 using SKV.DAL.Concrete.Model.UserModel;
 using SKV.DAL.Concrete.Model.WindowModel;
@@ -13,6 +14,22 @@ using SKV.DAL.Concrete.Model.CommonModel;
 using SKV.DAL.Concrete.Model.CurrencyModel;
 using SKV.DAL.Concrete.Model.OperationModel;
 using SKV.DAL.Concrete.Database;
+using SKV.DAL.Abstract.Repositories.CallModel;
+using SKV.DAL.Concrete.Repositories.CallModel;
+using SKV.DAL.Abstract.Repositories.ClientModel;
+using SKV.DAL.Concrete.Repositories.ClientModel;
+using SKV.DAL.Abstract.Repositories.CommonModel;
+using SKV.DAL.Concrete.Repositories.CommonModel;
+using SKV.DAL.Abstract.Repositories.CurrencyModel;
+using SKV.DAL.Concrete.Repositories.CurrencyModel;
+using SKV.DAL.Abstract.Repositories.OperationModel;
+using SKV.DAL.Concrete.Repositories.OperationModel;
+using SKV.DAL.Abstract.Repositories.UIModel;
+using SKV.DAL.Concrete.Repositories.UIModel;
+using SKV.DAL.Abstract.Repositories.UserModel;
+using SKV.DAL.Concrete.Repositories.UserModel;
+using SKV.DAL.Abstract.Repositories.WindowModel;
+using SKV.DAL.Concrete.Repositories.WindowModel;
 
 namespace SKV.DAL
 {
@@ -62,6 +79,46 @@ namespace SKV.DAL
 
                 Bind(typeof(IRepository<Window, int>)).To(typeof(Repository<Window, int>)).InSingletonScope();
                 Bind(typeof(IRepository<WindowCash, int>)).To(typeof(Repository<WindowCash, int>)).InSingletonScope();
+
+                Bind(typeof(IRepository<UICulture, int>)).To(typeof(Repository<UICulture, int>)).InSingletonScope();
+                Bind(typeof(IRepository<UIMenuItem, int>)).To(typeof(Repository<UIMenuItem, int>)).InSingletonScope();
+
+
+                Bind(typeof(ICallRepository<Call, int, CallType>)).To<CallRepository>();
+                Bind(typeof(IOperatorPhoneRepository<OperatorPhone, int>)).To<OperatorPhoneRepository>();
+
+                Bind(typeof(IClientRepository<Client, int, int, string>)).To<ClientRepository>();
+                Bind(typeof(IClientStatusRepository<ClientStatus, int, ClientStatusCode>)).To<ClientStatusRepository>();
+
+                Bind(typeof(IPageRepository<Page, int>)).To<PageRepository>();
+                Bind(typeof(ISystemSettingsRepository<SystemSettings, int, int>)).To<SystemSettingsRepository>();
+
+                Bind(typeof(ICurrencyRepository<Currency, int>)).To<CurrencyRepository>();
+                Bind(typeof(ICurrencyRateRepository<CurrencyRate, int>)).To<CurrencyRateRepository>();
+                Bind(typeof(ICurrencyRateDataRepository<CurrencyRateData, int>)).To<CurrencyRateDataRepository>();
+                Bind(typeof(ICurrencyExchangeRuleRepository<CurrencyExchangeRule, int, int>)).To<CurrencyExchangeRuleRepository>();
+                Bind(typeof(ICurrencyCompetitorRepository<CurrencyCompetitor, int>)).To<CurrencyCompetitorRepository>();
+
+                Bind(typeof(ICorrectionRepository<Correction, int, string, int>)).To<CorrectionRepository>();
+                Bind(typeof(ICorrectionDataRepository<CorrectionData, int, int, int, int>)).To<CorrectionDataRepository>();
+                Bind(typeof(IExchangeRepository<Exchange, int, ExchangeSource, string, int, int, int>)).To<ExchangeRepository>();
+                Bind(typeof(IExchangeDataRepository<ExchangeData, int, int, int?, int?>)).To<ExchangeDataRepository>();
+                Bind(typeof(IInventarisationRepository<Inventarisation, int, string, int>)).To<InventarisationRepository>();
+                Bind(typeof(IInventarisationDataRepository<InventarisationData, int, int, int, int, decimal>)).To<InventarisationDataRepository>();
+                Bind(typeof(IMoneyTransferRepository<MoneyTransfer, int, string, int>)).To<MoneyTransferRepository>();
+                Bind(typeof(IMoneyTransferDataRepository<MoneyTransferData, int, int, int?, int?, MoneyTransferBase>)).To<MoneyTransferDataRepository>();
+                Bind(typeof(IOperationStatusRepository<OperationStatus, int, OperationType, int>)).To<OperationStatusRepository>();
+
+                Bind(typeof(IUICultureRepository<UICulture, int>)).To<UICultureRepository>();
+                Bind(typeof(IUIMenuItemRepository<UIMenuItem, int, int?>)).To<UIMenuItemRepository>();
+
+                Bind(typeof(IUserRepository<User, string>)).To<UserRepository>();
+                Bind(typeof(IUserRoleRepository<UserRole, string, DefaultRole>)).To<UserRoleRepository>();
+                Bind(typeof(IUserProfileRepository<UserProfile, string>)).To<UserProfileRepository>();
+                Bind(typeof(IUserPermissionRepository<UserPermission, int, UserPermissionCode>)).To<UserPermissionRepository>();
+
+                Bind(typeof(IWindowRepository<Window, int, WindowStatus>)).To<WindowRepository>();
+                Bind(typeof(IWindowCashRepository<WindowCash, int, int, int>)).To<WindowCashRepository>();
 
                 Bind<IDbManager>().To<DbManager>();
             }

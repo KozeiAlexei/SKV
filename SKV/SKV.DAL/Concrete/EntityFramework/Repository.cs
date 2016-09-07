@@ -18,11 +18,13 @@ namespace SKV.DAL.Concrete.EntityFramework
     {
         private static object sync_context = new object();
 
-        private static DatabaseContext context = default(DatabaseContext);
+        private DatabaseContext context = default(DatabaseContext);
 
         public Repository()
         {
             context = DALDependencyResolver.Kernel.Get<DatabaseContext>();
+
+            Table = context.Set<TEntity>();
         }
 
         public TEntity Create(TEntity entity)
@@ -52,6 +54,6 @@ namespace SKV.DAL.Concrete.EntityFramework
 
         public ISynchronizator Sync { get; } = DALDependencyResolver.Kernel.Get<ISynchronizator>(new ConstructorArgument("sync_context", sync_context));
 
-        public IQueryable<TEntity> Table { get; } = context.Set<TEntity>();
+        public IQueryable<TEntity> Table { get; private set; }
     }
 }

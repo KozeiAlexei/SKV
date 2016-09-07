@@ -10,6 +10,7 @@ using SKV.DAL.Concrete.Model.CommonModel;
 using SKV.DAL.Concrete.Model.CurrencyModel;
 using SKV.DAL.Concrete.Model.OperationModel;
 
+using SKV.DAL.Concrete.Model.UIModel;
 
 namespace SKV.DAL.Concrete.EntityFramework
 {
@@ -18,11 +19,11 @@ namespace SKV.DAL.Concrete.EntityFramework
         #region Context constructor
 
 #if (DEBUG)
-        public DatabaseContext() : base("EXCDB_LOCAL_DEBUG")
+        public DatabaseContext() : base("SKVDB_LOCAL_DEBUG", throwIfV1Schema: false)
 #elif (SKV_TEST)
-        public DatabaseContext() : base("EXCDB_SERVER_TEST")
+        public DatabaseContext() : base("SKVDB_SERVER_TEST", throwIfV1Schema: false)
 #elif (SKV_PRODUCTION)
-        public DatabaseContext() : base("EXCDB_SERVER_PRODUCTION")
+        public DatabaseContext() : base("SKVDB_SERVER_PRODUCTION", throwIfV1Schema: false)
 #endif
 
         {
@@ -111,6 +112,14 @@ namespace SKV.DAL.Concrete.EntityFramework
 
         #endregion
 
+        #region UIModel
+
+        public DbSet<UICulture> UICultures { get; set; }
+
+        public DbSet<UIMenuItem> UIMenuItems { get; set; }
+
+        #endregion
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -122,5 +131,7 @@ namespace SKV.DAL.Concrete.EntityFramework
             modelBuilder.Entity<IdentityUserLogin>().ToTable("IdentityUserLogins");
             modelBuilder.Entity<IdentityUserClaim>().ToTable("IdentityUserClaims");
         }
+
+        public static DatabaseContext Create() => new DatabaseContext();
     }
 }

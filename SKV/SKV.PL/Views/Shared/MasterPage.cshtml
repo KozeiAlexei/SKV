@@ -1,0 +1,106 @@
+﻿@using SKV.VML.ViewModels.Common;
+@using SKV.PL.Helpers;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Система управления обменным пунктом</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+
+    @Styles.Render("~/style_bundles/base_css")
+    @Styles.Render("~/style_bundles/style-responsive")
+
+    @Styles.Render("~/Content/BaseCssFiles")
+    @Styles.Render("~/Content/ExtraCSSLibraries")
+
+
+    <link rel="shortcut icon" href="~/Content/Admin/assets/img/favicon.ico">
+    <link rel="apple-touch-icon" href="~/Content/Admin/assets/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/Admin/assets/img/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/Admin/assets/img/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/Admin/assets/img/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/Admin/assets/img/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/Admin/assets/img/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/Admin/assets/img/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/Admin/assets/img/apple-touch-icon-152x152.png" />
+</head>
+
+<body class="fixed-left">
+    <div id="wrapper">
+        <div class="topbar">
+            <div class="topbar-left">
+                <div class="logo">
+                    <h1><a href="#"><img src="~/Content/Admin/assets/img/logo.png" alt="Logo"></a></h1>
+                </div>
+                <button class="button-menu-mobile open-left">
+                    <i class="fa fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="navbar navbar-default" role="navigation">
+                <div class="container">
+                    <div class="navbar-collapse2">
+                        <ul class="nav navbar-nav hidden-xs">
+                            @Html.Partial("AdditionalSidebarPartital")
+                            @Html.Partial("LanguageSidebarPartital")
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right top-navbar">
+                            @Html.Partial("NotificationsSidebarPartital")
+                            @Html.Partial("MessagesSidebarPartital")
+                            <li class="dropdown iconify hide-phone"><a href="#" onclick="javascript:toggle_fullscreen()"><i class="icon-resize-full-2"></i></a></li>
+                            @Html.Partial("UserSidebarPartital")
+
+                            <li class="right-opener">
+                                <a href="javascript:;" class="open-right"><i class="fa fa-angle-double-left"></i><i class="fa fa-angle-double-right"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <br />
+                <div class="clearfix"></div>
+
+                @Html.Partial("UserProfileInfoPartital")
+
+                <div class="clearfix"></div>
+                <hr class="divider" />
+                <div class="clearfix"></div>
+
+                @Html.CreateSidebarMenu((IEnumerable<UIMenuItemView>)ViewBag.UIMenuItems);
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        @Html.Partial("RightSidebarPartital")
+
+
+        <div class="content-page">
+            <div class="content">
+                @RenderBody()
+
+                         
+                <footer>ESoft &copy; 2016</footer>
+            </div>
+        </div>
+    </div>
+    
+   
+    <script>
+		var resizefunc = [];
+    </script>
+
+    @Scripts.Render("~/Content/JQueryLibs")
+    @Scripts.Render("~/Content/PageSpecificJSLibs")
+</body>
+</html>

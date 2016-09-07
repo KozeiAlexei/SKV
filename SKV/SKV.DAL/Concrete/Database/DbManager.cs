@@ -23,6 +23,8 @@ using SKV.DAL.Concrete.Model.ClientModel;
 using SKV.DAL.Concrete.Model.CommonModel;
 using SKV.DAL.Concrete.Model.CurrencyModel;
 using SKV.DAL.Concrete.Model.OperationModel;
+using SKV.DAL.Abstract.Repositories.UIModel;
+using SKV.DAL.Concrete.Model.UIModel;
 
 namespace SKV.DAL.Concrete.Database
 {
@@ -61,8 +63,8 @@ namespace SKV.DAL.Concrete.Database
         public ICurrencyRateRepository<CurrencyRate, int> CurrencyRates { get; } =
             (ICurrencyRateRepository<CurrencyRate, int>)DALDependencyResolver.Kernel.Get(typeof(ICurrencyRateRepository<CurrencyRate, int>));
 
-        public IExchangeDataRepository<ExchangeData, int, int, int, int?> ExchangeData { get; } =
-            (IExchangeDataRepository<ExchangeData, int, int, int, int?>)DALDependencyResolver.Kernel.Get(typeof(IExchangeDataRepository<ExchangeData, int, int, int, int?>));
+        public IExchangeDataRepository<ExchangeData, int, int, int?, int?> ExchangeData { get; } =
+            (IExchangeDataRepository<ExchangeData, int, int, int?, int?>)DALDependencyResolver.Kernel.Get(typeof(IExchangeDataRepository<ExchangeData, int, int, int?, int?>));
 
         public IExchangeRepository<Exchange, int, ExchangeSource, string, int, int, int> Exchanges { get; } =
             (IExchangeRepository<Exchange, int, ExchangeSource, string, int, int, int>)DALDependencyResolver.Kernel.Get(typeof(IExchangeRepository<Exchange, int, ExchangeSource, string, int, int, int>));
@@ -88,8 +90,8 @@ namespace SKV.DAL.Concrete.Database
         public IPageRepository<Page, int> Pages { get; } =
             (IPageRepository<Page, int>)DALDependencyResolver.Kernel.Get(typeof(IPageRepository<Page, int>));
 
-        public ISystemSettingsRepository<SystemSettings, int> SystemSettings { get; } =
-            (ISystemSettingsRepository<SystemSettings, int>)DALDependencyResolver.Kernel.Get(typeof(ISystemSettingsRepository<SystemSettings, int>));
+        public ISystemSettingsRepository<SystemSettings, int, int> SystemSettings { get; } =
+            (ISystemSettingsRepository<SystemSettings, int, int>)DALDependencyResolver.Kernel.Get(typeof(ISystemSettingsRepository<SystemSettings, int, int>));
 
         public IUserPermissionRepository<UserPermission, int, UserPermissionCode> UserPermissions { get; } =
             (IUserPermissionRepository<UserPermission, int, UserPermissionCode>)DALDependencyResolver.Kernel.Get(typeof(IUserPermissionRepository<UserPermission, int, UserPermissionCode>));
@@ -109,7 +111,14 @@ namespace SKV.DAL.Concrete.Database
         public IWindowRepository<Window, int, WindowStatus> Windows { get; } =
             (IWindowRepository<Window, int, WindowStatus>)DALDependencyResolver.Kernel.Get(typeof(IWindowRepository<Window, int, WindowStatus>));
 
-       public void Refresh()
+
+        public IUICultureRepository<UICulture, int> UICultures { get; } =
+            (IUICultureRepository<UICulture, int>)DALDependencyResolver.Kernel.Get(typeof(IUICultureRepository<UICulture, int>));
+
+        public IUIMenuItemRepository<UIMenuItem, int, int?> UIMenuItems { get; } =
+            (IUIMenuItemRepository<UIMenuItem, int, int?>)DALDependencyResolver.Kernel.Get(typeof(IUIMenuItemRepository<UIMenuItem, int, int?>));
+
+        public void Refresh()
         {
             var object_context = ((IObjectContextAdapter)context).ObjectContext;
 

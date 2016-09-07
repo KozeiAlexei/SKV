@@ -2,7 +2,7 @@
 
 namespace SKV.DAL.Abstract.Model.CommonModel
 {
-    public interface ISystemSettings<TKey> : IEntity<TKey>, ICloneableFrom<ISystemSettings<TKey>>
+    public interface ISystemSettings<TKey, TUICultureKey> : IEntity<TKey>, ICloneableFrom<ISystemSettings<TKey, TUICultureKey>>
     {
         string RBCLogin { get; set; }
 
@@ -21,5 +21,7 @@ namespace SKV.DAL.Abstract.Model.CommonModel
         int RBCMonitoringFixedRateId { get; set; }
 
         int RBCMonitoringUpdatePeriod { get; set; }
+
+        TUICultureKey DefaultCultureId { get; set; }
     }
 }

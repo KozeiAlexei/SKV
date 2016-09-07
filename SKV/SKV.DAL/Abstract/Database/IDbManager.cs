@@ -6,6 +6,7 @@ using SKV.DAL.Abstract.Repositories.CommonModel;
 using SKV.DAL.Abstract.Repositories.CurrencyModel;
 using SKV.DAL.Abstract.Repositories.OperationModel;
 
+using SKV.DAL.Concrete.Model.UIModel;
 using SKV.DAL.Concrete.Model.CallModel;
 using SKV.DAL.Concrete.Model.UserModel;
 using SKV.DAL.Concrete.Model.WindowModel;
@@ -13,6 +14,8 @@ using SKV.DAL.Concrete.Model.ClientModel;
 using SKV.DAL.Concrete.Model.CommonModel;
 using SKV.DAL.Concrete.Model.CurrencyModel;
 using SKV.DAL.Concrete.Model.OperationModel;
+using SKV.DAL.Abstract.Repositories.UIModel;
+
 
 namespace SKV.DAL.Abstract.Database
 {
@@ -30,7 +33,7 @@ namespace SKV.DAL.Abstract.Database
 
         IPageRepository<Page, int> Pages { get; }
 
-        ISystemSettingsRepository<SystemSettings, int> SystemSettings { get; }
+        ISystemSettingsRepository<SystemSettings, int, int> SystemSettings { get; }
 
         
         ICurrencyCompetitorRepository<CurrencyCompetitor, int> CurrencyCompetitors { get; }
@@ -50,7 +53,7 @@ namespace SKV.DAL.Abstract.Database
 
         IExchangeRepository<Exchange, int, ExchangeSource, string, int, int, int> Exchanges { get; }
 
-        IExchangeDataRepository<ExchangeData, int, int, int, int?> ExchangeData { get; }
+        IExchangeDataRepository<ExchangeData, int, int, int?, int?> ExchangeData { get; }
 
         IInventarisationRepository<Inventarisation, int, string, int> Inventarisations { get; }
 
@@ -75,5 +78,10 @@ namespace SKV.DAL.Abstract.Database
         IWindowRepository<Window, int, WindowStatus> Windows { get; }
 
         IWindowCashRepository<WindowCash, int, int, int> WindowCashes { get; }
+
+
+        IUICultureRepository<UICulture, int> UICultures { get; }
+
+        IUIMenuItemRepository<UIMenuItem, int, int?> UIMenuItems { get; }
     }
 }

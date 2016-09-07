@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 using SKV.DAL.Abstract.Model.CommonModel;
+using SKV.DAL.Concrete.Model.UIModel;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SKV.DAL.Concrete.Model.CommonModel
 {
-    public class SystemSettings : ISystemSettings<int>
+    public class SystemSettings : ISystemSettings<int, int>
     {
         [Key]
         public int Id { get; set; }
@@ -33,7 +35,12 @@ namespace SKV.DAL.Concrete.Model.CommonModel
         public int RBCMonitoringUpdatePeriod { get; set; }
 
 
-        public void CopyFrom(ISystemSettings<int> from)
+        public int DefaultCultureId { get; set; }
+
+        [ForeignKey(nameof(DefaultCultureId))]
+        public UICulture DefaultUICultureInstance { get; set; }
+
+        public void CopyFrom(ISystemSettings<int, int> from)
         {
             Id = from.Id;
 

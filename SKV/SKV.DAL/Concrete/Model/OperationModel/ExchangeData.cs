@@ -6,7 +6,7 @@ using SKV.DAL.Concrete.Model.CurrencyModel;
 
 namespace SKV.DAL.Concrete.Model.OperationModel
 {
-    public class ExchangeData : IExchangeData<int, int, int, int?>
+    public class ExchangeData : IExchangeData<int, int, int?, int?>
     {
         [Key]
         public int Id { get; set; }
@@ -32,19 +32,19 @@ namespace SKV.DAL.Concrete.Model.OperationModel
         public decimal ExchangerRate { get; set; }
 
         
-        public int BankCurrencyId { get; set; }
+        public int? BankCurrencyId { get; set; }
 
         [ForeignKey(nameof(BankCurrencyId))]
         public Currency BankCurrencyInstance { get; set; }
 
 
-        public int ClientCurrencyId { get; set; }
+        public int? ClientCurrencyId { get; set; }
 
         [ForeignKey(nameof(ClientCurrencyId))]
         public Currency ClientCurrencyInstance { get; set; }
 
 
-        public void CopyFrom(IExchangeData<int, int, int, int?> from)
+        public void CopyFrom(IExchangeData<int, int, int?, int?> from)
         {
             Id = from.Id;
             ExchangeId = from.Id;
