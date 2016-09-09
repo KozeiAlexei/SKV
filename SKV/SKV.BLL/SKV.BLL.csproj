@@ -114,10 +114,6 @@
       <Project>{48c31015-40e5-4828-b49e-8607e440893e}</Project>
       <Name>SKV.ML</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SKV.VML\SKV.VML.csproj">
-      <Project>{e6e986e8-8da9-4d52-9f63-926f308d1037}</Project>
-      <Name>SKV.VML</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\Administration\" />

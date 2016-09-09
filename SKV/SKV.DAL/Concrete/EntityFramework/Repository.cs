@@ -31,7 +31,7 @@ namespace SKV.DAL.Concrete.EntityFramework
             => Sync.Synchronize(() => context.Set<TEntity>().Add(entity));
 
         public IEnumerable<TEntity> Read()
-            => Sync.Synchronize(() => context.Set<TEntity>().AsEnumerable());
+            => Sync.Synchronize(() => context.Set<TEntity>().AsNoTracking().AsEnumerable());
         
         public bool Update(TEntity entity) 
         {

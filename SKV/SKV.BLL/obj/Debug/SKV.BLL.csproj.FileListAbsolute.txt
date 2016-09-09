@@ -14,10 +14,8 @@ E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\Newtonsoft.Json.dll
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\Ninject.dll
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\Owin.dll
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\SKV.DAL.dll
-E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\SKV.VML.dll
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\NLog.dll
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\SKV.DAL.pdb
-E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\SKV.VML.pdb
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\EntityFramework.xml
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\EntityFramework.SqlServer.xml
 E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml

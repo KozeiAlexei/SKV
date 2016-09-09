@@ -18,7 +18,7 @@ using SKV.PL.Providers;
 using SKV.PL.Results;
 using SKV.PL;
 using SKV.BLL.Identity;
-using SKV.VML.ViewModels.Account;
+using SKV.ML.ViewModels.Account;
 
 namespace SKV.Api.Security
 {

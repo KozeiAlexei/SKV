@@ -1,9 +1,9 @@
-﻿@using SKV.VML.ViewModels.Common;
+﻿@using SKV.ML.Concrete.Model.UIModel;
 
 <li class="language_bar dropdown hidden-xs">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">@ViewBag.CurrentUICulture    <i class="fa fa-caret-down"></i></a>
     <ul class="dropdown-menu pull-right">
-        @foreach (var lang in (IEnumerable<UICultureView>)ViewBag.UICultures)
+        @foreach (var lang in (IEnumerable<UICulture>)ViewBag.UICultures)
         {
             <li>@Html.ActionLink(lang.Name, "ChangeCulture", new { culture = lang.Culture }, null)</li>
         }

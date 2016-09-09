@@ -7,7 +7,7 @@ using SKV.DAL.Abstract.Database;
 
 using SKV.BLL.Abstract.UI;
 
-using SKV.VML.ViewModels.Common;
+using SKV.ML.Concrete.Model.UIModel;
 
 namespace SKV.BLL.UI
 {
@@ -15,17 +15,9 @@ namespace SKV.BLL.UI
     {
         private IDbManager db_manager = DALDependencyResolver.Kernel.Get<IDbManager>();
 
-        public IEnumerable<UICultureView> GetUICultures()
-        {
-            foreach (var lang in db_manager.UICultures.Repository.Read())
-                yield return new UICultureView() { Name = lang.Name, Culture = lang.Culture };
-        }
+        public IEnumerable<UICulture> GetUICultures() => db_manager.UICultures.Repository.Read();
 
-        public UICultureView GetDefaultCulture()
-        {
-            var ui_cilture = db_manager.SystemSettings.GetSystemSettings().DefaultUICultureInstance;
-            return new UICultureView() { Name = ui_cilture.Name, Culture = ui_cilture.Culture };
-        }
+        public UICulture GetDefaultCulture() => db_manager.SystemSettings.GetSystemSettings().DefaultUICultureInstance;
 
     }
 }

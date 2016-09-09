@@ -9,7 +9,7 @@ using SKV.DAL;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Concrete.EntityFramework;
 using SKV.ML.Concrete.Model.UserModel;
-using SKV.VML.ViewModels.Account;
+using SKV.ML.ViewModels.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,12 +91,15 @@ namespace SKV.BLL.Identity
             return await Task.FromResult(oauth_user);
         }
 
-        public async Task<IEnumerable<UserViewModel>> GetUsers() =>
-            await Task.Run(() => DbManager.Users.Repository.Read().Select(e => new UserViewModel()
-            {
-                Id = e.Id,
-                UserName = e.UserName
-            }));
+        //public async Task<IEnumerable<User>> GetUsers() =>
+        //    await Task.Run(() => DbManager.Users.Repository.Read());
+
+        public IEnumerable<User> GetUsers()
+        {
+            var users = DbManager.Users.Repository.Read();
+
+            return users;
+        }
 
         public void Dispose() => UserManager.Dispose();
     }

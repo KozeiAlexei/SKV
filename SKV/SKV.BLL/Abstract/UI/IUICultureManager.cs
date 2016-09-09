@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 
-using SKV.VML.ViewModels.Common;
+using SKV.ML.Concrete.Model.UIModel;
 
 namespace SKV.BLL.Abstract.UI
 {
     public interface IUICultureManager
     {
-        IEnumerable<UICultureView> GetUICultures();
+        IEnumerable<UICulture> GetUICultures();
 
-        UICultureView GetDefaultCulture();
+        UICulture GetDefaultCulture();
     }
 }

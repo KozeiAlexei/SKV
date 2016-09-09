@@ -13,8 +13,12 @@ namespace SKV.PL.Api.Security
     [Authorize]
     public class UsersController : ApiController
     {
+        //[HttpPost]
+        //public async Task<IHttpActionResult> GetUsers() =>
+        //    Json(await Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());
+
         [HttpPost]
-        public async Task<IHttpActionResult> GetUsers() =>
-            Json(await Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());
+        public IHttpActionResult GetUsers() =>
+            Json(Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());
     }
 }

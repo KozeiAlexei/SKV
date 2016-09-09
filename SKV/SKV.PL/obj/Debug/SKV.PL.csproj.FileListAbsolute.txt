@@ -44,7 +44,6 @@ E:\Работа\SKV\SKV\SKV.PL\bin\Ninject.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\Owin.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\SKV.BLL.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\SKV.DAL.dll
-E:\Работа\SKV\SKV\SKV.PL\bin\SKV.VML.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\System.Net.Http.Formatting.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\System.Web.Helpers.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\System.Web.Http.dll
@@ -60,7 +59,6 @@ E:\Работа\SKV\SKV\SKV.PL\bin\WebGrease.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\NLog.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\SKV.BLL.pdb
 E:\Работа\SKV\SKV\SKV.PL\bin\SKV.DAL.pdb
-E:\Работа\SKV\SKV\SKV.PL\bin\SKV.VML.pdb
 E:\Работа\SKV\SKV\SKV.PL\bin\Microsoft.AI.DependencyCollector.xml
 E:\Работа\SKV\SKV\SKV.PL\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\Работа\SKV\SKV\SKV.PL\bin\Microsoft.AI.Web.xml

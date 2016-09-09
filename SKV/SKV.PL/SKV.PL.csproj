@@ -2371,9 +2371,9 @@
       <Project>{9759D337-D424-4166-8978-657F6ACCA2A2}</Project>
       <Name>SKV.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SKV.VML\SKV.VML.csproj">
-      <Project>{e6e986e8-8da9-4d52-9f63-926f308d1037}</Project>
-      <Name>SKV.VML</Name>
+    <ProjectReference Include="..\SKV.ML\SKV.ML.csproj">
+      <Project>{48c31015-40e5-4828-b49e-8607e440893e}</Project>
+      <Name>SKV.ML</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

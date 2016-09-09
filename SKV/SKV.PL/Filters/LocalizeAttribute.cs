@@ -5,7 +5,8 @@ using System.Globalization;
 using SKV.BLL.Abstract.UI;
 using SKV.BLL;
 using Ninject;
-using SKV.VML.ViewModels.Common;
+
+using SKV.ML.Concrete.Model.UIModel;
 
 namespace SKV.PL.Filters
 {
@@ -15,7 +16,7 @@ namespace SKV.PL.Filters
 
         public void OnActionExecuted(ActionExecutedContext filter_context)
         {
-            var current_culture = default(UICultureView);
+            var current_culture = default(UICulture);
             var default_culture = ui_culture_manager.GetDefaultCulture();
 
             var cultures = ui_culture_manager.GetUICultures();

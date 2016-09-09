@@ -8,7 +8,6 @@ E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.AspNet.Ident
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.BLL.dll
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.DAL.dll
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Ninject.dll
-E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.VML.dll
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Owin.dll
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.Owin.Security.OAuth.dll
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
@@ -24,7 +23,6 @@ E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\EntityFramework.SqlSer
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Ninject.xml
-E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.VML.pdb
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\Microsoft.Owin.xml

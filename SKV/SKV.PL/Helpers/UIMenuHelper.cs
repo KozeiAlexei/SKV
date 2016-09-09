@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Collections.Generic;
 
-using SKV.VML.ViewModels.Common;
+using SKV.ML.ViewModels.Common;
 
 namespace SKV.PL.Helpers
 {
