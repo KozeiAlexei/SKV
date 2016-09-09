@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
-using SKV.DAL.Abstract.Entity;
 using SKV.DAL.Abstract.Common;
 
 namespace SKV.DAL.Abstract.Database

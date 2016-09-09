@@ -8,7 +8,7 @@ using Ninject;
 using SKV.DAL;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Concrete.EntityFramework;
-using SKV.DAL.Concrete.Model.UserModel;
+using SKV.ML.Concrete.Model.UserModel;
 using SKV.VML.ViewModels.Account;
 using System;
 using System.Collections.Generic;

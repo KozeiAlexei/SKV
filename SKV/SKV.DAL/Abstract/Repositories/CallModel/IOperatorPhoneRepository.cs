@@ -1,5 +1,5 @@
 ﻿using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.CallModel;
+using SKV.ML.Abstract.Model.CallModel;
 
 namespace SKV.DAL.Abstract.Repositories.CallModel
 {

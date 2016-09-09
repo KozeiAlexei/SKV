@@ -19,3 +19,6 @@ E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\ru\Microsoft.AspNet.Identity.Core.reso
 E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\ru\Microsoft.AspNet.Identity.EntityFramework.resources.dll
 E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.dll
 E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.pdb
+E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\SKV.ML.dll
+E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\SKV.ML.pdb
+E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.csprojResolveAssemblyReference.cache

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.WindowModel;
+using SKV.ML.Abstract.Model.WindowModel;
 
 namespace SKV.DAL.Abstract.Repositories.WindowModel
 {

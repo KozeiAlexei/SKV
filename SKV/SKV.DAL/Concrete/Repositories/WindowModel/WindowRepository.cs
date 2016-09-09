@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Ninject;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.WindowModel;
+using SKV.ML.Concrete.Model.WindowModel;
 using SKV.DAL.Abstract.Repositories.WindowModel;
 
 namespace SKV.DAL.Concrete.Repositories.WindowModel

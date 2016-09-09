@@ -1,5 +1,5 @@
 ﻿using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.CommonModel;
+using SKV.ML.Abstract.Model.CommonModel;
 
 namespace SKV.DAL.Abstract.Repositories.CommonModel
 {

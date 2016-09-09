@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.CurrencyModel;
+using SKV.ML.Abstract.Model.CurrencyModel;
 
 namespace SKV.DAL.Abstract.Repositories.CurrencyModel
 {

@@ -1,5 +1,5 @@
 ﻿using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.OperationModel;
+using SKV.ML.Abstract.Model.OperationModel;
 
 namespace SKV.DAL.Abstract.Repositories.OperationModel
 {

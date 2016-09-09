@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Ninject;
 using Ninject.Parameters;
 
-using SKV.DAL.Abstract.Entity;
+using SKV.ML.Abstract.Entity;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Abstract.Common;
 

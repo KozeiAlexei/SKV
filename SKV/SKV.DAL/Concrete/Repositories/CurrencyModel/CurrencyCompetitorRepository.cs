@@ -1,7 +1,7 @@
 ﻿using Ninject;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.CurrencyModel;
+using SKV.ML.Concrete.Model.CurrencyModel;
 using SKV.DAL.Abstract.Repositories.CurrencyModel;
 
 namespace SKV.DAL.Concrete.Repositories.CurrencyModel

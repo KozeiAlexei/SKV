@@ -76,6 +76,10 @@
       <Project>{ebf46c7c-cb1c-4cd0-80cd-47ae32c9fa0e}</Project>
       <Name>SKV.DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SKV.ML\SKV.ML.csproj">
+      <Project>{48c31015-40e5-4828-b49e-8607e440893e}</Project>
+      <Name>SKV.ML</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

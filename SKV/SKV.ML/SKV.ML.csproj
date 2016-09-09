@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>48c31015-40e5-4828-b49e-8607e440893e</ProjectGuid>
+    <ProjectGuid>{48C31015-40E5-4828-B49E-8607E440893E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SKV.ML</RootNamespace>
@@ -30,24 +30,102 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Abstract\Entity\ICloneableFrom.cs" />
+    <Compile Include="Abstract\Entity\IEntity.cs" />
+    <Compile Include="Abstract\Model\CallModel\ICall.cs" />
+    <Compile Include="Abstract\Model\CallModel\IOperatorPhone.cs" />
+    <Compile Include="Abstract\Model\ClientModel\IClient.cs" />
+    <Compile Include="Abstract\Model\ClientModel\IClientStatus.cs" />
+    <Compile Include="Abstract\Model\CommonModel\IPage.cs" />
+    <Compile Include="Abstract\Model\CommonModel\ISystemSettings.cs" />
+    <Compile Include="Abstract\Model\CurrencyModel\ICurrency.cs" />
+    <Compile Include="Abstract\Model\CurrencyModel\ICurrencyCompetitor.cs" />
+    <Compile Include="Abstract\Model\CurrencyModel\ICurrencyExchangeRule.cs" />
+    <Compile Include="Abstract\Model\CurrencyModel\ICurrencyRate.cs" />
+    <Compile Include="Abstract\Model\CurrencyModel\ICurrencyRateData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\ICorrection.cs" />
+    <Compile Include="Abstract\Model\OperationModel\ICorrectionData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IExchange.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IExchangeData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IInventarisation.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IInventarisationData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IMoneyTransfer.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IMoneyTransferData.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IOperation.cs" />
+    <Compile Include="Abstract\Model\OperationModel\IOperationStatus.cs" />
+    <Compile Include="Abstract\Model\UIModel\IUICulture.cs" />
+    <Compile Include="Abstract\Model\UIModel\IUIMenuItem.cs" />
+    <Compile Include="Abstract\Model\UserModel\IUser.cs" />
+    <Compile Include="Abstract\Model\UserModel\IUserPermission.cs" />
+    <Compile Include="Abstract\Model\UserModel\IUserProfile.cs" />
+    <Compile Include="Abstract\Model\UserModel\IUserRole.cs" />
+    <Compile Include="Abstract\Model\WindowModel\IWindow.cs" />
+    <Compile Include="Abstract\Model\WindowModel\IWindowCash.cs" />
+    <Compile Include="Concrete\Model\CallModel\Call.cs" />
+    <Compile Include="Concrete\Model\CallModel\OperatorPhone.cs" />
+    <Compile Include="Concrete\Model\ClientModel\Client.cs" />
+    <Compile Include="Concrete\Model\ClientModel\ClientStatus.cs" />
+    <Compile Include="Concrete\Model\CommonModel\Page.cs" />
+    <Compile Include="Concrete\Model\CommonModel\SystemSettings.cs" />
+    <Compile Include="Concrete\Model\CurrencyModel\Currency.cs" />
+    <Compile Include="Concrete\Model\CurrencyModel\CurrencyCompetitor.cs" />
+    <Compile Include="Concrete\Model\CurrencyModel\CurrencyExchangeRule.cs" />
+    <Compile Include="Concrete\Model\CurrencyModel\CurrencyRate.cs" />
+    <Compile Include="Concrete\Model\CurrencyModel\CurrencyRateData.cs" />
+    <Compile Include="Concrete\Model\OperationModel\Correction.cs" />
+    <Compile Include="Concrete\Model\OperationModel\CorrectionData.cs" />
+    <Compile Include="Concrete\Model\OperationModel\Exchange.cs" />
+    <Compile Include="Concrete\Model\OperationModel\ExchangeData.cs" />
+    <Compile Include="Concrete\Model\OperationModel\Inventarisation.cs" />
+    <Compile Include="Concrete\Model\OperationModel\InventarisationData.cs" />
+    <Compile Include="Concrete\Model\OperationModel\MoneyTransfer.cs" />
+    <Compile Include="Concrete\Model\OperationModel\MoneyTransferData.cs" />
+    <Compile Include="Concrete\Model\OperationModel\OperationStatus.cs" />
+    <Compile Include="Concrete\Model\UIModel\UICulture.cs" />
+    <Compile Include="Concrete\Model\UIModel\UIMenuItem.cs" />
+    <Compile Include="Concrete\Model\UserModel\User.cs" />
+    <Compile Include="Concrete\Model\UserModel\UserPermission.cs" />
+    <Compile Include="Concrete\Model\UserModel\UserProfile.cs" />
+    <Compile Include="Concrete\Model\UserModel\UserRole.cs" />
+    <Compile Include="Concrete\Model\WindowModel\Window.cs" />
+    <Compile Include="Concrete\Model\WindowModel\WindowCash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Account\OAuthUserModel.cs" />
+    <Compile Include="ViewModels\Account\RegisterAccountViewModel.cs" />
+    <Compile Include="ViewModels\Account\UserViewModel.cs" />
+    <Compile Include="ViewModels\Common\UICultureView.cs" />
+    <Compile Include="ViewModels\Common\UIMenuItemView.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -57,5 +135,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-
- </Project>
+</Project>

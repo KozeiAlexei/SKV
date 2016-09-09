@@ -3,7 +3,7 @@
 using Ninject;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.CallModel;
+using SKV.ML.Concrete.Model.CallModel;
 using SKV.DAL.Abstract.Repositories.CallModel;
 
 namespace SKV.DAL.Concrete.Repositories.CallModel

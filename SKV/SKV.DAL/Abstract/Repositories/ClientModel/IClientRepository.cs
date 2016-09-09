@@ -1,7 +1,7 @@
 ﻿using System;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.ClientModel;
+using SKV.ML.Abstract.Model.ClientModel;
 
 namespace SKV.DAL.Abstract.Repositories.ClientModel
 {

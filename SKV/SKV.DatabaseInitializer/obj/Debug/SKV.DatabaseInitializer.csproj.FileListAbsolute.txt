@@ -40,3 +40,5 @@ E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\ru\Microsoft.AspNet.Id
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\obj\Debug\SKV.DatabaseInitializer.csprojResolveAssemblyReference.cache
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\obj\Debug\SKV.DatabaseInitializer.exe
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\obj\Debug\SKV.DatabaseInitializer.pdb
+E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.ML.dll
+E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.ML.pdb

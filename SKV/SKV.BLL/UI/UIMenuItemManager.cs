@@ -2,7 +2,7 @@
 using SKV.BLL.Abstract.UI;
 using SKV.DAL;
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.UIModel;
+using SKV.ML.Concrete.Model.UIModel;
 using SKV.VML.ViewModels.Common;
 using System;
 using System.Collections.Generic;

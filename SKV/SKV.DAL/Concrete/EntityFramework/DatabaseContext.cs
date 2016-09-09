@@ -2,15 +2,15 @@
 
 using Microsoft.AspNet.Identity.EntityFramework;
 
-using SKV.DAL.Concrete.Model.CallModel;
-using SKV.DAL.Concrete.Model.UserModel;
-using SKV.DAL.Concrete.Model.WindowModel;
-using SKV.DAL.Concrete.Model.ClientModel;
-using SKV.DAL.Concrete.Model.CommonModel;
-using SKV.DAL.Concrete.Model.CurrencyModel;
-using SKV.DAL.Concrete.Model.OperationModel;
+using SKV.ML.Concrete.Model.CallModel;
+using SKV.ML.Concrete.Model.UserModel;
+using SKV.ML.Concrete.Model.WindowModel;
+using SKV.ML.Concrete.Model.ClientModel;
+using SKV.ML.Concrete.Model.CommonModel;
+using SKV.ML.Concrete.Model.CurrencyModel;
+using SKV.ML.Concrete.Model.OperationModel;
 
-using SKV.DAL.Concrete.Model.UIModel;
+using SKV.ML.Concrete.Model.UIModel;
 
 namespace SKV.DAL.Concrete.EntityFramework
 {

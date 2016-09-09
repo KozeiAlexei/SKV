@@ -36,3 +36,5 @@ E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\ru\Microsoft.AspNet.Identity.Owin.reso
 E:\Работа\SKV\SKV\SKV.BLL\obj\Debug\SKV.BLL.csprojResolveAssemblyReference.cache
 E:\Работа\SKV\SKV\SKV.BLL\obj\Debug\SKV.BLL.dll
 E:\Работа\SKV\SKV\SKV.BLL\obj\Debug\SKV.BLL.pdb
+E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\SKV.ML.dll
+E:\Работа\SKV\SKV\SKV.BLL\bin\Debug\SKV.ML.pdb

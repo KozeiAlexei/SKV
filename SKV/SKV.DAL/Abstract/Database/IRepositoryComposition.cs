@@ -1,6 +1,5 @@
 ﻿using System;
 
-using SKV.DAL.Abstract.Entity;
 
 namespace SKV.DAL.Abstract.Database
 {

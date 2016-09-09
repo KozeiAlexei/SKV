@@ -1,5 +1,5 @@
 ﻿using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.UserModel;
+using SKV.ML.Abstract.Model.UserModel;
 
 namespace SKV.DAL.Abstract.Repositories.UserModel
 {

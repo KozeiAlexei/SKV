@@ -1,4 +1,4 @@
-﻿using SKV.DAL.Concrete.Model.CurrencyModel;
+﻿using SKV.ML.Concrete.Model.CurrencyModel;
 
 namespace SKV.BLL.Abstract.CurrencyRates
 {

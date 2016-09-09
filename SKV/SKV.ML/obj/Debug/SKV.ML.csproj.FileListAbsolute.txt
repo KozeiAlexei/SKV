@@ -1,0 +1,15 @@
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\SKV.ML.dll.config
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\SKV.ML.dll
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\SKV.ML.pdb
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\EntityFramework.dll
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\EntityFramework.SqlServer.dll
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\EntityFramework.xml
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\EntityFramework.SqlServer.xml
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\ru\Microsoft.AspNet.Identity.Core.resources.dll
+E:\Работа\SKV\SKV\SKV.ML\bin\Debug\ru\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+E:\Работа\SKV\SKV\SKV.ML\obj\Debug\SKV.ML.dll
+E:\Работа\SKV\SKV\SKV.ML\obj\Debug\SKV.ML.pdb

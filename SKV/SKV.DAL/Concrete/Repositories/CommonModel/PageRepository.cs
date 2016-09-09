@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Ninject;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.CommonModel;
+using SKV.ML.Concrete.Model.CommonModel;
 using SKV.DAL.Abstract.Repositories.CommonModel;
 
 namespace SKV.DAL.Concrete.Repositories.CommonModel

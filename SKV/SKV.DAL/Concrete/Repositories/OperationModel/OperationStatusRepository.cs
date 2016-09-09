@@ -3,7 +3,7 @@
 using Ninject;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.OperationModel;
+using SKV.ML.Concrete.Model.OperationModel;
 using SKV.DAL.Abstract.Repositories.OperationModel;
 
 namespace SKV.DAL.Concrete.Repositories.OperationModel

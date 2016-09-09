@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.UIModel;
+using SKV.ML.Abstract.Model.UIModel;
 
 namespace SKV.DAL.Abstract.Repositories.UIModel
 {

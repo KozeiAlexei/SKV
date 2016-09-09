@@ -3,7 +3,7 @@
 using Ninject;
 
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.UserModel;
+using SKV.ML.Concrete.Model.UserModel;
 using SKV.DAL.Abstract.Repositories.UserModel;
 
 namespace SKV.DAL.Concrete.Repositories.UserModel

@@ -1,10 +1,5 @@
 ﻿using SKV.DAL.Abstract.Database;
-using SKV.DAL.Abstract.Model.UserModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using SKV.ML.Abstract.Model.UserModel;
 
 namespace SKV.DAL.Abstract.Repositories.UserModel
 {

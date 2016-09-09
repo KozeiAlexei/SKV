@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKV.VML", "SKV.VML\SKV.VML.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKV.DatabaseInitializer", "SKV.DatabaseInitializer\SKV.DatabaseInitializer.csproj", "{4657B8B0-3AE7-46FB-81AF-7EF195204D94}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKV.ML", "SKV.ML\SKV.ML.csproj", "{48C31015-40E5-4828-B49E-8607E440893E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{4657B8B0-3AE7-46FB-81AF-7EF195204D94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4657B8B0-3AE7-46FB-81AF-7EF195204D94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4657B8B0-3AE7-46FB-81AF-7EF195204D94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48C31015-40E5-4828-B49E-8607E440893E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C31015-40E5-4828-B49E-8607E440893E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C31015-40E5-4828-B49E-8607E440893E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C31015-40E5-4828-B49E-8607E440893E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

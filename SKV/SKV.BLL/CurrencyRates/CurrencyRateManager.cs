@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 using SKV.DAL;
 using SKV.DAL.Abstract.Database;
-using SKV.DAL.Concrete.Model.CurrencyModel;
+using SKV.ML.Concrete.Model.CurrencyModel;
 
 using SKV.BLL.Abstract.CurrencyRates;
 
