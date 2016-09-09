@@ -1,6 +1,6 @@
 ﻿//Сервис отправки запросов
-angular.module('SKV').service('RequestService', ['$http', '$window', 'ToolsService',
-function ($http, $window, ToolsService) {
+angular.module('SKV').service('RequestService', ['$http', '$window', 'ToolsService', 'AuthService',
+function ($http, $window, ToolsService, AuthService) {
     return {
         Get: function (uri, data, successCallback) {
             $http.get(uri, data).success(function (response) {
@@ -15,8 +15,10 @@ function ($http, $window, ToolsService) {
         },
 
         Post: function (uri, data, successCallback) {
-            $http.post(uri, data).success(function (response) {
-                successCallback(JSON.parse(response));
+            var http = $http; AuthService.SetHeader(http);
+
+            http.post(uri, data).success(function (response) {
+                successCallback(response);
             }).error(function (error, status) {
                 var r = 1;
             });

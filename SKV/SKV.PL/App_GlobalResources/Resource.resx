@@ -138,6 +138,9 @@
   <data name="Exchange" xml:space="preserve">
     <value>Обмен</value>
   </data>
+  <data name="Id" xml:space="preserve">
+    <value>Ид</value>
+  </data>
   <data name="Inventarisation" xml:space="preserve">
     <value>Инвентаризация</value>
   </data>
@@ -191,5 +194,8 @@
   </data>
   <data name="UserManager" xml:space="preserve">
     <value>Менеджер пользователей</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Логин</value>
   </data>
 </root>

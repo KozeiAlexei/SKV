@@ -1,0 +1,30 @@
+﻿<script type="text/javascript">
+    angular.module('SKV').factory('UserTableSettingsFactory', function () {
+        return {
+            GetTableSettings: function () {
+                return {
+                    Columns: [{
+                        Name: 'Id',
+                        Title: '@Resources.Resource.Id',
+                        Width: 20,
+                        Filter: true,
+                        DataType: 'Text',
+                        IsEditable: false
+                    }, {
+                        Name: 'UserName',
+                        Title: '@Resources.Resource.UserName',
+                        Width: 30,
+                        Filter: true,
+                        DataType: 'Text',
+                        IsEditable: false
+                    }, {
+                        Title: 'Действия',
+                        Filter: true,
+                        Width: 20,
+                        DataType: 'Actions',
+                    }]
+                }
+            }
+        }
+    });
+</script>

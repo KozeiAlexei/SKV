@@ -208,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\Security\AccountController.cs" />
+    <Compile Include="Api\Security\UsersController.cs" />
     <Compile Include="App_GlobalResources\Resource.en-US.designer.cs">
       <DependentUpon>Resource.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -226,12 +227,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ControllerExt.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Controllers\Home\UserManagerController.cs" />
     <Compile Include="Controllers\Security\AccountController.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Filters\LocalizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ClientSideHelper.cs" />
     <Compile Include="Helpers\UIMenuHelper.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1357,6 +1360,10 @@
     <Content Include="Global.asax" />
     <Content Include="Infrastructure\Application\Application.js" />
     <Content Include="Infrastructure\Controllers\Security\LoginController.js" />
+    <Content Include="Infrastructure\Directives\CompileHtml.js" />
+    <Content Include="Infrastructure\Directives\DynamicTable.js" />
+    <Content Include="Infrastructure\Directives\Widget.js" />
+    <Content Include="Infrastructure\DynamicTable\DynamicTableController.js" />
     <Content Include="Infrastructure\Factories\Security\UserDataFactory.js" />
     <Content Include="Infrastructure\Services\Base64Service.js" />
     <Content Include="Infrastructure\Services\LocationService.js" />
@@ -1365,6 +1372,8 @@
     <Content Include="Infrastructure\Services\Security\LoginService.js" />
     <Content Include="Infrastructure\Services\ToolsService.js" />
     <Content Include="Infrastructure\Services\ValidationService.js" />
+    <Content Include="Infrastructure\Templates\DynamicTableTemplate.html" />
+    <Content Include="Infrastructure\Templates\WidgetTemlate.html" />
     <Content Include="Scripts\ai.0.22.19-build00125.js" />
     <Content Include="Scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="Scripts\angular-animate.js" />
@@ -2353,6 +2362,9 @@
     <Content Include="Views\Shared\UserProfileInfoPartital.cshtml" />
     <Content Include="Views\Shared\UserSidebarPartital.cshtml" />
     <Content Include="Views\Security\Account\IncludedDataPartital.cshtml" />
+    <Content Include="Views\App\UserManager\Index.cshtml" />
+    <Content Include="Views\App\UserManager\UserTableSettingsFactory.cshtml" />
+    <Content Include="Views\App\UserManager\UserManagerController.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

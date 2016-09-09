@@ -1,0 +1,107 @@
+﻿<table ng-class="ctrl.TableParams.TableClass" ng-cloak>
+
+    <!--Шапка таблицы-->
+    <thead>
+        <tr>
+            <td ng-repeat="column in ctrl.Columns" width="{{column.Width + '%'}}" ng-class="(!column.Filter && ctrl.TableParams.EnableFiltering) ? ctrl.TableParams.DisableColumnClass : ''">
+                <b>{{ column.Title }}</b>
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+
+        <!--Строка фильтрации-->
+        <tr ng-class="ctrl.TableParams.FilterRowClass" ng-if="ctrl.TableParams.EnableFiltering">
+            <td ng-repeat="column in ctrl.Columns" ng-class="!column.Filter ? ctrl.TableParams.DisableColumnClass : ''">
+                <input ng-model="ctrl.Filters[column.Name]" ng-if="column.DataType == 'Text' || column.DataType == 'Dropdown'" type="text" ng-class="ctrl.TableParams.FilterFieldClass" ng-disabled="!column.Filter" placeholder="{{ ctrl.TableParams.FilterPlaceholder }}">
+                <input ng-model="ctrl.Filters[column.Name]" ng-if="column.DataType == 'Number'" type="number" ng-class="ctrl.TableParams.FilterFieldClass" ng-disabled="!column.Filter" placeholder="{{ ctrl.TableParams.FilterPlaceholder }}">
+            </td>
+        </tr>
+
+        <!--Строка данных-->
+        <tr ng-repeat-start="row in ctrl.GetCurrentPageRows()" ng-class="row.Params.DataRowClass" ng-dblclick="ctrl.EditRow(row)" ng-click="ctrl.SaveChanges(row)" on-complete="ctrl.FilterComplete()" ng-cloak>
+            <td ng-repeat="column in ctrl.Columns track by $index" ng-class="!column.Filter ? ctrl.TableParams.DisableColumnClass : ''">
+                <any ng-if="column.DataType == 'Component'">
+                    <any compile-html="row[column.Name]"></any>
+                </any>
+
+                <any ng-if="column.DataType != 'Component'">
+                    <any ng-if="ctrl.TableParams.EnableEditing">
+                        <span ng-if="(column.DataType == 'Number' || column.DataType == 'Text' || column.DataType == 'Dropdown') && !row.Params.IsEditing" ng-class="ctrl.TableParams.FieldValueClass">{{ row[column.Name] }}</span>
+                        <span ng-if="column.DataType == 'Currency' && !row.Params.IsEditing" ng-class="ctrl.TableParams.FieldValueClass">{{ row[column.Name] | currency : '' }}</span>
+                        <span ng-if="column.DataType != 'Actions' && row.Params.IsEditing && !column.IsEditable" ng-class="ctrl.TableParams.FieldValueClass">{{ row[column.Name] }}</span>
+                    </any>
+                    <any ng-if="!ctrl.TableParams.EnableEditing">
+                        <span ng-if="column.DataType != 'Currency'" ng-class="ctrl.TableParams.FieldValueClass">{{ row[column.Name] }}</span>
+                        <span ng-if="column.DataType == 'Currency'" ng-class="ctrl.TableParams.FieldValueClass">{{ row[column.Name] | currency : '' }}</span>
+                    </any>
+                </any>
+
+                <any ng-switch="ctrl.TableParams.EnableDynamicCellTyping">
+                    <div ng-switch-when="true">
+                        <div ng-switch="row.RowType" ng-if="column.DataType !== 'Actions' && row.Params.IsEditing && column.IsEditable && ctrl.TableParams.EnableEditing">
+                            <input ng-switch-when="Text" ng-auto-focus="column.AutoFocus" ng-model="row[column.Name]" type="text" class="{{(ctrl.ValidationErrors[column.Name] !== undefined) ? 'validation_error': ''}} {{ctrl.TableParams.EditableFieldClass}}" />
+                            <input ng-switch-when="Number" ng-auto-focus="column.AutoFocus" ng-model="row[column.Name]" type="number" class="{{(ctrl.ValidationErrors[column.Name] !== undefined) ? 'validation_error': ''}} {{ctrl.TableParams.EditableFieldClass}}" />
+
+                            <select ng-switch-when="Dropdown" ng-auto-focus="column.AutoFocus" ng-model="row[column.Name]" class="{{(ctrl.ValidationErrors[column.Name] !== undefined) ? 'validation_error': ''}} {{ctrl.TableParams.EditableFieldClass}}">
+                                <option ng-repeat="item in ctrl.DropdownData[row.DropdownName]">{{ item }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div ng-switch-when="false">
+                        <div ng-switch="column.DataType" ng-if="column.DataType !== 'Actions' && row.Params.IsEditing && column.IsEditable && ctrl.TableParams.EnableEditing">
+                            <input ng-switch-when="Text" ng-auto-focus="column.AutoFocus" ng-model="row[column.Name]" type="text" class="{{(ctrl.ValidationErrors[column.Name] !== undefined) ? 'validation_error': ''}} {{ctrl.TableParams.EditableFieldClass}}" />
+                            <input ng-switch-when="Number" ng-auto-focus="column.AutoFocus" ng-model="row[column.Name]" type="number" class="{{(ctrl.ValidationErrors[column.Name] !== undefined) ? 'validation_error': ''}} {{ctrl.TableParams.EditableFieldClass}}" />
+                            <input ng-switch-when="Currency" ng-auto-focus="column.AutoFocus" ng-model="row[column.Name]" type="number" class="{{(ctrl.ValidationErrors[column.Name] !== undefined) ? 'validation_error': ''}} {{ctrl.TableParams.EditableFieldClass}}" />
+
+                            <select ng-switch-when="Dropdown" ng-auto-focus="column.AutoFocus" ng-model="row[column.Name]" class="{{(ctrl.ValidationErrors[column.Name] !== undefined) ? 'validation_error': ''}} {{ctrl.TableParams.EditableFieldClass}}">
+                                <option ng-repeat="item in ctrl.DropdownData[column.Name]">{{ item }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </any>
+
+                <div ng-if="column.DataType == 'Actions'">
+                    <button ng-repeat="button in ctrl.Actions track by $index" ng-class="button.Class" ng-click="button.Click(row)" ng-if="button.VisibilityFunc(row)">
+                        <span class="{{ button.Icon }}"></span>
+                    </button>
+                </div>
+            </td>
+        </tr>
+
+        <!--Строка контента для строки данных-->
+        <tr ng-repeat-end class="animate-if" ng-if="row.Params.ContentVisible">
+            <td colspan="{{ ctrl.Columns.length }}" compile-html="row.RenderContent(row)"></td>
+        </tr>
+
+        <!--Панель управления таблицей-->
+        <tr ng-class="ctrl.TableParams.TableManagmentPanelClass" ng-click="ctrl.SaveChanges(null)">
+            <td colspan="{{ ctrl.Columns.length - 2 }}" ng-if="ctrl.TableParams.EnableManagmentPanel" compile-html="ctrl.TableManagmentPanel"></td>
+            <td ng-if="ctrl.TableParams.EnablePagination" colspan="2">
+                <div class="row" ng-if="ctrl.CurrentRows.length > ctrl.PrivateParams.$$CurrentPageSize">
+                    <div class="col-lg-6" style="margin-top: -20px; margin-bottom: -26px">
+                        <ul class="pagination">
+                            <li ng-class="{disabled: ctrl.PrivateParams.$$CurrentPage == 1}" style="cursor: pointer">
+                                <a ng-click="ctrl.PrevPage()">«</a>
+                            </li>
+                            <li ng-repeat="n in ctrl.GetPageRange()" ng-class="{active: n == ctrl.PrivateParams.$$CurrentPage}" ng-click="ctrl.GoToPage(n)" style="cursor: pointer">
+                                <a>{{ n }}</a>
+                            </li>
+                            <li ng-class="{disabled: ctrl.PrivateParams.$$CurrentPage == ctrl.TableParams.PageSizes[ctrl.TableParams.PageSizes.length]}" style="cursor: pointer">
+                                <a ng-click="ctrl.NextPage()">»</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="btn-group btn-group-justified" data-toggle="buttons">
+                            <label class="btn btn-flat btn-primary {{(ctrl.PrivateParams.$$CurrentPageSize == size) ? 'active' : ''}}" ng-repeat="size in ctrl.TableParams.PageSizes" ng-click="ctrl.SetPageSize(size)">
+                                <input type="radio">{{ size }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -2,7 +2,7 @@
 @using SKV.PL.Helpers;
 
 <!DOCTYPE html>
-<html>
+<html ng-app="SKV">
 <head>
     <meta charset="UTF-8">
     <title>Система управления обменным пунктом</title>
@@ -19,6 +19,13 @@
     @Styles.Render("~/Content/BaseCssFiles")
     @Styles.Render("~/Content/ExtraCSSLibraries")
 
+    @Scripts.Render("~/script_budles/angular")
+
+    <script src="~/Infrastructure/Application/Application.js"></script>
+    <script src="~/Infrastructure/Services/Security/AuthService.js"></script>
+    
+
+    @RenderSection("Scripts", required: false)
 
     <link rel="shortcut icon" href="~/Content/Admin/assets/img/favicon.ico">
     <link rel="apple-touch-icon" href="~/Content/Admin/assets/img/apple-touch-icon.png" />

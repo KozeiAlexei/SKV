@@ -1,0 +1,29 @@
+﻿@using SKV.PL.Helpers;
+
+@{ 
+    var DTCName = "ctrl";
+    var UMCName = "ulCtrl";
+}
+
+@section Scripts {
+    @ClientSide.GetDirective("Widget")
+    @ClientSide.GetDirective("CompileHtml")
+    @ClientSide.GetDirective("DynamicTable")
+
+    @ClientSide.DynamicTableModule()
+
+    @ClientSide.GetService("Tools")
+    @ClientSide.GetService("Request")
+    @ClientSide.GetService("Location")
+}
+
+@Html.Partial("UserTableSettingsFactory")
+@Html.Partial("UserManagerController")
+
+<widget title="@Resources.Resource.UserManager">
+    <any ng-controller="DynamicTableController as @DTCName">
+        <any ng-controller="UserManagerController as @UMCName">
+            <dynamic-table></dynamic-table>
+        </any>
+    </any>
+</widget>

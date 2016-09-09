@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using Ninject;
 using SKV.DAL;
+using SKV.DAL.Abstract.Database;
 using SKV.DAL.Concrete.EntityFramework;
 using SKV.DAL.Concrete.Model.UserModel;
 using SKV.VML.ViewModels.Account;
@@ -21,11 +22,14 @@ namespace SKV.BLL.Identity
     {
         private UserManager<User> UserManager { get; set; }
 
+        private IDbManager DbManager { get; set; }
+
         public static IdentityUserManager Create(IdentityFactoryOptions<IdentityUserManager> options, IOwinContext context) =>
             new IdentityUserManager(options, context);
 
         public IdentityUserManager(IdentityFactoryOptions<IdentityUserManager> options, IOwinContext context)
         {
+            DbManager = DALDependencyResolver.Kernel.Get<IDbManager>();
             UserManager = new UserManager<User>(new UserStore<User>(DALDependencyResolver.Kernel.Get<DatabaseContext>()));
 
             UserManager.UserValidator = new UserValidator<User>(UserManager)
@@ -86,6 +90,13 @@ namespace SKV.BLL.Identity
             
             return await Task.FromResult(oauth_user);
         }
+
+        public async Task<IEnumerable<UserViewModel>> GetUsers() =>
+            await Task.Run(() => DbManager.Users.Repository.Read().Select(e => new UserViewModel()
+            {
+                Id = e.Id,
+                UserName = e.UserName
+            }));
 
         public void Dispose() => UserManager.Dispose();
     }

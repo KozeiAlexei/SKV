@@ -138,6 +138,9 @@
   <data name="Exchange" xml:space="preserve">
     <value>Exchange</value>
   </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
   <data name="Inventarisation" xml:space="preserve">
     <value>Inventarisation</value>
   </data>
@@ -191,5 +194,8 @@
   </data>
   <data name="UserManager" xml:space="preserve">
     <value>User manager</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Login</value>
   </data>
 </root>
