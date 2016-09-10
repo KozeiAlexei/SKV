@@ -40,3 +40,4 @@ E:\Работа\SKV\SKV\SKV.DatabaseInitializer\obj\Debug\SKV.DatabaseInitialize
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\obj\Debug\SKV.DatabaseInitializer.pdb
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.ML.dll
 E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.ML.pdb
+E:\Работа\SKV\SKV\SKV.DatabaseInitializer\obj\Debug\SKV.DatabaseInitializer.csproj.SKV.DatabaseInitializer.exe.config

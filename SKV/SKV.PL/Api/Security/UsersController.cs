@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
+using Newtonsoft.Json;
 using SKV.BLL.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,6 @@ namespace SKV.PL.Api.Security
     [Authorize]
     public class UsersController : ApiController
     {
-        //[HttpPost]
-        //public async Task<IHttpActionResult> GetUsers() =>
-        //    Json(await Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());
-
         [HttpPost]
         public IHttpActionResult GetUsers() =>
             Json(Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());

@@ -31,6 +31,13 @@ namespace SKV.DAL.Concrete.Repositories.UserModel
         public User GetUserByPhone(string phone) =>
             Repository.Sync.Synchronize(() => Repository.Table.Where(e => e.PhoneNumber == phone).FirstOrDefault());
 
+
+        public IEnumerable<User> GetUsers() =>
+            Repository.Sync.Synchronize(() => Repository.Table
+                                                        .Include(e => e.Profile)
+                                                        .AsNoTracking());
+
+
         public IEnumerable<string> GetUserNames() =>
             Repository.Sync.Synchronize(() => Repository.Table
                                                         .Include(e => e.Profile)

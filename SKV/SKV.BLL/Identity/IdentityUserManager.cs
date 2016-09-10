@@ -13,6 +13,7 @@ using SKV.ML.ViewModels.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,19 +88,11 @@ namespace SKV.BLL.Identity
                     CookiesIdentity = await user.GenerateUserIdentityAsync(UserManager, CookieAuthenticationDefaults.AuthenticationType)
                 };
             }
-            
+
             return await Task.FromResult(oauth_user);
         }
 
-        //public async Task<IEnumerable<User>> GetUsers() =>
-        //    await Task.Run(() => DbManager.Users.Repository.Read());
-
-        public IEnumerable<User> GetUsers()
-        {
-            var users = DbManager.Users.Repository.Read();
-
-            return users;
-        }
+        public IEnumerable<User> GetUsers() => DbManager.Users.GetUsers();
 
         public void Dispose() => UserManager.Dispose();
     }

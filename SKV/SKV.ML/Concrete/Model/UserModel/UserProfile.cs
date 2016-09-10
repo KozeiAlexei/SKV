@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 using SKV.ML.Abstract.Model.UserModel;
+using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace SKV.ML.Concrete.Model.UserModel
 {
@@ -12,6 +14,7 @@ namespace SKV.ML.Concrete.Model.UserModel
         [ForeignKey("UserInstance")]
         public string Id { get; set; }
 
+        [JsonIgnore]
         public virtual User UserInstance { get; set; }
 
         public string Name { get; set; }

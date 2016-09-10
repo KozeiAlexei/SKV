@@ -9,6 +9,7 @@ using Ninject.Parameters;
 using SKV.ML.Abstract.Entity;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Abstract.Common;
+using System.Linq.Expressions;
 
 namespace SKV.DAL.Concrete.EntityFramework
 {
@@ -33,6 +34,7 @@ namespace SKV.DAL.Concrete.EntityFramework
         public IEnumerable<TEntity> Read()
             => Sync.Synchronize(() => context.Set<TEntity>().AsNoTracking().AsEnumerable());
         
+
         public bool Update(TEntity entity) 
         {
             return Sync.Synchronize(() =>

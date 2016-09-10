@@ -11,6 +11,8 @@ namespace SKV.DAL.Abstract.Repositories.UserModel
         TEntity GetUserByName(string initials);
         TEntity GetUserByAsteriskNumber(int asterisk_number);
 
+        IEnumerable<TEntity> GetUsers();
+
         IEnumerable<string> GetUserNames();
     }
 }

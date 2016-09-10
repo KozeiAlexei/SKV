@@ -28,6 +28,7 @@ namespace SKV.DAL.Concrete.EntityFramework
 
         {
             Configuration.LazyLoadingEnabled = false;
+            Configuration.ProxyCreationEnabled = false;
         }
 
         #endregion

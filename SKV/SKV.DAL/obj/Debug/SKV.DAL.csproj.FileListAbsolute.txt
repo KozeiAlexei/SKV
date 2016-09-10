@@ -22,3 +22,5 @@ E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.pdb
 E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\SKV.ML.dll
 E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\SKV.ML.pdb
 E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.csprojResolveAssemblyReference.cache
+E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\Newtonsoft.Json.dll
+E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\Newtonsoft.Json.xml
