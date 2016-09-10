@@ -80,6 +80,10 @@
 
         GetId: function (object, func) {
             return object.toString() + '_' + func;
+        },
+
+        IsObject: function (obj) {
+            return (Object.prototype.toString.call(obj) == '[object Object]')
         }
     }
 }]);

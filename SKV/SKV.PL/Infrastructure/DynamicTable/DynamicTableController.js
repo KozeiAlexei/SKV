@@ -270,6 +270,11 @@
             }
         };
         angular.forEach(item.Data, function (value, key) {
+            if (Object.prototype.toString.call(value) == '[object Object]') {
+                angular.forEach(value, function (v_value, v_key) {
+                    row[key + '.' + v_key] = v_value;
+                });
+            }
             row[key] = value;
         });
 

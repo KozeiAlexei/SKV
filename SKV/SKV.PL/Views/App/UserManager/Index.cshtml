@@ -17,13 +17,23 @@
     @ClientSide.GetService("Location")
 }
 
-@Html.Partial("UserTableSettingsFactory")
 @Html.Partial("UserManagerController")
 
-<widget title="@Resources.Resource.UserManager">
-    <any ng-controller="DynamicTableController as @DTCName">
-        <any ng-controller="UserManagerController as @UMCName">
-            <dynamic-table></dynamic-table>
-        </any>
-    </any>
-</widget>
+
+@(DynamicTable
+
+.Create()
+.AngularApplicationName("SKV")
+.Name(Resources.Resource.UserManager).ControllerName(DTCName)
+.ActionsControllerName(UMCName).SettingsFactoryName("UserTableSettingsFactory")
+
+.Columns(columns =>
+{
+    columns.Create().Name("UserName").Title(Resources.Resource.UserName).Width(20).Type(TableColumnDataType.Text).Editable(true).Filterable(true);
+    columns.Create().Name("Email").Title(Resources.Resource.Email).Width(20).Type(TableColumnDataType.Text).Editable(true).Filterable(true);
+    columns.Create().Name("PhoneNumber").Title(Resources.Resource.PhoneNumber).Width(20).Type(TableColumnDataType.Text).Editable(true).Filterable(true);
+    columns.Create().Name("Profile.Name").Title(Resources.Resource.UserInitials).Width(20).Type(TableColumnDataType.Text).Editable(true).Filterable(true);
+    columns.Create().Name("Actions").Title(Resources.Resource.Actions).Width(20).Type(TableColumnDataType.Actions).Editable(true).Filterable(false);
+})
+.Build()
+)

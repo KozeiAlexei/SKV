@@ -1,30 +1,11 @@
-﻿<script type="text/javascript">
-    angular.module('SKV').factory('UserTableSettingsFactory', function () {
-        return {
-            GetTableSettings: function () {
-                return {
-                    Columns: [{
-                        Name: 'Id',
-                        Title: '@Resources.Resource.Id',
-                        Width: 20,
-                        Filter: true,
-                        DataType: 'Text',
-                        IsEditable: false
-                    }, {
-                        Name: 'UserName',
-                        Title: '@Resources.Resource.UserName',
-                        Width: 30,
-                        Filter: true,
-                        DataType: 'Text',
-                        IsEditable: false
-                    }, {
-                        Title: 'Действия',
-                        Filter: true,
-                        Width: 20,
-                        DataType: 'Actions',
-                    }]
-                }
-            }
-        }
-    });
-</script>
+﻿@using SKV.PL.Helpers
+@using System.Linq.Expressions;
+
+@ClientSide.TableSettings.CreateTableSettingsFactory("SKV", "UserTableSettingsFactory", new Expression<Func<ClientSide.TableSettings, string>>[]
+{
+     s => s.CreateColumn("UserName", Resources.Resource.UserName, 20, true, ColumnDataType.Text, false),
+     s => s.CreateColumn("Email", Resources.Resource.Email, 20, true, ColumnDataType.Text, false),
+     s => s.CreateColumn("PhoneNumber", Resources.Resource.PhoneNumber, 20, true, ColumnDataType.Text, false),
+     s => s.CreateColumn("Profile.Name", Resources.Resource.UserInitials, 20, true, ColumnDataType.Text, false),
+     s => s.CreateColumn("Actions", Resources.Resource.Actions, 20, false, ColumnDataType.Actions, false),
+});

@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Действия.
+        /// </summary>
+        internal static string Actions {
+            get {
+                return ResourceManager.GetString("Actions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Администрирование.
         /// </summary>
         internal static string Administration {
@@ -102,6 +111,15 @@ namespace Resources {
         internal static string DealReport {
             get {
                 return ResourceManager.GetString("DealReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Эл. почта.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -241,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Номер телефона.
+        /// </summary>
+        internal static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Отчет о прибыли.
         /// </summary>
         internal static string ProfitReport {
@@ -282,6 +309,15 @@ namespace Resources {
         internal static string SystemSettings {
             get {
                 return ResourceManager.GetString("SystemSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Инициалы.
+        /// </summary>
+        internal static string UserInitials {
+            get {
+                return ResourceManager.GetString("UserInitials", resourceCulture);
             }
         }
         
