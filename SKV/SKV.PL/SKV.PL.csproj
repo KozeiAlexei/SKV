@@ -226,6 +226,29 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ClientSide\Abstract\Components\IDynamicTable.cs" />
+    <Compile Include="ClientSide\Abstract\Components\IDynamicTableColumn.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IBodyHaveable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IColumnHaveable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IEditable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IFilterable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IIdable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\INameable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IRenderable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\ITitleable.cs" />
+    <Compile Include="ClientSide\Abstract\Components\IWidget.cs" />
+    <Compile Include="ClientSide\Abstract\Features\ITypeable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IWidthable.cs" />
+    <Compile Include="ClientSide\Abstract\IComponent.cs" />
+    <Compile Include="ClientSide\Abstract\IContent.cs" />
+    <Compile Include="ClientSide\Abstract\IResponsibilityChain.cs" />
+    <Compile Include="ClientSide\Components\DynamicTable\DynamicTableColumnMvc.cs" />
+    <Compile Include="ClientSide\Components\DynamicTable\DynamicTableMvc.cs" />
+    <Compile Include="ClientSide\Components\Widget\WidgetMvc.cs" />
+    <Compile Include="ClientSide\Concrete\ComponentFactory.cs" />
+    <Compile Include="ClientSide\Concrete\Content.cs" />
+    <Compile Include="ClientSide\Concrete\Linker.cs" />
+    <Compile Include="ClientSide\Concrete\ResponsibilityChain.cs" />
     <Compile Include="Controllers\ControllerExt.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Home\UserManagerController.cs" />
@@ -235,12 +258,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ClientSideHelper.cs" />
-    <Compile Include="Helpers\DynamicTable.cs" />
     <Compile Include="Helpers\UIMenuHelper.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="PLDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
