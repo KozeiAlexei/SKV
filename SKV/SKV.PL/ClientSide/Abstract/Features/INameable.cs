@@ -2,8 +2,6 @@
 {
     public interface INameable<TComponent>
     {
-        string ComponentName { get; set; }
-
         TComponent Name(string name);
     }
 }

@@ -228,8 +228,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTable.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableColumn.cs" />
+    <Compile Include="ClientSide\Abstract\Components\IContent.cs" />
+    <Compile Include="ClientSide\Abstract\Components\IModal.cs" />
+    <Compile Include="ClientSide\Abstract\Components\ITabBody.cs" />
+    <Compile Include="ClientSide\Abstract\Components\ITabHeader.cs" />
+    <Compile Include="ClientSide\Abstract\Components\ITabs.cs" />
     <Compile Include="ClientSide\Abstract\Features\IBodyHaveable.cs" />
     <Compile Include="ClientSide\Abstract\Features\IColumnHaveable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\ILogicHaveable.cs" />
     <Compile Include="ClientSide\Abstract\Features\IEditable.cs" />
     <Compile Include="ClientSide\Abstract\Features\IFilterable.cs" />
     <Compile Include="ClientSide\Abstract\Features\IIdable.cs" />
@@ -240,19 +246,28 @@
     <Compile Include="ClientSide\Abstract\Features\ITypeable.cs" />
     <Compile Include="ClientSide\Abstract\Features\IWidthable.cs" />
     <Compile Include="ClientSide\Abstract\IComponent.cs" />
-    <Compile Include="ClientSide\Abstract\IContent.cs" />
+    <Compile Include="ClientSide\Abstract\IContainer.cs" />
+    <Compile Include="ClientSide\Abstract\IMvcTemplate.cs" />
     <Compile Include="ClientSide\Abstract\IResponsibilityChain.cs" />
     <Compile Include="ClientSide\Components\DynamicTable\DynamicTableColumnMvc.cs" />
     <Compile Include="ClientSide\Components\DynamicTable\DynamicTableMvc.cs" />
+    <Compile Include="ClientSide\Components\ContentMvc.cs" />
+    <Compile Include="ClientSide\Components\Modal\ModalMvc.cs" />
+    <Compile Include="ClientSide\Components\Tabs\TabBodyMvc.cs" />
+    <Compile Include="ClientSide\Components\Tabs\TabHeaderMvc.cs" />
+    <Compile Include="ClientSide\Components\Tabs\TabsMvc.cs" />
     <Compile Include="ClientSide\Components\Widget\WidgetMvc.cs" />
     <Compile Include="ClientSide\Concrete\ComponentFactory.cs" />
-    <Compile Include="ClientSide\Concrete\Content.cs" />
+    <Compile Include="ClientSide\Concrete\Container.cs" />
     <Compile Include="ClientSide\Concrete\Linker.cs" />
+    <Compile Include="ClientSide\Concrete\MvcTemplate.cs" />
     <Compile Include="ClientSide\Concrete\ResponsibilityChain.cs" />
+    <Compile Include="ClientSide\Concrete\Tools.cs" />
     <Compile Include="Controllers\ControllerExt.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Home\UserManagerController.cs" />
     <Compile Include="Controllers\Security\AccountController.cs" />
+    <Compile Include="CRMConfiguration.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Filters\LocalizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -268,9 +283,15 @@
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="PLStaticData.cs" />
-    <Compile Include="Tools\ResourceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientSide\Templates\DynamicTableColumnMvcTemplate.html" />
+    <Content Include="ClientSide\Templates\DynamicTableMvcTemplate.html" />
+    <Content Include="ClientSide\Templates\ModalMvcTemplate.html" />
+    <Content Include="ClientSide\Templates\TabBodyMvcTemplate.html" />
+    <Content Include="ClientSide\Templates\TabHeaderMvcTemplate.html" />
+    <Content Include="ClientSide\Templates\TabsMvcTemplate.html" />
+    <Content Include="ClientSide\Templates\WidgetMvcTemplate.html" />
     <Content Include="Content\Admin\assets\css\style-responsive.css" />
     <Content Include="Content\Admin\assets\css\style.css" />
     <Content Include="Content\Admin\assets\img\apple-touch-icon-114x114.png" />
@@ -1374,12 +1395,14 @@
     <Content Include="Content\Admin\images\users\user-35.jpg" />
     <Content Include="Content\Admin\images\users\user-512.jpg" />
     <Content Include="Content\Admin\images\weather\weather-bg.jpg" />
+    <Content Include="Content\background.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Scripts\Account\js\index.js" />
     <Content Include="Content\Styles\Account\css\reset.css" />
     <Content Include="Content\Styles\Account\css\style.css" />
     <Content Include="Content\Styles\Account\img\login_background.jpg" />
+    <Content Include="Content\watercolor-backgrounds-11.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Infrastructure\Application\Application.js" />
@@ -2387,8 +2410,12 @@
     <Content Include="Views\Shared\UserSidebarPartital.cshtml" />
     <Content Include="Views\Security\Account\IncludedDataPartital.cshtml" />
     <Content Include="Views\App\UserManager\Index.cshtml" />
-    <Content Include="Views\App\UserManager\UserTableSettingsFactory.cshtml" />
     <Content Include="Views\App\UserManager\UserManagerController.cshtml" />
+    <Content Include="Views\App\UserManager\UserProfileModal.cshtml" />
+    <Content Include="Views\App\UserManager\UserProfileTab.cshtml" />
+    <Content Include="Views\App\UserManager\PasswordChangingTab.cshtml" />
+    <Content Include="Views\App\UserManager\UserCreatingModal.cshtml" />
+    <Content Include="Views\App\UserManager\UserCreatingModalBody.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

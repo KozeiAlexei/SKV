@@ -1,13 +1,9 @@
 ﻿@using SKV.PL.ClientSide.Concrete;
 @using SKV.PL.ClientSide.Abstract.Components
 
+@using SKV.PL.ClientSide.Components
 @using SKV.PL.ClientSide.Components.Widget
 @using SKV.PL.ClientSide.Components.DynamicTable
-
-@{ 
-    var DTCName = "ctrl";
-    var UMCName = "ulCtrl";
-}
 
 @section Scripts {
     @Linker.GetDirective("Widget")
@@ -21,18 +17,15 @@
     @Linker.GetService("Location")
 }
 
-@Html.Partial("UserManagerController")
-
 @(ComponentFactory.Create<WidgetMvc>()
         .Id("UserManagerWidget")
         .Title(Resources.Resource.UserManager)
         .Body(body =>
         {
             body.Create<DynamicTableMvc>()
-                .AngularApplicationName("SKV")
-                .AngularTableSettinsFactoryName("UserTableSettingsFactory")
-                .AngularDynamicTableControllerName(DTCName)
-                .AngularDynamicTableActionsControllerName(UMCName)
+                .AngularTableSettingsFactoryName(CRMConfiguration.AngularUserTableSettingsFactory)
+                .AngularDynamicTableActionsController(CRMConfiguration.AngularUserManagerController)
+                .AngularDynamicTableActionsControllerName(CRMConfiguration.AngularUserManagerControllerName)
                 .Columns(columns =>
                 {
                     columns.Create<DynamicTableColumnMvc>().Name("UserName").Title(Resources.Resource.UserName).Width(20)
@@ -49,9 +42,16 @@
 
                     columns.Create<DynamicTableColumnMvc>().Name("Actions").Title(Resources.Resource.Actions).Width(20)
                                     .Type(TableColumnDataType.Actions).Editable(true).Filterable(false);
-                });
+                })
+                .Body(b =>
+                {
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileModal"));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserCreatingModal"));
+                })
+                .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial("UserManagerController")));
         })
         .Render()
 )
+
 
 

@@ -2,8 +2,6 @@
 {
     public interface IFilterable<TComponent>
     {
-        bool ComponentFilterable { get; set; }
-
         TComponent Filterable(bool filterable);
     }
 }

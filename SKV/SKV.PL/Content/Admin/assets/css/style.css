@@ -757,7 +757,7 @@
   color: #333;
 }
 body {
-  background: #E4EAE6;
+  background: url(http://weblabfon.com/_ld/2/203_139.jpg) repeat;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
@@ -1642,7 +1642,7 @@ iframe {
 #wrapper {
   width: 100%;
   height: 100%;
-  background: #E4EAE6;
+  /*background: #E4EAE6;*/
   position: relative;
 }
 .page {
@@ -1822,7 +1822,7 @@ body.mobile .slimscroller {
 .body.content.rows {
   top: 50px;
   bottom: 0px;
-  background: #E4EAE6;
+  /*background: #E4EAE6;*/
   padding: 20px;
   font-size: 13px;
 }

@@ -2,8 +2,6 @@
 {
     public interface ITypeable<TComponent, TType>
     {
-        TType ComponentType { get; set; }
-
         TComponent Type(TType type);
     }
 }

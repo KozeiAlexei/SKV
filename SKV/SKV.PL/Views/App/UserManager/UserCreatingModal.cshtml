@@ -1,0 +1,14 @@
+﻿@using SKV.PL.ClientSide.Concrete
+@using SKV.PL.ClientSide.Components
+@using SKV.PL.ClientSide.Components.Modal
+
+@(ComponentFactory.Create<ModalMvc>()
+        .Id("UserCreatingModal")
+        .Title(Resources.Resource.UserCreating)
+        .Body(body =>
+        {
+            body.Create<ContentMvc>().FromPartitalView(Html.Partial("UserCreatingModalBody"));
+        })
+        .ManualClosing(true)
+        .Render()
+)

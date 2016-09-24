@@ -259,6 +259,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Смена пароля.
+        /// </summary>
+        internal static string PasswordChanging {
+            get {
+                return ResourceManager.GetString("PasswordChanging", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Номер телефона.
         /// </summary>
         internal static string PhoneNumber {
@@ -313,6 +322,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Создание пользователя.
+        /// </summary>
+        internal static string UserCreating {
+            get {
+                return ResourceManager.GetString("UserCreating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Инициалы.
         /// </summary>
         internal static string UserInitials {
@@ -336,6 +354,15 @@ namespace Resources {
         internal static string UserName {
             get {
                 return ResourceManager.GetString("UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, такую же, как Профиль пользователя.
+        /// </summary>
+        internal static string UserProfile {
+            get {
+                return ResourceManager.GetString("UserProfile", resourceCulture);
             }
         }
     }

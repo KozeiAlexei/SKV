@@ -1,33 +1,32 @@
-﻿using System.Text;
+﻿using System;
 using System.Web.Mvc;
-using System.Collections.Generic;
 
-using Ninject;
-
+using SKV.PL.ClientSide.Concrete;
 using SKV.PL.ClientSide.Abstract;
 using SKV.PL.ClientSide.Abstract.Components;
-using Ninject.Parameters;
-using System;
-using SKV.PL.ClientSide.Abstract.Components.Features;
 
 namespace SKV.PL.ClientSide.Components.Widget
 {
     public class WidgetMvc : IWidget
     {
+        #region Constructor
+
         public WidgetMvc()
         {
-            Chain = (IResponsibilityChain<WidgetMvc>)PLDependencyResolver.Kernel.Get(typeof(IResponsibilityChain<WidgetMvc>), 
-                     new ConstructorArgument("obj", this));
+            Chain = Tools.CreateResponsibilityChain(this);
+            ComponentBody = Tools.CreateContainer();
         }
 
         private IResponsibilityChain<WidgetMvc> Chain { get; set; }
 
+        #endregion
+
         #region Component properties
 
-        public string ComponentId { get; set; }
-        public string ComponentTitle { get; set; }
+        private string ComponentId { get; set; }
+        private string ComponentTitle { get; set; }
 
-        public IContent ComponentBody { get; set; } = PLDependencyResolver.Kernel.Get<IContent>();
+        private IContainer ComponentBody { get; set; }
         #endregion
 
         #region Component setting
@@ -35,24 +34,25 @@ namespace SKV.PL.ClientSide.Components.Widget
         public IWidget Id(string id) => Chain.Responsibility(() => ComponentId = id);
         public IWidget Title(string title) => Chain.Responsibility(() => ComponentTitle = title);
 
-        public IWidget Body(Action<IContent> body) => Chain.Responsibility(() => body(ComponentBody));
+        public IWidget Body(Action<IContainer> body) => Chain.Responsibility(() => body(ComponentBody));
 
         #endregion
 
+        public void PrerenderValidation()
+        {
+            Tools.ThrowIfNull(ComponentId, nameof(ComponentId));
+            Tools.ThrowIfNull(ComponentTitle, nameof(ComponentTitle));
+        }
 
         public MvcHtmlString Render()
         {
-            var builder = new StringBuilder();
+            var template = Tools.CreateMvcTemplate(nameof(WidgetMvc));
 
-            builder.AppendLine();
-            builder.AppendLine($"<widget id=\"{ ComponentId }\" title=\"{ ComponentTitle }\">");
+            template.SetParameter(nameof(ComponentId), ComponentId);
+            template.SetParameter(nameof(ComponentBody), () => ComponentBody.Render());
+            template.SetParameter(nameof(ComponentTitle), ComponentTitle);
 
-            foreach (var part in ComponentBody.Collection)
-                builder.AppendLine(part.Render().ToHtmlString());
-
-            builder.AppendLine("</widget>");
-
-            return MvcHtmlString.Create(builder.ToString());
+            return template.Render();
         }
     }
 }

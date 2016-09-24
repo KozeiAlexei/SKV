@@ -2,8 +2,6 @@
 {
     public interface ITitleable<TComponent>
     {
-        string ComponentTitle { get; set; }
-
         TComponent Title(string title);
     }
 }

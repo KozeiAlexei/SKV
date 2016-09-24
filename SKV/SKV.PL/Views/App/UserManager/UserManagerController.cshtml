@@ -1,18 +1,16 @@
 ﻿<script type="text/javascript">
-    angular.module('SKV').controller('UserManagerController', ['$scope', 'UserTableSettingsFactory', 'RequestService',
-    function ($scope, UserListSettingsFactory, RequestService) {
+    angular.module('SKV').controller('UserManagerController', ['$scope', 'UserTableSettingsFactory', 'RequestService', 'ToolsService',
+    function ($scope, UserListSettingsFactory, RequestService, ToolsService) {
         var self = this;
 
-        self.UserDataTemplatePath = '../../Environment/Templates/UserDataTemplate.html';
-
         self.Initialize = function () {
-            var table_settings = UserListSettingsFactory.GetTableSettings();
+            var table_settings = UserListSettingsFactory.GetColumns();
 
             var actions = [{
                 Text: '',
                 Icon: 'glyphicon glyphicon-folder-open',
                 Class: 'btn btn-flat btn-success  btn-md',
-                Click: $scope.TableManagment.ShowHideContent,
+                Click: self.OpenUserModal,
                 VisibilityFunc: function (row) {
                     return true;
                 }
@@ -41,23 +39,35 @@
                 Password: null,
                 AsteriskNumber: null
             }
+            self.CurrentRow = {};
             self.CurrentUserDataValidationErrors = {};
 
             self.DropdownData = {};
 
             $scope.TableManagment.SetActions(actions);
+
+            $scope.TableManagment.EnableEditing(false);
             $scope.TableManagment.EnableFiltering(true);
             $scope.TableManagment.EnablePagination(true);
             $scope.TableManagment.EnableManagmentPanel(true);
             $scope.TableManagment.SettingTable(table_settings);
-            $scope.TableManagment.SetTableManagmentPanelCode('<div><button class="btn btn-success btn-flat" ng-click="ulCtrl.CreateUser()"><span class="glyphicon glyphicon-plus"></button></div>');
-            $scope.TableManagment.SetShowHideContentFunction(self.LoadUserData);
-            $scope.TableManagment.SetSaveChangesFunc(self.SaveChangesFunc);
+            $scope.TableManagment.SetTableManagmentPanelCode('<div><button class="btn btn-success btn-flat" ng-click="@CRMConfiguration.AngularUserManagerControllerName .CreateUser()"><span class="glyphicon glyphicon-plus"></button></div>');
             self.LoadUserList();
 
+            //test
+            self.DropdownData.Roles = ['Администратор', 'Руководитель', 'Менеджер', 'Кассир']
         };
 
         self.SaveChangesFunc = function () { return true; }
+
+        self.OpenUserModal = function (row) {
+            self.CurrentRow = row;
+            ToolsService.ShowModal('UserProfileModal');
+        }
+
+        self.CloseUserProfileModal = function () {
+            ToolsService.HideModal('UserProfileModal');
+        }
 
         self.LoadUserList = function () {
             
@@ -147,19 +157,7 @@
         }
 
         self.CreateUser = function () {
-            var row = $scope.TableManagment.GetCurrentRow();
-            if (row != null && (row.Id == null || row.Id == undefined)) {
-                self.ValidateUser();
-            } else {
-                self.Model = {};
-
-                $scope.TableManagment.AddRow({ Data: {}, RenderContent: self.RenderContent });
-
-                var rows = $scope.TableManagment.GetRows();
-
-                rows[rows.length - 1].Params.IsEditing = true;
-                $scope.TableManagment.ShowHideContent(rows[rows.length - 1]);
-            }
+            ToolsService.ShowModal('UserCreatingModal');
         }
 
         self.DeleteUser = function (row) {

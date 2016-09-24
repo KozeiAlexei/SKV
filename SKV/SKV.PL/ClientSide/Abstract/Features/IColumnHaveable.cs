@@ -8,8 +8,6 @@ namespace SKV.PL.ClientSide.Abstract.Features
 {
     public interface IColumnHaveable<TComponent>
     {
-        IContent ComponentColumns { get; set; }
-
-        TComponent Columns(Action<IContent> columns);
+        TComponent Columns(Action<IContainer> columns);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace SKV.PL.ClientSide.Abstract.Components.Features
 {
-    public interface IRenderable
+    public interface IRenderable<TRenderType>
     {
-        MvcHtmlString Render();
+        TRenderType Render();
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-using Ninject;
-using Ninject.Parameters;
-
+using SKV.PL.ClientSide.Concrete;
 using SKV.PL.ClientSide.Abstract;
 using SKV.PL.ClientSide.Abstract.Components;
 
@@ -11,25 +9,28 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
 {
     public class DynamicTableColumnMvc : IDynamicTableColumn
     {
+        #region Constructor
+
         public DynamicTableColumnMvc()
         {
-            Chain = (IResponsibilityChain<DynamicTableColumnMvc>)PLDependencyResolver.Kernel.Get(typeof(IResponsibilityChain<DynamicTableColumnMvc>),
-                     new ConstructorArgument("obj", this));
+            Chain = Tools.CreateResponsibilityChain(this);
         }
 
         private IResponsibilityChain<DynamicTableColumnMvc> Chain { get; set; }
 
+        #endregion
+
         #region Component properties
 
-        public string ComponentName { get; set; } = default(string);
-        public string ComponentTitle { get; set; } = default(string);
+        private string ComponentName { get; set; } = default(string);
+        private string ComponentTitle { get; set; } = default(string);
 
-        public uint ComponentWidth { get; set; } = default(int);
+        private uint ComponentWidth { get; set; } = default(int);
 
-        public bool ComponentEditable { get; set; } = default(bool);
-        public bool ComponentFilterable { get; set; } = default(bool);
+        private bool ComponentEditable { get; set; } = default(bool);
+        private bool ComponentFilterable { get; set; } = default(bool);
 
-        public TableColumnDataType ComponentType { get; set; } = default(TableColumnDataType);
+        private TableColumnDataType ComponentType { get; set; } = default(TableColumnDataType);
 
         #endregion
 
@@ -47,18 +48,26 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
 
         #endregion
 
+        private void PrerenderValidation()
+        {
+            Tools.ThrowIfNull(ComponentName, nameof(ComponentName));
+            Tools.ThrowIfNull(ComponentTitle, nameof(ComponentTitle));
+        }
+
         public MvcHtmlString Render()
         {
-            var column_name = $"Name: \"{ ComponentName }\", \n";
-            var column_title = $"Title: \"{ ComponentTitle }\", \n";
-            var column_width = $"Width: { ComponentWidth }, \n";
+            var template = Tools.CreateMvcTemplate(nameof(DynamicTableColumnMvc)); PrerenderValidation();
 
-            var column_editable = $"IsEditable: { ComponentEditable.ToString().ToLower() }, \n";
-            var column_filterable = $"Filter: { ComponentFilterable.ToString().ToLower() }, \n";
+            template.SetParameter(nameof(ComponentName), ComponentName);
+            template.SetParameter(nameof(ComponentTitle), ComponentTitle);
+            template.SetParameter(nameof(ComponentWidth), ComponentWidth.ToString());
 
-            var column_type = $"DataType: \"{ Enum.GetName(typeof(TableColumnDataType), ComponentType)}\" \n";
+            template.SetParameter(nameof(ComponentType), Enum.GetName(typeof(TableColumnDataType), ComponentType));
 
-            return MvcHtmlString.Create("{" + $"{ column_name } { column_title } { column_width } {column_editable} {column_filterable} { column_type }" + "}");
+            template.SetParameter(nameof(ComponentEditable), ComponentEditable.ToString().ToLower());
+            template.SetParameter(nameof(ComponentFilterable), ComponentFilterable.ToString().ToLower());
+
+            return template.Render();
         }
     }
 }

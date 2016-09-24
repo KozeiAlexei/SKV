@@ -2,8 +2,6 @@
 {
     public interface IIdable<TComponent>
     {
-        string ComponentId { get; set; }
-
         TComponent Id(string id);
     }
 }

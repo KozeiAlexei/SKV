@@ -8,7 +8,7 @@
 @hovercolor: #68C39F;
 @topbar_color: #ffffff;
 @brand_color:#343838;
-@contentbg: #E4EAE6;
+@contentbg: fade(@topbar_color, 0%);
 @first_level_hover: lighten(@maincolor,10%);
 @second_level: darken(@maincolor,5%);
 
@@ -183,7 +183,6 @@
 /* MAIN CSS CONTENT */
 
 body {
-	background: @contentbg;
 	margin: 0;
 	-webkit-font-smoothing: antialiased;
     text-rendering:optimizelegibility;

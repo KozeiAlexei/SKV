@@ -1,0 +1,34 @@
+﻿@using SKV.PL.ClientSide.Concrete
+@using SKV.PL.ClientSide.Components
+@using SKV.PL.ClientSide.Components.Tabs
+@using SKV.PL.ClientSide.Components.Modal
+
+@(ComponentFactory.Create<ModalMvc>()
+        .Id("UserProfileModal")
+        .Title(Resources.Resource.UserProfile)
+        .Body(body =>
+        {
+            body.Create<TabsMvc>()
+                    .Id("UserProfileTabs")
+                    .TabHeaders(headers =>
+                    {
+                        headers.Create<TabHeaderMvc>()
+                                   .Title(Resources.Resource.UserProfile).Active(true).BodyId("UserProfile");
+
+                        headers.Create<TabHeaderMvc>()
+                                   .Title(Resources.Resource.PasswordChanging).Active(false).BodyId("PasswordChanging");
+                    })
+                    .TabBody(tab_body =>
+                    {
+                        tab_body.Create<TabBodyMvc>()
+                                    .Id("UserProfile").Active(true)
+                                    .Body(b => b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileTab")));
+
+                        tab_body.Create<TabBodyMvc>()
+                                    .Id("PasswordChanging").Active(false)
+                                    .Body(b => b.Create<ContentMvc>().FromPartitalView(Html.Partial("PasswordChangingTab")));
+                    });
+        })
+        .ManualClosing(false)
+        .Render()
+)

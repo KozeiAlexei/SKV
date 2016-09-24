@@ -6,8 +6,6 @@ namespace SKV.PL.ClientSide.Abstract.Features
 {
     public interface IBodyHaveable<TComponent>
     {
-        IContent ComponentBody { get; set; }
-
-        TComponent Body(Action<IContent> body);
+        TComponent Body(Action<IContainer> body);
     }
 }

@@ -1,0 +1,25 @@
+﻿<script>
+    angular.module('#ComponentAngularApplicationName#').factory('#ComponentAngularTableSettingsFactoryName#', function () {
+        return {
+            GetColumns: function () {
+                return {
+                    Columns: [#ComponentColumns#]
+                }
+            },
+
+            GetTableSettings: function() {
+
+            }
+        }
+    });
+</script>
+
+<any ng-controller="DynamicTableController as #ComponentAngularDynamicTableControllerName#">
+    <any ng-controller="#ComponentAngularDynamicTableActionsController# as #ComponentAngularDynamicTableActionsControllerName#">
+        <dynamic-table></dynamic-table>
+
+        #ComponentLogic#
+
+        #ComponentBody#
+    </any>
+</any>

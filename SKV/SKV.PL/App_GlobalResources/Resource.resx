@@ -183,6 +183,9 @@
   <data name="Password" xml:space="preserve">
     <value>Пароль</value>
   </data>
+  <data name="PasswordChanging" xml:space="preserve">
+    <value>Смена пароля</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Номер телефона</value>
   </data>
@@ -201,6 +204,9 @@
   <data name="SystemSettings" xml:space="preserve">
     <value>Настройки системы</value>
   </data>
+  <data name="UserCreating" xml:space="preserve">
+    <value>Создание пользователя</value>
+  </data>
   <data name="UserInitials" xml:space="preserve">
     <value>Инициалы</value>
   </data>
@@ -209,5 +215,8 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Логин</value>
+  </data>
+  <data name="UserProfile" xml:space="preserve">
+    <value>Профиль пользователя</value>
   </data>
 </root>

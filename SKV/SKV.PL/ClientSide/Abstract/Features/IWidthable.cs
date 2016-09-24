@@ -2,8 +2,6 @@
 {
     public interface IWidthable<TComponent>
     {
-        uint ComponentWidth { get; set; }
-
         TComponent Width(uint width);
     }
 }

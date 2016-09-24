@@ -183,6 +183,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PasswordChanging" xml:space="preserve">
+    <value>Password changing</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
   </data>
@@ -201,6 +204,9 @@
   <data name="SystemSettings" xml:space="preserve">
     <value>System settings</value>
   </data>
+  <data name="UserCreating" xml:space="preserve">
+    <value>User creating</value>
+  </data>
   <data name="UserInitials" xml:space="preserve">
     <value>Initials</value>
   </data>
@@ -209,5 +215,8 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="UserProfile" xml:space="preserve">
+    <value>User profile</value>
   </data>
 </root>

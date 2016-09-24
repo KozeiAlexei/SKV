@@ -27,7 +27,6 @@ namespace SKV.PL
 
             bundles.Add(new StyleBundle("~/style_bundles/base_css").Include(
                  "~/Content/Admin/assets/libs/jqueryui/ui-lightness/jquery-ui-1.10.4.custom.min.css",
-                 "~/Content/Admin/assets/libs/bootstrap/css/bootstrap.min.css",
                  "~/Content/Admin/assets/libs/font-awesome/css/font-awesome.min.css",
                  "~/Content/Admin/assets/libs/fontello/css/fontello.css",
                  "~/Content/Admin/assets/libs/animate-css/animate.min.css",
