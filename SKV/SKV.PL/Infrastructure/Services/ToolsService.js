@@ -84,6 +84,10 @@
 
         IsObject: function (obj) {
             return (Object.prototype.toString.call(obj) == '[object Object]')
+        },
+
+        Copy: function (obj) {
+            return JSON.parse(JSON.stringify(obj));
         }
     }
 }]);

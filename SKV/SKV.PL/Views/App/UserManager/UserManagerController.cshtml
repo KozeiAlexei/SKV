@@ -1,10 +1,34 @@
-﻿<script type="text/javascript">
-    angular.module('SKV').controller('UserManagerController', ['$scope', 'UserTableSettingsFactory', 'RequestService', 'ToolsService',
-    function ($scope, UserListSettingsFactory, RequestService, ToolsService) {
+﻿@{
+    string app = CRMConfiguration.AngularApplicationName;
+    string controller = CRMConfiguration.AngularUserManagerController;
+    string controller_name = CRMConfiguration.AngularUserManagerControllerName;
+
+    string ut_factory = CRMConfiguration.AngularUserTableSettingsFactory;
+}
+
+<script type="text/javascript">
+    angular.module('@app').controller('@controller', ['$scope', '@ut_factory', 'ToolsService', '$users', '$roles',
+    function ($scope, @ut_factory, ToolsService, $users, $roles) {
         var self = this;
 
-        self.Initialize = function () {
-            var table_settings = UserListSettingsFactory.GetColumns();
+        self.FetchingData = function() {
+            $roles.GetRoles(function(roles) {
+                self.DropdownData.Roles = roles;
+            });
+
+            self.GetUsers();
+        }
+
+        self.UISetting = function() {
+            $scope.TableManagment.Columns(@(ut_factory).Columns());
+
+            $scope.TableManagment.Editable(@(ut_factory).Editable());
+            $scope.TableManagment.Paginable(@(ut_factory).Paginable());
+            $scope.TableManagment.Filterable(@(ut_factory).Filterable());
+
+            $scope.TableManagment.PageSize(@(ut_factory).PageSize());
+
+            //$scope.TableManagment.SetActions(@(ut_factory).Actions());
 
             var actions = [{
                 Text: '',
@@ -22,46 +46,31 @@
                 VisibilityFunc: function (row) {
                     return (row.Id != null) && (row.Id != undefined);
                 }
-            }]
-
-            self.Requests = {
-                DeleteUser: '/api/Administration/UserManagment/DeleteUser',
-                ManageUser: '/api/Administration/UserManagment/ManageUser',
-                LoadUserList: '/api/Administration/UserManagment/LoadUserList',
-                LoadUserData: '/api/Administration/UserManagment/LoadUserData'
-            }
-
-            self.CurrentUserData = {
-                Name: null,
-                Phone: null,
-                Roles: [],
-                Point: null,
-                Password: null,
-                AsteriskNumber: null
-            }
-            self.CurrentRow = {};
-            self.CurrentUserDataValidationErrors = {};
-
-            self.DropdownData = {};
+            }];
 
             $scope.TableManagment.SetActions(actions);
 
-            $scope.TableManagment.EnableEditing(false);
-            $scope.TableManagment.EnableFiltering(true);
-            $scope.TableManagment.EnablePagination(true);
             $scope.TableManagment.EnableManagmentPanel(true);
-            $scope.TableManagment.SettingTable(table_settings);
-            $scope.TableManagment.SetTableManagmentPanelCode('<div><button class="btn btn-success btn-flat" ng-click="@CRMConfiguration.AngularUserManagerControllerName .CreateUser()"><span class="glyphicon glyphicon-plus"></button></div>');
-            self.LoadUserList();
+            $scope.TableManagment.SetTableManagmentPanelCode('<div><button class="btn btn-success btn-flat" ng-click="@(controller_name).CreateUser()"><span class="glyphicon glyphicon-plus"></button></div>');
 
-            //test
-            self.DropdownData.Roles = ['Администратор', 'Руководитель', 'Менеджер', 'Кассир']
+        }
+
+
+        self.Initialize = function () {
+            self.CurrentUser = {};
+            self.DropdownData = {}
+
+            self.ModelState = {};
+            self.ModelStateFlag = true;
+
+            self.UISetting();
+            self.FetchingData();
         };
 
         self.SaveChangesFunc = function () { return true; }
 
         self.OpenUserModal = function (row) {
-            self.CurrentRow = row;
+            self.CurrentUser = ToolsService.Copy(row);
             ToolsService.ShowModal('UserProfileModal');
         }
 
@@ -69,18 +78,15 @@
             ToolsService.HideModal('UserProfileModal');
         }
 
-        self.LoadUserList = function () {
-            
-            RequestService.Post('/api/Security/Users/GetUsers', null, function (response) {
+        self.GetUsers = function () {
+            $users.GetUsers(function (users) {
                 var data = [];
-                angular.forEach(response, function (item) {
-                    data.push({ Data: item, RenderContent: self.RenderContent });
+                angular.forEach(users, function (user) {
+                    data.push({ Data: user });
                 });
 
                 $scope.TableManagment.LoadData(data);
-
-                self.DropdownData = response.ResponseData.DropdownData;
-            });
+            })
         }
 
         self.LoadUserData = function (row) {
@@ -119,40 +125,11 @@
             return result;
         }
 
-        self.SaveUserData = function () {
-            if (self.ValidateUser()) {
-                RequestService.Post(self.Requests.ManageUser, self.CurrentUserData, function (response) {
-                    if (response.ValidationStatus)
-                        self.LoadUserList();
-                    else
-                        self.CurrentUserDataValidationErrors = response.ValidationErrors;
+        self.UpdateUserData = function () {
+            if (self.ValidateUserProfileData(self.CurrentUser)) {
+                $users.UpdateUserData(self.CurrentRow, function (result) {
+
                 });
-            }
-        }
-
-        self.ValidateUser = function () {
-            self.CurrentUserDataValidationErrors = {};
-            return self.Validate(self.CurrentUserData.Name, 'Name') &
-                   self.Validate(self.CurrentUserData.Phone, 'Phone') &
-                   self.Validate(self.CurrentUserData.AsteriskNumber, 'AsteriskNumber') &
-                   self.Validate(self.CurrentUserData.Point, 'Point') &
-                   self.Validate(self.CurrentUserData.Roles, 'Roles') &
-                   ((self.CurrentUserData.Id != null && self.CurrentUserData.Id != undefined) ? true : self.Validate(self.CurrentUserData.Password, 'Password'))
-            ;
-        }
-
-        self.Validate = function (field, fieldName) {
-            if (Object.prototype.toString.call(field) === '[object Array]') {
-                if (field.length > 0)
-                    return true;
-                else
-                    self.CurrentUserDataValidationErrors[fieldName] = 'Требуется выбрать хотя бы один вариант!';
-                return false;
-            } else {
-                if (field != undefined && field != null && field.toString().trim() != '')
-                    return true;
-                self.CurrentUserDataValidationErrors[fieldName] = 'Требуется заполнить это поле!';
-                return false;
             }
         }
 
@@ -165,6 +142,31 @@
                 self.LoadUserList();
             });
         }
+
+        self.ValidateUserProfileData = function (model) {
+            self.ModelStateFlag = true;
+
+            self.ModelState.UserName = self.ValidateField(model.UserName);
+            self.ModelState.Email = self.ValidateField(model.Email);
+            self.ModelState.Profile = {};
+            self.ModelState.Profile.Name = self.ValidateField(model.Profile.Name);
+
+            return self.ModelStateFlag;
+        }
+
+
+        self.ValidateField = function (field_value, custom_validation_func) {
+            var result = true & !ToolsService.IsNullOrEmpty(field_value);
+            if (custom_validation_func != undefined)
+                result &= custom_validation_func(field_value);
+
+            self.ModelStateFlag &= result;
+            if (!result)
+                return 'border-color : #ff0000';
+
+            return 'border-color : #00ff00';
+        }
+
 
         self.Initialize()
 }])

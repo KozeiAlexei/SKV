@@ -58,6 +58,14 @@ namespace SKV.PL
             }
         }
 
+        public static uint DefaultTablePageSize
+        {
+            get
+            {
+                return uint.Parse(ConfigurationManager.AppSettings[nameof(DefaultTablePageSize)]);
+            }
+        }
+
         #endregion
     }
 }

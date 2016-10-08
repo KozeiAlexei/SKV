@@ -125,3 +125,5 @@ E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.dll
 E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.pdb
 E:\Работа\SKV\SKV\SKV.PL\bin\SKV.ML.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\SKV.ML.pdb
+E:\Работа\SKV\SKV\SKV.PL\bin\RazorEngine.dll
+E:\Работа\SKV\SKV\SKV.PL\bin\RazorEngine.xml

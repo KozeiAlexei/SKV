@@ -1,0 +1,19 @@
+﻿@model SKV.PL.ClientSide.Components.Tabs.TabsMvcModel
+
+<ul id="@Model.Id" class="nav nav-tabs">
+    @foreach (var header in Model.Headers)
+    {
+        <li @(header.Active ? "class=\"active\"" : "class=\"\"") >
+            <a href="#@header.BodyId" data-toggle="tab">@header.Title</a>
+        </li>
+    }    
+</ul>
+
+<div class="tab-content tab-boxed">
+    @foreach (var body in Model.Body)
+    {
+        <div class="tab-pane fade @(body.Active ? "active in" : string.Empty)" id="@body.Id">
+            @MvcHtmlString.Create(body.Body.Render())
+        </div>
+    }
+</div>

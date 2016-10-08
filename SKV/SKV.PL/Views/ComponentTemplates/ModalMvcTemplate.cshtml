@@ -1,0 +1,13 @@
+﻿@model SKV.PL.ClientSide.Components.Modal.ModalMvcModel
+
+<div id="@Model.Id" class="modal fade modal-wide" role="dialog" @(Model.ManualClosing ? "data-backdrop=\"static\"" : string.Empty) >
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">@Model.Title</h4>
+            </div>
+            <div class="modal-body">@MvcHtmlString.Create(Model.Body.Render())</div>
+        </div>
+    </div>
+</div>
+

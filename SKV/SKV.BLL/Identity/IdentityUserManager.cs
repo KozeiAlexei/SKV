@@ -94,6 +94,18 @@ namespace SKV.BLL.Identity
 
         public IEnumerable<User> GetUsers() => DbManager.Users.GetUsers();
 
+        public async Task<IdentityResult> UpdateUserData(User user)
+        {
+            var identity_user = UserManager.FindById(user.Id);
+
+            identity_user.UserName = user.UserName;
+            identity_user.Email = user.Email;
+            identity_user.PhoneNumber = user.PhoneNumber;
+            identity_user.Profile.Name = user.Profile.Name;
+
+            return await UserManager.UpdateAsync(identity_user);
+        }
+
         public void Dispose() => UserManager.Dispose();
     }
 }

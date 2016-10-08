@@ -13,46 +13,24 @@ namespace SKV.PL.ClientSide.Components.Widget
 
         public WidgetMvc()
         {
+            Model = new WidgetMvcModel();
             Chain = Tools.CreateResponsibilityChain(this);
-            ComponentBody = Tools.CreateContainer();
         }
 
+        private WidgetMvcModel Model { get; set; }
         private IResponsibilityChain<WidgetMvc> Chain { get; set; }
 
         #endregion
 
-        #region Component properties
-
-        private string ComponentId { get; set; }
-        private string ComponentTitle { get; set; }
-
-        private IContainer ComponentBody { get; set; }
-        #endregion
-
         #region Component setting
 
-        public IWidget Id(string id) => Chain.Responsibility(() => ComponentId = id);
-        public IWidget Title(string title) => Chain.Responsibility(() => ComponentTitle = title);
+        public IWidget Id(string id) => Chain.Responsibility(() => Model.Id = id);
+        public IWidget Title(string title) => Chain.Responsibility(() => Model.Title = title);
 
-        public IWidget Body(Action<IContainer> body) => Chain.Responsibility(() => body(ComponentBody));
+        public IWidget Body(Action<IContainer> body) => Chain.Responsibility(() => body(Model.Body));
 
         #endregion
 
-        public void PrerenderValidation()
-        {
-            Tools.ThrowIfNull(ComponentId, nameof(ComponentId));
-            Tools.ThrowIfNull(ComponentTitle, nameof(ComponentTitle));
-        }
-
-        public MvcHtmlString Render()
-        {
-            var template = Tools.CreateMvcTemplate(nameof(WidgetMvc));
-
-            template.SetParameter(nameof(ComponentId), ComponentId);
-            template.SetParameter(nameof(ComponentBody), () => ComponentBody.Render());
-            template.SetParameter(nameof(ComponentTitle), ComponentTitle);
-
-            return template.Render();
-        }
+        public MvcHtmlString Render() => new ComponentRenderer(nameof(WidgetMvc)).Render(Model);
     }
 }

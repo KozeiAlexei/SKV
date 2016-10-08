@@ -1,0 +1,17 @@
+﻿@model SKV.PL.ClientSide.Components.Widget.WidgetMvcModel
+
+<div id="@Model.Id" class="row">
+    <div class="col-md-12">
+        <div class="widget">
+
+            <!--Widget header-->
+            <div class="widget-header">
+                <h2><strong>@Model.Title</strong></h2>
+            </div>
+
+            <!--Widget content-->
+            <div class="widget-content" style="padding: 5px 5px 5px 5px">@MvcHtmlString.Create(Model.Body.Render())</div>
+
+        </div>
+    </div>
+</div>

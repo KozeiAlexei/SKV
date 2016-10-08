@@ -89,6 +89,10 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="RazorEngine, Version=3.9.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
+      <HintPath>..\packages\RazorEngine.3.9.0\lib\net45\RazorEngine.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -227,8 +231,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTable.cs" />
+    <Compile Include="ClientSide\Abstract\Components\IDynamicTableAction.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableColumn.cs" />
     <Compile Include="ClientSide\Abstract\Components\IContent.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IIconHaveable.cs" />
     <Compile Include="ClientSide\Abstract\Components\IModal.cs" />
     <Compile Include="ClientSide\Abstract\Components\ITabBody.cs" />
     <Compile Include="ClientSide\Abstract\Components\ITabHeader.cs" />
@@ -240,6 +246,7 @@
     <Compile Include="ClientSide\Abstract\Features\IFilterable.cs" />
     <Compile Include="ClientSide\Abstract\Features\IIdable.cs" />
     <Compile Include="ClientSide\Abstract\Features\INameable.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IPaginable.cs" />
     <Compile Include="ClientSide\Abstract\Features\IRenderable.cs" />
     <Compile Include="ClientSide\Abstract\Features\ITitleable.cs" />
     <Compile Include="ClientSide\Abstract\Components\IWidget.cs" />
@@ -249,20 +256,27 @@
     <Compile Include="ClientSide\Abstract\IContainer.cs" />
     <Compile Include="ClientSide\Abstract\IMvcTemplate.cs" />
     <Compile Include="ClientSide\Abstract\IResponsibilityChain.cs" />
+    <Compile Include="ClientSide\Components\DynamicTable\DynamicTableActionMvc.cs" />
     <Compile Include="ClientSide\Components\DynamicTable\DynamicTableColumnMvc.cs" />
     <Compile Include="ClientSide\Components\DynamicTable\DynamicTableMvc.cs" />
     <Compile Include="ClientSide\Components\ContentMvc.cs" />
     <Compile Include="ClientSide\Components\Modal\ModalMvc.cs" />
+    <Compile Include="ClientSide\Components\Modal\ModalMvcModel.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabBodyMvc.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabHeaderMvc.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabsMvc.cs" />
+    <Compile Include="ClientSide\Components\Tabs\TabsMvcModel.cs" />
     <Compile Include="ClientSide\Components\Widget\WidgetMvc.cs" />
+    <Compile Include="ClientSide\Components\Widget\WidgetMvcModel.cs" />
     <Compile Include="ClientSide\Concrete\ComponentFactory.cs" />
+    <Compile Include="ClientSide\Concrete\ComponentRenderer.cs" />
     <Compile Include="ClientSide\Concrete\Container.cs" />
     <Compile Include="ClientSide\Concrete\Linker.cs" />
     <Compile Include="ClientSide\Concrete\MvcTemplate.cs" />
+    <Compile Include="ClientSide\Concrete\NameManager.cs" />
     <Compile Include="ClientSide\Concrete\ResponsibilityChain.cs" />
     <Compile Include="ClientSide\Concrete\Tools.cs" />
+    <Compile Include="ClientSide\Concrete\ViewRenderer.cs" />
     <Compile Include="Controllers\ControllerExt.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Home\UserManagerController.cs" />
@@ -285,6 +299,7 @@
     <Compile Include="PLStaticData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ClientSide\Templates\DynamicTableActionMvcTemplate.html" />
     <Content Include="ClientSide\Templates\DynamicTableColumnMvcTemplate.html" />
     <Content Include="ClientSide\Templates\DynamicTableMvcTemplate.html" />
     <Content Include="ClientSide\Templates\ModalMvcTemplate.html" />
@@ -1412,8 +1427,11 @@
     <Content Include="Infrastructure\Directives\Widget.js" />
     <Content Include="Infrastructure\DynamicTable\DynamicTableController.js" />
     <Content Include="Infrastructure\Factories\Security\UserDataFactory.js" />
+    <Content Include="Infrastructure\Services\Api\%24roles.js" />
+    <Content Include="Infrastructure\Services\Api\%24users.js" />
     <Content Include="Infrastructure\Services\Base64Service.js" />
     <Content Include="Infrastructure\Services\LocationService.js" />
+    <Content Include="Infrastructure\Services\%24request.js" />
     <Content Include="Infrastructure\Services\RequestService.js" />
     <Content Include="Infrastructure\Services\Security\AuthService.js" />
     <Content Include="Infrastructure\Services\Security\LoginService.js" />
@@ -2416,6 +2434,9 @@
     <Content Include="Views\App\UserManager\PasswordChangingTab.cshtml" />
     <Content Include="Views\App\UserManager\UserCreatingModal.cshtml" />
     <Content Include="Views\App\UserManager\UserCreatingModalBody.cshtml" />
+    <Content Include="Views\ComponentTemplates\ModalMvcTemplate.cshtml" />
+    <Content Include="Views\ComponentTemplates\WidgetMvcTemplate.cshtml" />
+    <Content Include="Views\ComponentTemplates\TabsMvcTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

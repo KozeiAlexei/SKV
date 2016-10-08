@@ -11,6 +11,7 @@ using SKV.ML.Concrete.Model.CurrencyModel;
 using SKV.ML.Concrete.Model.OperationModel;
 
 using SKV.ML.Concrete.Model.UIModel;
+using SKV.DAL.Concrete.EntityFramework.Migrations;
 
 namespace SKV.DAL.Concrete.EntityFramework
 {
@@ -29,6 +30,7 @@ namespace SKV.DAL.Concrete.EntityFramework
         {
             Configuration.LazyLoadingEnabled = false;
             Configuration.ProxyCreationEnabled = false;
+            System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<DatabaseContext, MigrationConfiguration>());
         }
 
         #endregion

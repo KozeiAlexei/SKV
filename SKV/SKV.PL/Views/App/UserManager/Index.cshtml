@@ -15,11 +15,16 @@
     @Linker.GetService("Tools")
     @Linker.GetService("Request")
     @Linker.GetService("Location")
+
+    @Linker.GetServiceExt("$request")
+
+    @Linker.GetServiceExt("api/$users")
+    @Linker.GetServiceExt("api/$roles")
 }
 
 @(ComponentFactory.Create<WidgetMvc>()
         .Id("UserManagerWidget")
-        .Title(Resources.Resource.UserManager)
+        .Title(NameManager.GetName("UserManager"))
         .Body(body =>
         {
             body.Create<DynamicTableMvc>()
@@ -48,7 +53,24 @@
                     b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileModal"));
                     b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserCreatingModal"));
                 })
-                .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial("UserManagerController")));
+                .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial("UserManagerController")))
+                .Editable(false)
+                .Filterable(false)
+                .Paginable(true)
+                .RowActions(actions =>
+                {
+                    actions.Create<DynamicTableActionMvc>()
+                           .Icon("glyphicon glyphicon-folder-open")
+                           .Title(string.Empty).Class("btn btn-flat btn-success  btn-md")
+                           .Click(FunctionType.Referrence, @"self.OpenUserModal")
+                           .Visible(FunctionType.Custom, @"function (row) { return true; }");
+
+                    actions.Create<DynamicTableActionMvc>()
+                           .Icon("glyphicon glyphicon-remove")
+                           .Title(string.Empty).Class("btn btn-flat btn-danger  btn-md action-button-layout")
+                           .Click(FunctionType.Referrence, @"self.DeleteUser")
+                           .Visible(FunctionType.Custom, @"function (row) { return (row.Id != null) && (row.Id != undefined); }");
+                });
         })
         .Render()
 )

@@ -1,14 +1,28 @@
 ﻿<script>
     angular.module('#ComponentAngularApplicationName#').factory('#ComponentAngularTableSettingsFactoryName#', function () {
         return {
-            GetColumns: function () {
-                return {
-                    Columns: [#ComponentColumns#]
-                }
+            Actions: function() {
+                return [#ComponentRowActions#]
             },
 
-            GetTableSettings: function() {
+            Columns: function () {
+                return [#ComponentColumns#]
+            },
 
+            Editable: function() {
+                return #ComponentEditable#;
+            },
+
+            Filterable: function() {
+                return #ComponentFilterable#;
+            },
+
+            Paginable: function() {
+                return #ComponentPaginable#;
+            },
+
+            PageSize: function() {
+                return #ComponentPageSize#;
             }
         }
     });

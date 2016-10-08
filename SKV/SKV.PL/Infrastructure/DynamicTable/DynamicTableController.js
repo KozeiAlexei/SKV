@@ -78,8 +78,8 @@
     $scope.TableManagment = {
 
         //Настройка контроллера
-        SettingTable: function (source) {
-            self.Columns = source.Columns;
+        Columns: function (source) {
+            self.Columns = source;
         },
 
         //Загрузка данных в таблицу
@@ -153,15 +153,15 @@
             self.Actions = actions;
         },
 
-        EnableEditing: function(editing) {
+        Editable: function(editing) {
             self.TableParams.EnableEditing = editing;
         },
 
-        EnableFiltering: function (filtering) {
+        Filterable: function (filtering) {
             self.TableParams.EnableFiltering = filtering;
         },
 
-        EnablePagination: function (pagination) {
+        Paginable: function (pagination) {
             self.TableParams.EnablePagination = pagination;
         },
 
@@ -231,7 +231,7 @@
             self.GoToPage(1);
         },
 
-        SetPageSize: function (size) {
+        PageSize: function (size) {
             self.SetPageSize(size);
         }
     }

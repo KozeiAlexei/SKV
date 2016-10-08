@@ -32,3 +32,34 @@
         .ManualClosing(false)
         .Render()
 )
+
+@(ComponentFactory.Create<ModalMvc>()
+        .Id("UserProfileModal")
+        .Title(Resources.Resource.UserProfile)
+        .Body(body =>
+        {
+            body.Create<TabsMvc>()
+                    .Id("UserProfileTabs")
+                    .TabHeaders(headers =>
+                    {
+                        headers.Add(new TabHeaderMvcModel() { Active = true, Title = Resources.Resource.UserProfile, BodyId = "UserProfile" });
+                        headers.Add(new TabHeaderMvcModel() { Active = false, Title = Resources.Resource.PasswordChanging, BodyId = "PasswordChanging" });
+                    })
+                    .TabBody(b =>
+                    {
+                        b.Add(new TabBodyMvcModel()
+                        {
+                            Id = "UserProfile", Active = true,
+                            Body = Tools.CreateContainer().Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileTab"))
+                        });
+
+                        b.Add(new TabBodyMvcModel()
+                        {
+                            Id = "PasswordChanging", Active = true,
+                            Body = Tools.CreateContainer().Create<ContentMvc>().FromPartitalView(Html.Partial("PasswordChangingTab"))
+                        });
+                    });
+        })
+        .ManualClosing(false)
+        .Render()
+)

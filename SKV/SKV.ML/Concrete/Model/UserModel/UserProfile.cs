@@ -17,6 +17,7 @@ namespace SKV.ML.Concrete.Model.UserModel
         [JsonIgnore]
         public virtual User UserInstance { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public int? AsteriskId { get; set; }

@@ -13,51 +13,24 @@ namespace SKV.PL.ClientSide.Components.Modal
 
         public ModalMvc()
         {
+            Model = new ModalMvcModel();
             Chain = Tools.CreateResponsibilityChain(this);
-            ComponentBody = Tools.CreateContainer();
         }
 
+        private ModalMvcModel Model { get; set; }
         private IResponsibilityChain<ModalMvc> Chain { get; set; }
-
-        #endregion
-
-        #region Component properties
-
-        private string ComponentId { get; set; }
-        private string ComponentTitle { get; set; }
-
-        private IContainer ComponentBody { get; set; }
-
-        private bool ComponentManualClosing { get; set; }
 
         #endregion
 
         #region Component setting
 
-        public IModal Id(string id) => Chain.Responsibility(() => ComponentId = id);
-        public IModal Body(Action<IContainer> body) => Chain.Responsibility(() => body(ComponentBody));
-        public IModal Title(string title) => Chain.Responsibility(() => ComponentTitle = title);
-        public IModal ManualClosing(bool manual) => Chain.Responsibility(() => ComponentManualClosing = manual);
+        public IModal Id(string id) => Chain.Responsibility(() => Model.Id = id);
+        public IModal Body(Action<IContainer> body) => Chain.Responsibility(() => body(Model.Body));
+        public IModal Title(string title) => Chain.Responsibility(() => Model.Title = title);
+        public IModal ManualClosing(bool manual) => Chain.Responsibility(() => Model.ManualClosing = manual);
 
         #endregion
 
-        private void PrerenderValidation()
-        {
-            Tools.ThrowIfNull(ComponentId, nameof(ComponentId));
-            Tools.ThrowIfNull(ComponentTitle, nameof(ComponentTitle));
-        }
-
-        public MvcHtmlString Render()
-        {
-            var template = Tools.CreateMvcTemplate(nameof(ModalMvc)); PrerenderValidation();
-
-            template.SetParameter(nameof(ComponentId), ComponentId);
-            template.SetParameter(nameof(ComponentBody), () => ComponentBody.Render());
-            template.SetParameter(nameof(ComponentTitle), ComponentTitle);
-            template.SetParameter(nameof(ComponentManualClosing), () => ComponentManualClosing ? "data-backdrop=\"static\"" : string.Empty);
-
-            return template.Render();
-        }
-
+        public MvcHtmlString Render() => new ComponentRenderer(nameof(ModalMvc)).Render(Model);
     }
 }

@@ -20,7 +20,8 @@ function ($http, $window, ToolsService, AuthService) {
             http.post(uri, data).success(function (response) {
                 successCallback(response);
             }).error(function (error, status) {
-                var r = 1;
+                if (status != 500)
+                    successCallback(error);
             });
         },
 

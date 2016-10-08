@@ -16,6 +16,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
             ComponentBody = Tools.CreateContainer();
             ComponentLogic = Tools.CreateContainer();
             ComponentColumns = Tools.CreateContainer();
+            ComponentRowActions = Tools.CreateContainer();
 
             ComponentAngularApplicationName = CRMConfiguration.AngularApplicationName;
             ComponentAngularDynamicTableControllerName = CRMConfiguration.AngularDynamicTableControllerName;
@@ -35,11 +36,15 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         private string ComponentTitle { get; set; }
 
         private bool ComponentEditable { get; set; }
+        private bool ComponentPaginable { get; set; }
         private bool ComponentFilterable { get; set; }
+
+        private uint ComponentPageSize { get; set; }
 
         private IContainer ComponentBody { get; set; }
         private IContainer ComponentLogic { get; set; }
         private IContainer ComponentColumns { get; set; }
+        private IContainer ComponentRowActions { get; set; }
 
         #endregion
 
@@ -49,6 +54,11 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IDynamicTable Title(string title) => Chain.Responsibility(() => ComponentTitle = title);
 
         public IDynamicTable Editable(bool editable) => Chain.Responsibility(() => ComponentEditable = editable);
+        public IDynamicTable Paginable(bool paginable, uint? page_size = null) => Chain.Responsibility(() =>
+        {
+            ComponentPageSize = page_size.GetValueOrDefault(CRMConfiguration.DefaultTablePageSize);
+            ComponentPaginable = paginable;
+        });
         public IDynamicTable Filterable(bool filterable) => Chain.Responsibility(() => ComponentFilterable = filterable);
 
         public IDynamicTable AngularTableSettingsFactoryName(string name) => 
@@ -66,6 +76,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IDynamicTable Body(Action<IContainer> body) => Chain.Responsibility(() => body(ComponentBody));
         public IDynamicTable Logic(Action<IContainer> logic) => Chain.Responsibility(() => logic(ComponentLogic));
         public IDynamicTable Columns(Action<IContainer> columns) => Chain.Responsibility(() => columns(ComponentColumns));
+        public IDynamicTable RowActions(Action<IContainer> actions) => Chain.Responsibility(() => actions(ComponentRowActions));
 
         #endregion
 
@@ -80,6 +91,9 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
 
         public MvcHtmlString Render()
         {
+            
+
+
             var template = Tools.CreateMvcTemplate(nameof(DynamicTableMvc)); PrerenderValidation();
 
             template.SetParameter(nameof(ComponentAngularApplicationName), ComponentAngularApplicationName);
@@ -88,9 +102,17 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
             template.SetParameter(nameof(ComponentAngularDynamicTableActionsController), ComponentAngularDynamicTableActionsController);
             template.SetParameter(nameof(ComponentAngularDynamicTableActionsControllerName), ComponentAngularDynamicTableActionsControllerName);
 
+            template.SetParameter(nameof(ComponentEditable), ComponentEditable.ToString().ToLower());
+            template.SetParameter(nameof(ComponentPaginable), ComponentPaginable.ToString().ToLower());
+            template.SetParameter(nameof(ComponentFilterable), ComponentFilterable.ToString().ToLower());
+
+            template.SetParameter(nameof(ComponentPageSize), ComponentPageSize.ToString());
+
             template.SetParameter(nameof(ComponentBody), () => ComponentBody.Render());
             template.SetParameter(nameof(ComponentLogic), () => ComponentLogic.Render());
             template.SetParameter(nameof(ComponentColumns), () => ComponentColumns.Render());
+
+            template.SetParameter(nameof(ComponentRowActions), () => ComponentRowActions.Render());
 
             return template.Render();
         }

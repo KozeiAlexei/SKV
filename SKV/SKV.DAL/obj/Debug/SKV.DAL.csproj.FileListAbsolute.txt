@@ -24,3 +24,5 @@ E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\SKV.ML.pdb
 E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.csprojResolveAssemblyReference.cache
 E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\Newtonsoft.Json.dll
 E:\Работа\SKV\SKV\SKV.DAL\bin\Debug\Newtonsoft.Json.xml
+E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.Concrete.EntityFramework.Migrations.Initial.resources
+E:\Работа\SKV\SKV\SKV.DAL\obj\Debug\SKV.DAL.csproj.GenerateResource.Cache

@@ -102,6 +102,7 @@
     <Compile Include="Abstract\Repositories\WindowModel\IWindowRepository.cs" />
     <Compile Include="Concrete\Database\DbManager.cs" />
     <Compile Include="Concrete\EntityFramework\DatabaseContext.cs" />
+    <Compile Include="Concrete\EntityFramework\Migrations\MigrationConfiguration.cs" />
     <Compile Include="Concrete\EntityFramework\Repository.cs" />
     <Compile Include="Concrete\Repositories\CallModel\CallRepository.cs" />
     <Compile Include="Concrete\Repositories\CallModel\OperatorPhoneRepository.cs" />
@@ -132,6 +133,10 @@
     <Compile Include="Concrete\Repositories\WindowModel\WindowCashRepository.cs" />
     <Compile Include="Concrete\Repositories\WindowModel\WindowRepository.cs" />
     <Compile Include="DALStaticData.cs" />
+    <Compile Include="Migrations\201609251432076_Initial.cs" />
+    <Compile Include="Migrations\201609251432076_Initial.Designer.cs">
+      <DependentUpon>201609251432076_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\OperationHelper.cs" />
     <Compile Include="DALDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,6 +153,11 @@
       <Project>{48c31015-40e5-4828-b49e-8607e440893e}</Project>
       <Name>SKV.ML</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201609251432076_Initial.resx">
+      <DependentUpon>201609251432076_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
