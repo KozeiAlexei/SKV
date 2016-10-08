@@ -1,0 +1,41 @@
+﻿@model SKV.PL.ClientSide.Components.DynamicTable.DynamicTableModelMvc
+
+<script>
+    angular.module('@Model.AngularApplicationName').factory('@Model.AngularTableSettingsFactoryName', function () {
+        return {
+            Actions: function() {
+                return [@MvcHtmlString.Create(Model.RowActions.Render())]
+            },
+
+            Columns: function () {
+                return [@MvcHtmlString.Create(Model.Columns.Render())]
+            },
+
+            Editable: function() {
+                return @Model.Editable.ToString().ToLower();
+            },
+
+            Filterable: function() {
+                return @Model.Filterable.ToString().ToLower();
+            },
+
+            Paginable: function() {
+                return @Model.Paginable.ToString().ToLower();
+            },
+
+            PageSize: function() {
+                return @Model.PageSize.ToString();
+            }
+        }
+    });
+</script>
+
+<any ng-controller="DynamicTableController as @Model.AngularDynamicTableControllerName">
+    <any ng-controller="@Model.AngularDynamicTableActionsController as @Model.AngularDynamicTableActionsControllerName">
+        <dynamic-table></dynamic-table>
+
+        @MvcHtmlString.Create(Model.Logic.Render())
+
+        @MvcHtmlString.Create(Model.Body.Render())
+    </any>
+</any>

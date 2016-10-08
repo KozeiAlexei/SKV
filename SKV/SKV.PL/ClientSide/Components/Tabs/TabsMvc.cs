@@ -1,14 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Collections.Generic;
 
 using SKV.PL.ClientSide.Abstract;
 using SKV.PL.ClientSide.Concrete;
 using SKV.PL.ClientSide.Abstract.Components;
-using SKV.PL.ClientSide.Abstract.Components.Features;
-using Ninject;
-using System.Text;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace SKV.PL.ClientSide.Components.Tabs
 {
@@ -27,16 +23,12 @@ namespace SKV.PL.ClientSide.Components.Tabs
 
         #endregion
 
-
         #region Component setting
 
         public ITabs Id(string id) => Chain.Responsibility(() => Model.Id = id);
 
-        public ITabs TabBody(Action<List<TabBodyMvcModel>> body) => Chain.Responsibility(() => body(Model.Body));
-        public ITabs TabHeaders(Action<List<TabHeaderMvcModel>> headers) => Chain.Responsibility(() => headers(Model.Headers));
-
+        public ITabs Tabs(Action<List<TabMvcModel>> body) => Chain.Responsibility(() => body(Model.Tabs));
         #endregion
-
 
         public MvcHtmlString Render() => new ComponentRenderer(nameof(TabsMvc)).Render(Model);      
     }

@@ -62,9 +62,11 @@
                 </any>
 
                 <div ng-if="column.DataType == 'Actions'">
-                    <button ng-repeat="button in ctrl.Actions track by $index" ng-class="button.Class" ng-click="button.Click(row)" ng-if="button.VisibilityFunc(row)">
-                        <span class="{{ button.Icon }}"></span>
-                    </button>
+                    <div class="btn-group">
+                        <button ng-repeat="button in ctrl.Actions track by $index" ng-class="button.Class" ng-click="button.Click(row)" ng-if="button.VisibilityFunc(row)">
+                            <span class="{{ button.Icon }}"></span>
+                        </button>
+                    </div>
                 </div>
             </td>
         </tr>

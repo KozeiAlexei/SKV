@@ -1,30 +1,21 @@
-﻿using SKV.PL.ClientSide.Abstract;
-using SKV.PL.ClientSide.Concrete;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+
+using SKV.PL.ClientSide.Abstract;
+using SKV.PL.ClientSide.Concrete;
 
 namespace SKV.PL.ClientSide.Components.Tabs
 {
-    public class TabHeaderMvcModel
-    {
-        public bool Active { get; set; } = false;
-
-        [Required]
-        public string Title { get; set; }
-
-        [Required]
-        public string BodyId { get; set; }
-    }
-
-    public class TabBodyMvcModel
+    public class TabMvcModel
     {
         [Required]
         public string Id { get; set; }
 
+        [Required]
+        public string Title { get; set; }
+
         public bool Active { get; set; } = false;
+
         public IContainer Body { get; set; } = Tools.CreateContainer();
     }
 
@@ -33,7 +24,6 @@ namespace SKV.PL.ClientSide.Components.Tabs
         [Required]
         public string Id { get; set; }
 
-        public List<TabBodyMvcModel> Body { get; } = new List<TabBodyMvcModel>();
-        public List<TabHeaderMvcModel> Headers { get; } = new List<TabHeaderMvcModel>();
+        public List<TabMvcModel> Tabs { get; set; } = new List<TabMvcModel>();
     }
 }

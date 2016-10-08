@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using SKV.ML.Abstract.Model.UIModel;
+
 
 namespace SKV.ML.Concrete.Model.UIModel
 {

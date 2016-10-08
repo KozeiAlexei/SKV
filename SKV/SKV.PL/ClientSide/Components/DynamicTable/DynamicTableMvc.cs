@@ -9,112 +9,52 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
 {
     public class DynamicTableMvc : IDynamicTable
     {
+        #region Component constructor
+
         public DynamicTableMvc()
         {
+            Model = new DynamicTableModelMvc();
             Chain = Tools.CreateResponsibilityChain(this);
-
-            ComponentBody = Tools.CreateContainer();
-            ComponentLogic = Tools.CreateContainer();
-            ComponentColumns = Tools.CreateContainer();
-            ComponentRowActions = Tools.CreateContainer();
-
-            ComponentAngularApplicationName = CRMConfiguration.AngularApplicationName;
-            ComponentAngularDynamicTableControllerName = CRMConfiguration.AngularDynamicTableControllerName;
         }
 
+        private DynamicTableModelMvc Model { get; set; }
         private IResponsibilityChain<DynamicTableMvc> Chain { get; set; }
-
-        #region Component properties
-
-        private string ComponentAngularApplicationName { get; set; }
-        private string ComponentAngularTableSettingsFactoryName { get; set; }
-        private string ComponentAngularDynamicTableControllerName { get; set; }
-        private string ComponentAngularDynamicTableActionsController { get; set; }
-        private string ComponentAngularDynamicTableActionsControllerName { get; set; }
-
-        private string ComponentId { get; set; }
-        private string ComponentTitle { get; set; }
-
-        private bool ComponentEditable { get; set; }
-        private bool ComponentPaginable { get; set; }
-        private bool ComponentFilterable { get; set; }
-
-        private uint ComponentPageSize { get; set; }
-
-        private IContainer ComponentBody { get; set; }
-        private IContainer ComponentLogic { get; set; }
-        private IContainer ComponentColumns { get; set; }
-        private IContainer ComponentRowActions { get; set; }
 
         #endregion
 
         #region ComponentSetting
 
-        public IDynamicTable Id(string id) => Chain.Responsibility(() => ComponentId = id);
-        public IDynamicTable Title(string title) => Chain.Responsibility(() => ComponentTitle = title);
+        public IDynamicTable Id(string id) => Chain.Responsibility(() => Model.Id = id);
+        public IDynamicTable Title(string title) => Chain.Responsibility(() => Model.Title = title);
 
-        public IDynamicTable Editable(bool editable) => Chain.Responsibility(() => ComponentEditable = editable);
+        public IDynamicTable Editable(bool editable) => Chain.Responsibility(() => Model.Editable = editable);
         public IDynamicTable Paginable(bool paginable, uint? page_size = null) => Chain.Responsibility(() =>
         {
-            ComponentPageSize = page_size.GetValueOrDefault(CRMConfiguration.DefaultTablePageSize);
-            ComponentPaginable = paginable;
+            Model.PageSize = page_size.GetValueOrDefault(CRMConfiguration.DefaultTablePageSize);
+            Model.Paginable = paginable;
         });
-        public IDynamicTable Filterable(bool filterable) => Chain.Responsibility(() => ComponentFilterable = filterable);
+        public IDynamicTable Filterable(bool filterable) => Chain.Responsibility(() => Model.Filterable = filterable);
 
         public IDynamicTable AngularTableSettingsFactoryName(string name) => 
-            Chain.Responsibility(() => ComponentAngularTableSettingsFactoryName = name);
+            Chain.Responsibility(() => Model.AngularTableSettingsFactoryName = name);
 
         public IDynamicTable AngularDynamicTableControllerName(string name) =>
-            Chain.Responsibility(() => ComponentAngularDynamicTableControllerName = name);
+            Chain.Responsibility(() => Model.AngularDynamicTableControllerName = name);
 
         public IDynamicTable AngularDynamicTableActionsController(string name) =>
-            Chain.Responsibility(() => ComponentAngularDynamicTableActionsController = name);
+            Chain.Responsibility(() => Model.AngularDynamicTableActionsController = name);
 
         public IDynamicTable AngularDynamicTableActionsControllerName(string name) =>
-            Chain.Responsibility(() => ComponentAngularDynamicTableActionsControllerName = name);
+            Chain.Responsibility(() => Model.AngularDynamicTableActionsControllerName = name);
 
-        public IDynamicTable Body(Action<IContainer> body) => Chain.Responsibility(() => body(ComponentBody));
-        public IDynamicTable Logic(Action<IContainer> logic) => Chain.Responsibility(() => logic(ComponentLogic));
-        public IDynamicTable Columns(Action<IContainer> columns) => Chain.Responsibility(() => columns(ComponentColumns));
-        public IDynamicTable RowActions(Action<IContainer> actions) => Chain.Responsibility(() => actions(ComponentRowActions));
+        public IDynamicTable Body(Action<IContainer> body) => Chain.Responsibility(() => body(Model.Body));
+        public IDynamicTable Logic(Action<IContainer> logic) => Chain.Responsibility(() => logic(Model.Logic));
+        public IDynamicTable Columns(Action<IContainer> columns) => Chain.Responsibility(() => columns(Model.Columns));
+        public IDynamicTable RowActions(Action<IContainer> actions) => Chain.Responsibility(() => actions(Model.RowActions));
 
         #endregion
 
-        private void PrerenderValidation()
-        {
-            Tools.ThrowIfNull(ComponentAngularApplicationName, nameof(ComponentAngularApplicationName));
-            Tools.ThrowIfNull(ComponentAngularTableSettingsFactoryName, nameof(ComponentAngularTableSettingsFactoryName));
-            Tools.ThrowIfNull(ComponentAngularDynamicTableControllerName, nameof(ComponentAngularDynamicTableControllerName));
-            Tools.ThrowIfNull(ComponentAngularDynamicTableActionsController, nameof(ComponentAngularDynamicTableActionsController));
-            Tools.ThrowIfNull(ComponentAngularDynamicTableActionsControllerName, nameof(ComponentAngularDynamicTableActionsControllerName));
-        }
 
-        public MvcHtmlString Render()
-        {
-            
-
-
-            var template = Tools.CreateMvcTemplate(nameof(DynamicTableMvc)); PrerenderValidation();
-
-            template.SetParameter(nameof(ComponentAngularApplicationName), ComponentAngularApplicationName);
-            template.SetParameter(nameof(ComponentAngularTableSettingsFactoryName), ComponentAngularTableSettingsFactoryName);
-            template.SetParameter(nameof(ComponentAngularDynamicTableControllerName), ComponentAngularDynamicTableControllerName);
-            template.SetParameter(nameof(ComponentAngularDynamicTableActionsController), ComponentAngularDynamicTableActionsController);
-            template.SetParameter(nameof(ComponentAngularDynamicTableActionsControllerName), ComponentAngularDynamicTableActionsControllerName);
-
-            template.SetParameter(nameof(ComponentEditable), ComponentEditable.ToString().ToLower());
-            template.SetParameter(nameof(ComponentPaginable), ComponentPaginable.ToString().ToLower());
-            template.SetParameter(nameof(ComponentFilterable), ComponentFilterable.ToString().ToLower());
-
-            template.SetParameter(nameof(ComponentPageSize), ComponentPageSize.ToString());
-
-            template.SetParameter(nameof(ComponentBody), () => ComponentBody.Render());
-            template.SetParameter(nameof(ComponentLogic), () => ComponentLogic.Render());
-            template.SetParameter(nameof(ComponentColumns), () => ComponentColumns.Render());
-
-            template.SetParameter(nameof(ComponentRowActions), () => ComponentRowActions.Render());
-
-            return template.Render();
-        }
+        public MvcHtmlString Render() => new ComponentRenderer(nameof(DynamicTableMvc)).Render(Model);
     }
 }

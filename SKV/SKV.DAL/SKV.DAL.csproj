@@ -133,10 +133,6 @@
     <Compile Include="Concrete\Repositories\WindowModel\WindowCashRepository.cs" />
     <Compile Include="Concrete\Repositories\WindowModel\WindowRepository.cs" />
     <Compile Include="DALStaticData.cs" />
-    <Compile Include="Migrations\201609251432076_Initial.cs" />
-    <Compile Include="Migrations\201609251432076_Initial.Designer.cs">
-      <DependentUpon>201609251432076_Initial.cs</DependentUpon>
-    </Compile>
     <Compile Include="Tools\OperationHelper.cs" />
     <Compile Include="DALDependencyResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -155,9 +151,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201609251432076_Initial.resx">
-      <DependentUpon>201609251432076_Initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <Folder Include="Migrations\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

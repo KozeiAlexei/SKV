@@ -1,6 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
 .bg-white-1 {
   background-color: #ffffff !important;
 }
@@ -758,12 +757,12 @@
   color: #333;
 }
 body {
-  background: #f3f3f3;
+  background: url(http://weblabfon.com/_ld/2/203_139.jpg) repeat;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizelegibility;
   -webkit-text-size-adjust: 100%;
-  font-family: "Roboto", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto';
 }
 h1,
 h2,
@@ -1074,7 +1073,7 @@ input[type="color"]:focus,
   padding: 6px 8px 5px;
 }
 .dropdown-header.notif-header .pull-right {
-  margin-top: -19px;
+  margin-top: -10px;
 }
 .iradio,
 .icheckbox {
@@ -1098,15 +1097,15 @@ i.i-xs {
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #fff;
-  background-color: #545e6c;
+  color: #555555;
+  background-color: #eee;
   border-bottom: none;
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #fff;
-  background-color: #545e6c;
+  color: #555555;
+  background-color: #eee;
 }
 .navbar-nav > li > .dropdown-menu:before {
   border-bottom: 6px solid #ABB7B7;
@@ -1240,7 +1239,7 @@ i.i-xs {
   margin-bottom: 10px;
   border: none;
   box-shadow: none;
-  border-bottom: 1px solid rgba(0,0,0,0.03);
+  background: rgba(0,0,0,0.1);
 }
 .navbar-form .search-button {
   background: none;
@@ -1248,7 +1247,7 @@ i.i-xs {
   position: absolute;
   right: 5px;
   top: 0px;
-  color: #ccc;
+  color: #666;
   -webkit-box-shadow: 0px 0px 0px 0px !important;
   box-shadow: 0px 0px 0px 0px !important;
   -webkit-border-radius: 0px;
@@ -1260,7 +1259,7 @@ i.i-xs {
   transition: all 100ms ease-in;
 }
 .navbar-form .search-button:hover {
-  color: #777 !important;
+  color: #fff !important;
   -webkit-transition: all 300ms ease-in;
   -moz-transition: all 300ms ease-in;
   -ms-transition: all 300ms ease-in;
@@ -1289,9 +1288,9 @@ i.i-xs {
   transition: all 300ms ease-in;
 }
 .navbar-form .form-control:focus {
-  background-color: #f2f2f2 !important;
+  background-color: #555 !important;
   border-color: #888;
-  color: #888;
+  color: #fff;
   -webkit-transition: all 300ms ease-in;
   -moz-transition: all 300ms ease-in;
   -ms-transition: all 300ms ease-in;
@@ -1299,19 +1298,19 @@ i.i-xs {
   transition: all 300ms ease-in;
 }
 .navbar-form .form-control::-webkit-input-placeholder {
-  color: #ccc !important;
+  color: #777 !important;
   text-overflow: ellipsis;
 }
 .navbar-form .form-control:-moz-placeholder {
-  color: #ccc !important;
+  color: #777 !important;
   text-overflow: ellipsis;
 }
 .navbar-form .form-control::-moz-placeholder {
-  color: #ccc !important;
+  color: #777 !important;
   text-overflow: ellipsis;
 }
 .navbar-form .form-control:-ms-input-placeholder {
-  color: #ccc !important;
+  color: #777 !important;
   text-overflow: ellipsis;
 }
 .enlarged .navbar-form .form-control {
@@ -1347,13 +1346,10 @@ i.i-xs {
   width: 100%;
 }
 .profile-image {
-  border: 4px double rgba(0,0,0,0.2);
-}
-.profile-info .col-xs-4 {
-  padding: 0px 0px 0px 10px;
+  border: 4px double rgba(255,255,255,0.2);
 }
 .profile-text {
-  color: #4A525F;
+  color: #fff;
   font-family: "Roboto";
   font-size: 18px;
 }
@@ -1361,7 +1357,7 @@ i.i-xs {
   margin-top: 5px;
 }
 .profile-buttons a {
-  color: #606b7c;
+  color: #eee;
   font-size: 13px;
   line-height: 22px;
   padding: 4px 10px 6px;
@@ -1646,7 +1642,7 @@ iframe {
 #wrapper {
   width: 100%;
   height: 100%;
-  background: #f3f3f3;
+  /*background: #E4EAE6;*/
   position: relative;
 }
 .page {
@@ -1670,24 +1666,23 @@ iframe {
   top: 0px;
   height: 50px;
   z-index: 11;
-  background: #424a55;
+  background: #ffffff;
   position: fixed;
+  -webkit-box-shadow: 1px 0 3px 0 rgba(0,0,0,0.2);
+  box-shadow: 1px 0 3px 0 rgba(0,0,0,0.2);
 }
 .topbar .topbar-left {
   float: left;
   height: 50px;
   position: relative;
   z-index: 1;
-  width: 240px;
-  background: #424a55;
+  width: 280px;
+  background: #343838;
 }
 .logo h1 {
   margin: 0px auto;
   height: 50px;
   text-align: center;
-}
-.logo h1 img {
-  height: 50%;
 }
 .topbar-profile .topbar-profile-image {
   width: 35px;
@@ -1697,31 +1692,19 @@ iframe {
   margin-bottom: -12px;
   border: 1px solid rgba(0,0,0,0.2);
 }
-.navbar-default .navbar-nav .topbar-profile > a {
+.topbar-profile > a {
   font-family: "Roboto";
 }
 .navbar-right .iconify > a > i {
   font-size: 18px;
-  color: #fff;
+  color: #666;
   line-height: 17px;
-}
-.navbar-right .iconify > a:focus > i {
-  font-size: 18px;
-  color: #fff;
-  line-height: 17px;
-}
-.navbar-default .navbar-nav > li > a {
-  color: #fff;
-}
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus {
-  color: #fff;
 }
 .right-opener {
-  border-left: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid #f5f5f5;
 }
 .right-opener i {
-  color: rgba(255,255,255,0.8);
+  color: rgba(0,0,0,0.6);
 }
 .right-opener .fa-angle-double-right {
   display: none;
@@ -1731,6 +1714,9 @@ iframe {
 }
 .open-right-sidebar .right-opener .fa-angle-double-left {
   display: none;
+}
+.logo h1 img {
+  height: 40%;
 }
 .col {
   top: 0;
@@ -1758,16 +1744,15 @@ iframe {
   display: none;
 }
 .side-menu {
-  width: 300px;
+  width: 280px;
   top: 0;
   bottom: 0;
   z-index: 2;
 }
 .side-menu.left {
-  background: #fff;
+  background: #343838;
   position: absolute;
   top: 50px;
-  border-right: 1px solid #eee;
 }
 body.fixed-left .side-menu.left {
   margin-top: 0px;
@@ -1789,7 +1774,7 @@ body.mobile .slimscroller {
   direction: ltr;
 }
 .content-page {
-  margin-left: 300px;
+  margin-left: 280px;
   overflow: hidden;
   position: relative;
 }
@@ -1799,20 +1784,20 @@ body.mobile .slimscroller {
   position: relative;
 }
 .side-menu.right {
-  width: 240px;
-  right: -240px;
+  width: 230px;
+  right: -230px;
   position: fixed;
   z-index: 15;
-  background: #fff;
+  background: #343838;
 }
 .side-menu.right .tab-inner {
   height: 100%;
 }
 #wrapper.open-right-sidebar {
-  padding-right: 240px;
+  padding-right: 230px;
 }
 .open-right-sidebar .topbar {
-  margin-right: 240px;
+  margin-right: 230px;
 }
 .open-right-sidebar .right {
   right: 0px !important;
@@ -1837,7 +1822,7 @@ body.mobile .slimscroller {
 .body.content.rows {
   top: 50px;
   bottom: 0px;
-  background: #f3f3f3;
+  /*background: #E4EAE6;*/
   padding: 20px;
   font-size: 13px;
 }
@@ -1847,7 +1832,6 @@ body.fixed-left .left-footer {
 .left-footer {
   height: 50px;
   bottom: 0px;
-  display: none;
   position: absolute;
   width: 100%;
   background: rgba(0,0,0,0.3);
@@ -1891,11 +1875,11 @@ body.fixed-left .left-footer {
   height: 50px;
   font-size: 21px;
   background: transparent;
-  color: #fff;
+  color: #888;
   border: none;
 }
 .button-menu-mobile:hover {
-  color: #aaa;
+  color: #eee;
 }
 button.navbar-toggle {
   padding: 5px 20px;
@@ -1921,7 +1905,7 @@ button.navbar-toggle {
 .breadcrumb > li + li:before {
   color: #9dabab;
   padding: 0px 10px;
-  content: "ï„…";
+  content: "";
   font-family: FontAwesome;
 }
 .sidebar-inner {
@@ -1949,26 +1933,27 @@ button.navbar-toggle {
   font-family: "Roboto";
 }
 #sidebar-menu > ul > li {
-  background: #fff;
+  background: #343838;
   display: block;
 }
 #sidebar-menu > ul > li > a {
   font-size: 13px;
   display: block;
-  color: #555;
+  color: #e7e7e7;
   padding: 10px;
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.1);
   padding-right: 22px;
 }
 #sidebar-menu > ul > li > a > span {
   vertical-align: middle;
 }
 #sidebar-menu > ul > li > a:hover {
-  color: #555;
-  background: #ffffff;
+  color: #fff;
+  background: #4d5252;
   padding-left: 10px;
 }
 #sidebar-menu > ul > li > a > i {
-  color: rgba(0,0,0,0.4);
+  color: rgba(255,255,255,0.7);
   display: inline-block;
   font-size: 15px;
   line-height: 17px;
@@ -1986,18 +1971,27 @@ button.navbar-toggle {
   text-decoration: none;
 }
 #sidebar-menu > ul > li > a.subdrop {
-  background: #ffffff;
+  background: #4d5252;
 }
 #sidebar-menu > ul > li > a.active,
 #sidebar-menu > ul > li > a.active.subdrop {
   color: #fff;
-  background: #7eccad !important;
-  font-weight: 600;
-  border-left: 0px solid rgba(0,0,0,0.3);
+  background: #68C39F !important;
+  border-left: 5px solid rgba(0,0,0,0.3);
+  padding-left: 5px;
 }
-#sidebar-menu > ul > li > a.active i,
-#sidebar-menu > ul > li > a.active.subdrop i {
-  color: #fff;
+#sidebar-menu > ul > li > a.open:after,
+#sidebar-menu > ul > li > a.active:after {
+  border-color: rgba(0,0,0,0) #E4EAE6 rgba(0,0,0,0) rgba(0,0,0,0);
+  border-style: solid;
+  border-width: 15px 11px 15px 0;
+  content: " ";
+  height: 0;
+  position: absolute;
+  right: 0;
+  top: 6px;
+  width: 0;
+  z-index: 2;
 }
 #sidebar-menu > ul > li > a span.label {
   float: right;
@@ -2016,7 +2010,9 @@ button.navbar-toggle {
 }
 #sidebar-menu ul ul {
   display: none;
-  background: #ebebeb;
+  background: #282b2b;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 2px solid rgba(0,0,0,0.1);
 }
 #sidebar-menu ul ul ul {
   border-top: 1px solid rgba(0,0,0,0.1);
@@ -2028,7 +2024,7 @@ button.navbar-toggle {
 #sidebar-menu ul ul a {
   padding: 10px 25px;
   display: block;
-  color: #555;
+  color: #ffffff;
   font-family: "Roboto";
   font-size: 12px;
 }
@@ -2039,12 +2035,12 @@ button.navbar-toggle {
   padding-left: 45px;
 }
 #sidebar-menu ul ul a:hover {
-  color: #222;
-  background: #d9d9d9;
+  color: #fff;
+  background: #1b1e1e;
 }
 #sidebar-menu ul ul li a.active {
-  color: #222;
-  background: #dedede;
+  color: #fff;
+  background: #0f1010;
 }
 #sidebar-menu ul ul a i {
   margin-right: 5px;
@@ -2086,7 +2082,7 @@ button.navbar-toggle {
   color: transparent !important;
 }
 #wrapper.enlarged .left.side-menu .navbar-form:hover {
-  width: 240px;
+  width: 280px;
   position: relative;
   z-index: 5;
 }
@@ -2104,10 +2100,10 @@ button.navbar-toggle {
   display: none;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > a {
-  background: #ffffff;
+  background: #4d5252;
 }
 #wrapper.enlarged #sidebar-menu ul ul li a.active {
-  background: #dedede !important;
+  background: #1b1e1e !important;
 }
 #wrapper.enlarged #sidebar-menu > ul > li:hover > a.open:after,
 #wrapper.enlarged #sidebar-menu > ul > li:hover > a.active:after {
@@ -2116,29 +2112,30 @@ button.navbar-toggle {
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > ul {
   position: absolute;
   left: 50px;
-  width: 190px;
+  width: 230px;
   display: block;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul ul li:hover > a {
-  background: #ababab !important;
+  background: #59646E !important;
   color: #fff;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul ul li:hover > a i {
-  background: #ababab !important;
+  background: #59646E !important;
   color: #fff;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul ul li:hover > ul {
   position: absolute;
-  left: 190px;
+  left: 230px;
   margin-top: -36px;
-  width: 190px;
+  width: 230px;
   display: block;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > ul a {
-  background: #ebebeb;
+  background: #282b2b;
+  color: #fff !important;
   padding-left: 10px;
   border: none;
-  width: 190px;
+  width: 230px;
   box-shadow: none;
   z-index: 6;
   position: relative;
@@ -2161,7 +2158,7 @@ button.navbar-toggle {
   top: 12px;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li:hover > a {
-  width: 240px;
+  width: 280px;
   position: relative;
 }
 #wrapper.enlarged .left.side-menu #sidebar-menu ul > li {
@@ -2174,7 +2171,7 @@ button.navbar-toggle {
   right: 7px;
 }
 .side-menu.right .nav-tabs {
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.2);
   border: none;
 }
 .side-menu.right .nav-tabs li {
@@ -2185,7 +2182,7 @@ button.navbar-toggle {
   margin: 0px !important;
   padding: 14px 15px 15px;
   font-size: 13px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255,255,255,0.3);
   font-family: "Roboto";
   border-bottom: 1px solid transparent;
 }
@@ -2196,20 +2193,20 @@ button.navbar-toggle {
   border-color: rgba(255,255,255,0);
 }
 .side-menu.right .nav-tabs > li.active > a {
-  color: #777;
+  color: #ccc;
 }
 .side-menu.right .nav-tabs > li.active > a,
 .side-menu.right .nav-tabs > li.active > a:hover,
 .side-menu.right .nav-tabs > li.active > a:focus {
-  background: #fff;
-  border-color: #fff;
+  background: #343838;
+  border-color: #343838;
   border-radius: 0px;
 }
 .side-menu.right .right-toolbar {
   margin: 5px 15px 15px;
 }
 .side-menu.right .right-toolbar a {
-  color: #777;
+  color: #ddd;
   font-size: 12px;
 }
 .side-menu.right .panel-group .panel {
@@ -2281,12 +2278,12 @@ button.navbar-toggle {
   padding: 10px 15px;
 }
 .search-right input {
-  background: rgba(0,0,0,0.1);
+  background: rgba(0,0,0,0.3);
   border: none;
   color: #eee;
 }
 #notification-list a {
-  color: #555;
+  color: #fff;
   font-size: 13px;
   font-weight: 600;
   vertical-align: text-top;
@@ -2294,14 +2291,14 @@ button.navbar-toggle {
 #notification-list li {
   margin-bottom: 10px;
   padding-bottom: 10px;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   font-family: "Roboto";
 }
 #notification-list a .muted {
   display: block;
   font-size: 12px;
   font-weight: 300;
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.4);
 }
 #notification-list .icon-wrapper {
   border-radius: 150px;
@@ -2312,7 +2309,7 @@ button.navbar-toggle {
   height: 35px;
   margin-right: 10px;
   float: left;
-  color: #555;
+  color: #fff;
   display: inline-block;
   border: 2px solid #4EA6A6;
 }
@@ -2320,12 +2317,12 @@ button.navbar-toggle {
   margin-bottom: 15px;
 }
 #inbox-list a {
-  color: #555;
+  color: #fff;
 }
 #inbox-list a .datetime {
   font-size: 12px;
   font-weight: 400;
-  color: rgba(0,0,0,0.4);
+  color: rgba(255,255,255,0.4);
   float: right;
   font-family: "Roboto";
 }
@@ -2345,7 +2342,7 @@ button.navbar-toggle {
   text-overflow: ellipsis;
   white-space: nowrap;
   height: 15px;
-  color: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.8);
 }
 #inbox-list a .content {
   clear: both;
@@ -2353,13 +2350,13 @@ button.navbar-toggle {
   font-size: 11px;
   font-weight: 300;
   overflow: hidden;
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.6);
 }
 #updates-list li {
   margin-bottom: 10px;
 }
 #updates-list a {
-  color: #555;
+  color: #fff;
   font-family: "Roboto";
   font-size: 13px;
 }
@@ -2372,7 +2369,7 @@ button.navbar-toggle {
   height: 24px;
   margin-right: 10px;
   float: left;
-  color: #555;
+  color: #fff;
   display: inline-block;
 }
 #chat-panel .panel-body {
@@ -2391,7 +2388,7 @@ button.navbar-toggle {
 #chat-list a {
   font-size: 13px;
   font-family: "Roboto";
-  color: #555;
+  color: #fff;
 }
 #chat-list a.online .chat-user-avatar {
   box-shadow: 0 0 0 2px #68C39F;
@@ -2425,18 +2422,18 @@ button.navbar-toggle {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  color: rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.3);
   display: block;
 }
 #settings .tab-inner {
-  color: rgba(0,0,0,0.8);
+  color: rgba(255,255,255,0.8);
 }
 #settings .tab-inner h3 {
-  color: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.6);
   margin-bottom: 20px;
 }
 #settings .tab-inner h4 {
-  color: rgba(0,0,0,0.6);
+  color: rgba(255,255,255,0.6);
   margin-bottom: 15px;
 }
 #settings .tab-inner .row {
@@ -2463,12 +2460,20 @@ button.navbar-toggle {
   background: #fff;
   color: #5b5b5b;
   margin-bottom: 20px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
 }
 .widget-header,
 .widget-content {
   display: block;
   width: 100%;
   clear: both;
+}
+.widget-header {
+  -webkit-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+  background: rgba(0,0,0,0.02);
+  border-bottom: 1px solid rgba(0,0,0,0.1);
 }
 .portlets {
   min-height: 50px;
@@ -2511,7 +2516,7 @@ button.navbar-toggle {
   -webkit-border-radius: 0;
   border-radius: 0;
   top: 50px;
-  left: 240px;
+  left: 280px;
   right: 0px;
   bottom: 0px;
   z-index: 10;
@@ -2521,7 +2526,7 @@ button.navbar-toggle {
   left: 50px;
 }
 #wrapper.open-right-sidebar .widget.maximized {
-  right: 240px;
+  right: 230px;
 }
 .widget.modal-widget {
   position: absolute;
@@ -2750,7 +2755,7 @@ button.navbar-toggle {
   -o-transition: All 0.4s ease;
 }
 .ui-sortable-placeholder {
-  background: #cdcdcd !important;
+  background: #c1c1c1 !important;
   display: block;
   visibility: visible !important;
   min-height: 100%;
@@ -3475,8 +3480,8 @@ hr.dashed {
   font-weight: 300;
   font-size: 12px;
   color: #fff;
-  padding: 10px;
   left: 0px;
+  padding: 10px;
   bottom: 0px;
   width: 100%;
   background: -moz-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.34) 100%);
@@ -4725,7 +4730,7 @@ fieldset[disabled] .btn-default.active {
   position: relative;
   margin: 0px auto;
   margin-top: 196px;
-  border: 4px solid #f3f3f3;
+  border: 4px solid #E4EAE6;
 }
 .profile-actions {
   position: absolute;
@@ -4969,10 +4974,10 @@ section.step {
   padding: 20px;
 }
 #chat_groups h2 {
-  color: rgba(0,0,0,0.7);
-  border-top: 1px solid rgba(0,0,0,0.1);
+  color: rgba(255,255,255,0.3);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 400;
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.6);
   margin-bottom: 0px;
   padding: 0px 15px;
 }
@@ -4981,20 +4986,17 @@ section.step {
   padding: 5px 15px;
   font-size: 13px;
   font-family: "Roboto";
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.8);
 }
 #chat_groups li a i {
   margin-right: 5px;
   font-size: 12px;
 }
-#recent_tickets {
-  display: none;
-}
 #recent_tickets h2 {
-  color: rgba(0,0,0,0.7);
-  border-top: 1px solid rgba(0,0,0,0.1);
+  color: rgba(255,255,255,0.3);
   font-size: 13px;
   font-weight: 400;
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.6);
   margin-bottom: 0px;
   padding: 0px 15px;
 }
@@ -5003,14 +5005,14 @@ section.step {
   padding: 5px 15px;
   font-size: 13px;
   font-family: "Roboto";
-  color: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.8);
 }
 #recent_tickets li a i {
   margin-right: 5px;
 }
 #recent_tickets li a span {
   display: block;
-  color: rgba(0,0,0,0.4);
+  color: rgba(255,255,255,0.5);
   font-size: 12px;
 }
 #stock-widget .widget-content h4 {
@@ -5409,7 +5411,7 @@ div.dataTables_info {
 }
 .grid-example [class*="col-"] {
   background: #fff;
-  border: 1px solid #f3f3f3;
+  border: 1px solid #E4EAE6;
   padding-bottom: 10px;
   padding-top: 10px;
   text-align: center;

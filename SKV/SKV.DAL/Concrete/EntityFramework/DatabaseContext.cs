@@ -12,6 +12,7 @@ using SKV.ML.Concrete.Model.OperationModel;
 
 using SKV.ML.Concrete.Model.UIModel;
 using SKV.DAL.Concrete.EntityFramework.Migrations;
+using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace SKV.DAL.Concrete.EntityFramework
 {
@@ -117,22 +118,24 @@ namespace SKV.DAL.Concrete.EntityFramework
 
         #region UIModel
 
-        public DbSet<UICulture> UICultures { get; set; }
+        public DbSet<UICulture> UICulture { get; set; }
 
         public DbSet<UIMenuItem> UIMenuItems { get; set; }
 
         #endregion
 
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(DbModelBuilder model_builder)
         {
-            base.OnModelCreating(modelBuilder);
+            base.OnModelCreating(model_builder);
 
-            modelBuilder.Entity<User>().ToTable("IdentityUsers");
-            modelBuilder.Entity<UserRole>().ToTable("IdentityRoles");
-            modelBuilder.Entity<IdentityRole>().ToTable("IdentityRoles");
-            modelBuilder.Entity<IdentityUserRole>().ToTable("IdentityUserRoles");
-            modelBuilder.Entity<IdentityUserLogin>().ToTable("IdentityUserLogins");
-            modelBuilder.Entity<IdentityUserClaim>().ToTable("IdentityUserClaims");
+            model_builder.Entity<User>().ToTable("IdentityUsers");
+            model_builder.Entity<UserRole>().ToTable("IdentityRoles");
+            model_builder.Entity<IdentityRole>().ToTable("IdentityRoles");
+            model_builder.Entity<IdentityUserRole>().ToTable("IdentityUserRoles");
+            model_builder.Entity<IdentityUserLogin>().ToTable("IdentityUserLogins");
+            model_builder.Entity<IdentityUserClaim>().ToTable("IdentityUserClaims");
+
+            model_builder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
         public static DatabaseContext Create() => new DatabaseContext();

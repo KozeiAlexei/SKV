@@ -258,12 +258,11 @@
     <Compile Include="ClientSide\Abstract\IResponsibilityChain.cs" />
     <Compile Include="ClientSide\Components\DynamicTable\DynamicTableActionMvc.cs" />
     <Compile Include="ClientSide\Components\DynamicTable\DynamicTableColumnMvc.cs" />
+    <Compile Include="ClientSide\Components\DynamicTable\DynamicTableModelsMvc.cs" />
     <Compile Include="ClientSide\Components\DynamicTable\DynamicTableMvc.cs" />
     <Compile Include="ClientSide\Components\ContentMvc.cs" />
     <Compile Include="ClientSide\Components\Modal\ModalMvc.cs" />
     <Compile Include="ClientSide\Components\Modal\ModalMvcModel.cs" />
-    <Compile Include="ClientSide\Components\Tabs\TabBodyMvc.cs" />
-    <Compile Include="ClientSide\Components\Tabs\TabHeaderMvc.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabsMvc.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabsMvcModel.cs" />
     <Compile Include="ClientSide\Components\Widget\WidgetMvc.cs" />
@@ -307,8 +306,8 @@
     <Content Include="ClientSide\Templates\TabHeaderMvcTemplate.html" />
     <Content Include="ClientSide\Templates\TabsMvcTemplate.html" />
     <Content Include="ClientSide\Templates\WidgetMvcTemplate.html" />
-    <Content Include="Content\Admin\assets\css\style-responsive.css" />
-    <Content Include="Content\Admin\assets\css\style.css" />
+    <Content Include="Content\Admin\assets\css\style-responsive-old.css" />
+    <Content Include="Content\Admin\assets\css\style-old.css" />
     <Content Include="Content\Admin\assets\img\apple-touch-icon-114x114.png" />
     <Content Include="Content\Admin\assets\img\apple-touch-icon-120x120.png" />
     <Content Include="Content\Admin\assets\img\apple-touch-icon-144x144.png" />
@@ -1487,7 +1486,6 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
-    <Content Include="Content\Admin\assets\css\style.less" />
     <Content Include="Content\Admin\assets\img\bg.psd" />
     <Content Include="Content\Admin\assets\img\bg3.psd" />
     <Content Include="Content\Admin\assets\img\gmap\Thumbs.db" />
@@ -1647,6 +1645,8 @@
     <Content Include="Content\Admin\images\users\chat\Thumbs.db" />
     <Content Include="Content\Admin\images\users\Thumbs.db" />
     <Content Include="Content\Admin\images\weather\Thumbs.db" />
+    <Content Include="Content\Admin\assets\css\style-responsive.css" />
+    <Content Include="Content\Admin\assets\css\style.css" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
@@ -2437,6 +2437,9 @@
     <Content Include="Views\ComponentTemplates\ModalMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\WidgetMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\TabsMvcTemplate.cshtml" />
+    <Content Include="Views\ComponentTemplates\DynamicTableMvcTemplate.cshtml" />
+    <Content Include="Views\ComponentTemplates\DynamicTableColumnMvcTemplate.cshtml" />
+    <Content Include="Views\ComponentTemplates\DynamicTableActionMvcTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

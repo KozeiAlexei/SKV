@@ -20,8 +20,8 @@ namespace SKV.DatabaseInitializer
         {
             var db = new DatabaseContext();
 
-            db.UICultures.Add(new UICulture() { Name = "Русский", Culture = "ru-RU" });
-            db.UICultures.Add(new UICulture() { Name = "English", Culture = "en-US" });
+            db.UICulture.Add(new UICulture() { Name = "Русский", Culture = "ru-RU" });
+            db.UICulture.Add(new UICulture() { Name = "English", Culture = "en-US" });
 
           
 

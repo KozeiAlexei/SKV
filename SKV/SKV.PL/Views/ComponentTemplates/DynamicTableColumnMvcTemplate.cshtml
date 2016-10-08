@@ -1,0 +1,11 @@
+﻿@using SKV.PL.ClientSide.Abstract.Components
+@model SKV.PL.ClientSide.Components.DynamicTable.DynamicTableColumnModelMvc
+
+{
+    Name: '@Model.Name',
+    Title: '@Model.Title',
+    Width: @Model.Width,
+    Filter: @Model.Filterable.ToString().ToLower(),
+    DataType: '@Enum.GetName(typeof(TableColumnDataType), Model.Type)',
+    IsEditable: @Model.Editable.ToString().ToLower()
+},

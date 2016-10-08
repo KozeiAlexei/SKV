@@ -3,35 +3,14 @@
 @using SKV.PL.ClientSide.Components.Tabs
 @using SKV.PL.ClientSide.Components.Modal
 
-@(ComponentFactory.Create<ModalMvc>()
-        .Id("UserProfileModal")
-        .Title(Resources.Resource.UserProfile)
-        .Body(body =>
-        {
-            body.Create<TabsMvc>()
-                    .Id("UserProfileTabs")
-                    .TabHeaders(headers =>
-                    {
-                        headers.Create<TabHeaderMvc>()
-                                   .Title(Resources.Resource.UserProfile).Active(true).BodyId("UserProfile");
+@*Tabs setting*@
+@{ 
+    var user_profile_tab = new TabMvcModel() { Id = "UserProfile", Active = true, Title = Resources.Resource.UserProfile };
+    var password_changing_tab = new TabMvcModel() { Id = "PasswordChanging", Active = false, Title = Resources.Resource.PasswordChanging };
 
-                        headers.Create<TabHeaderMvc>()
-                                   .Title(Resources.Resource.PasswordChanging).Active(false).BodyId("PasswordChanging");
-                    })
-                    .TabBody(tab_body =>
-                    {
-                        tab_body.Create<TabBodyMvc>()
-                                    .Id("UserProfile").Active(true)
-                                    .Body(b => b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileTab")));
-
-                        tab_body.Create<TabBodyMvc>()
-                                    .Id("PasswordChanging").Active(false)
-                                    .Body(b => b.Create<ContentMvc>().FromPartitalView(Html.Partial("PasswordChangingTab")));
-                    });
-        })
-        .ManualClosing(false)
-        .Render()
-)
+    user_profile_tab.Body.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileTab"));
+    password_changing_tab.Body.Create<ContentMvc>().FromPartitalView(Html.Partial("PasswordChangingTab"));
+}
 
 @(ComponentFactory.Create<ModalMvc>()
         .Id("UserProfileModal")
@@ -40,26 +19,12 @@
         {
             body.Create<TabsMvc>()
                     .Id("UserProfileTabs")
-                    .TabHeaders(headers =>
+                    .Tabs(tabs =>
                     {
-                        headers.Add(new TabHeaderMvcModel() { Active = true, Title = Resources.Resource.UserProfile, BodyId = "UserProfile" });
-                        headers.Add(new TabHeaderMvcModel() { Active = false, Title = Resources.Resource.PasswordChanging, BodyId = "PasswordChanging" });
-                    })
-                    .TabBody(b =>
-                    {
-                        b.Add(new TabBodyMvcModel()
-                        {
-                            Id = "UserProfile", Active = true,
-                            Body = Tools.CreateContainer().Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileTab"))
-                        });
-
-                        b.Add(new TabBodyMvcModel()
-                        {
-                            Id = "PasswordChanging", Active = true,
-                            Body = Tools.CreateContainer().Create<ContentMvc>().FromPartitalView(Html.Partial("PasswordChangingTab"))
-                        });
+                        tabs.Add(user_profile_tab);
+                        tabs.Add(password_changing_tab);
                     });
         })
-        .ManualClosing(false)
+        .ManualClosing(true)
         .Render()
 )

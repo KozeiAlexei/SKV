@@ -60,14 +60,16 @@
                 .RowActions(actions =>
                 {
                     actions.Create<DynamicTableActionMvc>()
+                           .Id("OpenUserModal")
                            .Icon("glyphicon glyphicon-folder-open")
                            .Title(string.Empty).Class("btn btn-flat btn-success  btn-md")
                            .Click(FunctionType.Referrence, @"self.OpenUserModal")
                            .Visible(FunctionType.Custom, @"function (row) { return true; }");
 
                     actions.Create<DynamicTableActionMvc>()
+                           .Id("DeleteUser")
                            .Icon("glyphicon glyphicon-remove")
-                           .Title(string.Empty).Class("btn btn-flat btn-danger  btn-md action-button-layout")
+                           .Title(string.Empty).Class("btn btn-flat btn-danger  btn-md")
                            .Click(FunctionType.Referrence, @"self.DeleteUser")
                            .Visible(FunctionType.Custom, @"function (row) { return (row.Id != null) && (row.Id != undefined); }");
                 });

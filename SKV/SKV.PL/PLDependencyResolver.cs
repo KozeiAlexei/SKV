@@ -31,8 +31,6 @@ namespace SKV.PL
                 Bind(typeof(IResponsibilityChain<DynamicTableColumnMvc>)).To(typeof(ResponsibilityChain<DynamicTableColumnMvc>));
 
                 Bind(typeof(IResponsibilityChain<TabsMvc>)).To(typeof(ResponsibilityChain<TabsMvc>));
-                Bind(typeof(IResponsibilityChain<TabBodyMvc>)).To(typeof(ResponsibilityChain<TabBodyMvc>));
-                Bind(typeof(IResponsibilityChain<TabHeaderMvc>)).To(typeof(ResponsibilityChain<TabHeaderMvc>));
 
                 Bind<IContainer>().To<Container>();
                 Bind<IMvcTemplate>().To<MvcTemplate>();
