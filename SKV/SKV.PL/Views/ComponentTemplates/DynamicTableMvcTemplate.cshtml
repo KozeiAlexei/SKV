@@ -25,7 +25,20 @@
 
             PageSize: function() {
                 return @Model.PageSize.ToString();
+            },
+
+            FindActionById: function(actions, id) {
+                return _.find(actions, function (act) { return act.Id == id; });
+            },
+
+            SetActionClickById: function (actions, id, func) {
+                this.FindActionById(actions, id).Click = func;
+            },
+
+            SetActionVisibileById: function (actions, id, func) {
+                this.FindActionById(actions, id).Visibility = func;
             }
+
         }
     });
 </script>

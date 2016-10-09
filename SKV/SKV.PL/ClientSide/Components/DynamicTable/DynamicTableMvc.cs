@@ -30,7 +30,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IDynamicTable Editable(bool editable) => Chain.Responsibility(() => Model.Editable = editable);
         public IDynamicTable Paginable(bool paginable, uint? page_size = null) => Chain.Responsibility(() =>
         {
-            Model.PageSize = page_size.GetValueOrDefault(CRMConfiguration.DefaultTablePageSize);
+            Model.PageSize = page_size.GetValueOrDefault(ClientSideConfiguration.DefaultTablePageSize);
             Model.Paginable = paginable;
         });
         public IDynamicTable Filterable(bool filterable) => Chain.Responsibility(() => Model.Filterable = filterable);

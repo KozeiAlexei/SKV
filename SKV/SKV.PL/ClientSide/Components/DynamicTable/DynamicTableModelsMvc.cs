@@ -16,16 +16,16 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public bool Filterable { get; set; } = false;
 
         public bool Paginable { get; set; } = true;
-        public uint PageSize { get; set; } = CRMConfiguration.DefaultTablePageSize;
+        public uint PageSize { get; set; } = ClientSideConfiguration.DefaultTablePageSize;
 
         [Required]
-        public string AngularApplicationName { get; set; } = CRMConfiguration.AngularApplicationName;
+        public string AngularApplicationName { get; set; } = ClientSideConfiguration.AngularApplicationName;
 
         [Required]
         public string AngularTableSettingsFactoryName { get; set; }
 
         [Required]
-        public string AngularDynamicTableControllerName { get; set; } = CRMConfiguration.AngularDynamicTableControllerName;
+        public string AngularDynamicTableControllerName { get; set; } = ClientSideConfiguration.AngularDynamicTableControllerName;
 
         [Required]
         public string AngularDynamicTableActionsController { get; set; }
@@ -68,8 +68,8 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
 
         public string Title { get; set; } = string.Empty;
 
-        public string Click { get; set; } = string.Empty;
+        public string Click { get; set; } = @"function(row) {}";
 
-        public string Visible { get; set; } = string.Empty;
+        public string Visible { get; set; } = @"function(row) {}";
     }
 }

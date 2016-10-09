@@ -1,9 +1,9 @@
 ﻿@{
-    string app = CRMConfiguration.AngularApplicationName;
-    string controller = CRMConfiguration.AngularUserManagerController;
-    string controller_name = CRMConfiguration.AngularUserManagerControllerName;
+    string app = ClientSideConfiguration.AngularApplicationName;
+    string controller = ClientSideConfiguration.AngularUserManagerController;
+    string controller_name = ClientSideConfiguration.AngularUserManagerControllerName;
 
-    string ut_factory = CRMConfiguration.AngularUserTableSettingsFactory;
+    string ut_factory = ClientSideConfiguration.AngularUserTableSettingsFactory;
 }
 
 <script type="text/javascript">
@@ -28,27 +28,12 @@
 
             $scope.TableManagment.PageSize(@(ut_factory).PageSize());
 
-            //$scope.TableManagment.SetActions(@(ut_factory).Actions());
+            var actions = @(ut_factory).Actions();
 
-            var actions = [{
-                Text: '',
-                Icon: 'glyphicon glyphicon-folder-open',
-                Class: 'btn btn-flat btn-success  btn-md',
-                Click: self.OpenUserModal,
-                VisibilityFunc: function (row) {
-                    return true;
-                }
-            }, {
-                Text: '',
-                Icon: 'glyphicon glyphicon-remove',
-                Class: 'btn btn-flat btn-danger  btn-md action-button-layout',
-                Click: self.DeleteUser,
-                VisibilityFunc: function (row) {
-                    return (row.Id != null) && (row.Id != undefined);
-                }
-            }];
+            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.ViewActionId', self.OpenUserModal);
+            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.DeleteActionId', self.DeleteUser);
 
-            $scope.TableManagment.SetActions(actions);
+            $scope.TableManagment.SetActions(actions)
 
             $scope.TableManagment.EnableManagmentPanel(true);
             $scope.TableManagment.SetTableManagmentPanelCode('<div><button class="btn btn-success btn-flat" ng-click="@(controller_name).CreateUser()"><span class="glyphicon glyphicon-plus"></button></div>');

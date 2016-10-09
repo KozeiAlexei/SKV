@@ -33,7 +33,6 @@ namespace SKV.PL
                 Bind(typeof(IResponsibilityChain<TabsMvc>)).To(typeof(ResponsibilityChain<TabsMvc>));
 
                 Bind<IContainer>().To<Container>();
-                Bind<IMvcTemplate>().To<MvcTemplate>();
             }
         }
 

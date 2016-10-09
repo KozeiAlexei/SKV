@@ -8,7 +8,7 @@
         self.TableParams = {
 
             //Класс таблицы
-            TableClass: 'table table-bordered table-condensed table-hover',
+            TableClass: 'table table-striped table-bordered table-hover dataTable no-footer',
 
             //Класс строки поиска
             FilterRowClass: null,

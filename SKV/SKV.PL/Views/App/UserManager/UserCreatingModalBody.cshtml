@@ -1,9 +1,13 @@
-﻿<div class="row">
+﻿@{
+    var ctrl = ClientSideConfiguration.AngularUserManagerControllerName;
+}
+
+<div class="row">
     <div class="col-lg-12">
         <div class="form-group has-feedback">
             <label class="control-label">Логин:</label>
             <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            <input type="text" class="form-control" ng-model="(@CRMConfiguration.AngularUserManagerControllerName).CurrentRow.UserName" />
+            <input type="text" class="form-control" ng-model="@(ctrl).CurrentRow.UserName" />
         </div>
     </div>
 </div>
@@ -13,7 +17,7 @@
         <div class="form-group has-feedback">
             <label class="control-label">Адрес электронной почты:</label>
             <i class="icon-mail-3 form-control-feedback"></i>
-            <input type="text" class="form-control" ng-model="(@CRMConfiguration.AngularUserManagerControllerName).CurrentRow.Email" />
+            <input type="text" class="form-control" ng-model="@(ctrl).CurrentRow.Email" />
         </div>
     </div>
 </div>
@@ -23,7 +27,7 @@
         <div class="form-group has-feedback">
             <label class="control-label">Инициалы:</label>
             <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            <input type="text" class="form-control" ng-model="(@CRMConfiguration.AngularUserManagerControllerName).CurrentRow.Profile.Name" />
+            <input type="text" class="form-control" ng-model="@(ctrl).CurrentRow.Profile.Name" />
         </div>
     </div>
 </div>
@@ -33,7 +37,7 @@
         <div class="form-group has-feedback">
             <label class="control-label">Телефон:</label>
             <i class="glyphicon glyphicon-phone form-control-feedback"></i>
-            <input type="text" class="form-control" ng-model="(@CRMConfiguration.AngularUserManagerControllerName).CurrentRow.PhoneNumber" />
+            <input type="text" class="form-control" ng-model="@(ctrl).CurrentRow.PhoneNumber" />
         </div>
     </div>
 </div>
@@ -43,7 +47,7 @@
         <div class="form-group has-feedback">
             <label class="control-label">Уникальный номер в системе Asterisk:</label>
             <i class="glyphicon glyphicon-certificate form-control-feedback"></i>
-            <input type="text" class="form-control" ng-model="(@CRMConfiguration.AngularUserManagerControllerName).CurrentRow.Profile.AsteriskUniqueId" />
+            <input type="text" class="form-control" ng-model="@(ctrl).CurrentRow.Profile.AsteriskUniqueId" />
         </div>
     </div>
 </div>
@@ -52,7 +56,7 @@
     <div class="col-lg-12">
         <label id="initials"><b>Роли: </b></label>
         <div id="OperationType" class="btn-group btn-group-justified" data-toggle="buttons">
-            <label ng-repeat="role in (@CRMConfiguration.AngularUserManagerControllerName).DropdownData.Roles" class="btn btn-flat btn-success" ng-click="(@CRMConfiguration.AngularUserManagerControllerName).AddRole(role)">
+            <label ng-repeat="role in @(ctrl).DropdownData.Roles" class="btn btn-flat btn-success" ng-click="@(ctrl).AddRole(role)">
                 <input type="checkbox">{{ role }}
             </label>
         </div>
@@ -83,9 +87,9 @@
 
 <div class="row">
     <div class="col-lg-6">
-        <button class="btn btn-flat btn-primary btn-block" ng-click="(@CRMConfiguration.AngularUserManagerControllerName).SaveUserData()">Создать пользователя</button>
+        <button class="btn btn-flat btn-primary btn-block" ng-click="@(ctrl).SaveUserData()">Создать пользователя</button>
     </div>
     <div class="col-lg-6">
-        <button class="btn btn-flat btn-primary btn-block" ng-click="(@CRMConfiguration.AngularUserManagerControllerName).CloseUserProfileModal()">Отмена</button>
+        <button class="btn btn-flat btn-primary btn-block" ng-click="@(ctrl).CloseUserProfileModal()">Отмена</button>
     </div>
 </div>

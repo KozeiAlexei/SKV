@@ -23,6 +23,16 @@
     @Styles.Render("~/Content/BaseCssFiles")
     @Styles.Render("~/Content/ExtraCSSLibraries")*@
 
+    @*----ACE----*@
+
+    <link rel="stylesheet" href="~/Content/ace/assets/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <!--[if lte IE 9]>
+            <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
+        <![endif]-->
+   
+
+    @*----ACE----*@
+
     <!-- Base Css Files -->
     <link href="~/Content/Admin/assets/libs/jqueryui/ui-lightness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet" />
     <link href="~/Content/Admin/assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
@@ -53,6 +63,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 
+    <script src="~/Scripts/lodash.underscore.min.js"></script>
 
     @Scripts.Render("~/script_budles/angular")
 
@@ -160,8 +171,6 @@
     <script src="~/Content/Admin/assets/libs/bootstrap-bootbox/bootbox.min.js"></script>
     <script src="~/Content/Admin/assets/libs/jquery-slimscroll/jquery.slimscroll.js"></script>
     <script src="~/Content/Admin/assets/libs/jquery-sparkline/jquery-sparkline.js"></script>
-    <script src="~/Content/Admin/assets/libs/nifty-modal/js/classie.js"></script>
-    <script src="~/Content/Admin/assets/libs/nifty-modal/js/modalEffects.js"></script>
     <script src="~/Content/Admin/assets/libs/sortable/sortable.min.js"></script>
     <script src="~/Content/Admin/assets/libs/bootstrap-fileinput/bootstrap.file-input.js"></script>
     <script src="~/Content/Admin/assets/libs/bootstrap-select/bootstrap-select.min.js"></script>
@@ -180,5 +189,12 @@
     <script src="~/Content/Admin/assets/libs/bootstrap-inputmask/inputmask.js"></script>
     <script src="~/Content/Admin/assets/libs/summernote/summernote.js"></script>
     <script src="~/Content/Admin/assets/js/pages/forms.js"></script>
+
+    @*----ACE----*@
+
+    <!-- page specific plugin scripts -->
+   
+
+    @*----ACE----*@
 </body>
 </html>
