@@ -2,6 +2,7 @@
 @using SKV.PL.ClientSide.Components
 @using SKV.PL.ClientSide.Components.Tabs
 @using SKV.PL.ClientSide.Components.Modal
+@using SKV.PL.ClientSide.Components.NotificationList
 
 @*Tabs setting*@
 @{ 
@@ -17,6 +18,7 @@
         .Title(Resources.Resource.UserProfile)
         .Body(body =>
         {
+            body.Create<NotificationListMvc>().NotificationsControllerPath($"{ ClientSideConfiguration.AngularUserManagerControllerName }.Notifications");
             body.Create<TabsMvc>()
                     .Id("UserProfileTabs")
                     .Tabs(tabs =>

@@ -5,6 +5,7 @@ using SKV.PL.ClientSide.Abstract.Components;
 using SKV.PL.ClientSide.Components;
 using SKV.PL.ClientSide.Components.DynamicTable;
 using SKV.PL.ClientSide.Components.Modal;
+using SKV.PL.ClientSide.Components.NotificationList;
 using SKV.PL.ClientSide.Components.Tabs;
 using SKV.PL.ClientSide.Components.Widget;
 using SKV.PL.ClientSide.Concrete;
@@ -25,6 +26,7 @@ namespace SKV.PL
                 Bind(typeof(IResponsibilityChain<ModalMvc>)).To(typeof(ResponsibilityChain<ModalMvc>));
                 Bind(typeof(IResponsibilityChain<WidgetMvc>)).To(typeof(ResponsibilityChain<WidgetMvc>));
                 Bind(typeof(IResponsibilityChain<ContentMvc>)).To(typeof(ResponsibilityChain<ContentMvc>));
+                Bind(typeof(IResponsibilityChain<NotificationListMvc>)).To(typeof(ResponsibilityChain<NotificationListMvc>));
 
                 Bind(typeof(IResponsibilityChain<DynamicTableMvc>)).To(typeof(ResponsibilityChain<DynamicTableMvc>));
                 Bind(typeof(IResponsibilityChain<DynamicTableActionMvc>)).To(typeof(ResponsibilityChain<DynamicTableActionMvc>));

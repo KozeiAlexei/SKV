@@ -8,11 +8,12 @@
 
     string user_profile_modal = ClientSideConfiguration.UserProfileModalName;
     string confirmation_modal = ClientSideConfiguration.ConfirmationModalName;
+    string user_creating_modal = ClientSideConfiguration.UserCreatingModalName;
 }
 
 <script type="text/javascript">
-    angular.module('@app').controller('@controller', ['$scope', '@ut_factory', '$tools', '$users', '$roles',
-    function ($scope, @ut_factory, $tools, $users, $roles) {
+    angular.module('@app').controller('@controller', ['$scope', '@ut_factory', '$tools', '$users', '$roles', '$validation',
+    function ($scope, @ut_factory, $tools, $users, $roles, $validation) {
         var self = this;
 
         self.UISetting = function() {
@@ -26,37 +27,64 @@
 
             var actions = @(ut_factory).Actions();
 
-            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.ViewActionId', self.OpenUserProfileModal);
-            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.DeleteActionId', self.OpenDeleteUserModal);
+            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.ViewActionId', self.ShowUserProfileModal);
+            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.DeleteActionId', self.ShowUserDeletingConfirmationModal);
 
             $scope.TableManagment.SetActions(actions)
             $scope.TableManagment.SetTableManagmentPanelCode(@(ut_factory).BottomManagmentPanel());
         }
-
 
         self.Initialize = function () {
             self.CurrentUser = {};
             self.DropdownData = {}
 
             self.ModelState = {};
-            self.ModelStateFlag = true;
+            self.ModelStateFlag = {
+                Flag: true
+            };
+
+            self.Notifications = [];
 
             self.UISetting();
             self.FetchingData();
         };
 
-        self.OpenUserProfileModal = function (row) {
-            self.CurrentUser = ToolsService.Copy(row);
+
+        /*------------Modal methods------------*/
+
+        self.ShowUserProfileModal = function (row) {
+            self.ClearValidationData();
+
+            self.CurrentUser = $tools.Copy(row);
             $tools.ShowModal('@user_profile_modal');
         }
 
-        self.CloseUserProfileModal = function () {
+        self.HideUserProfileModal = function () {
             $tools.HideModal('@user_profile_modal');
         }
 
-        self.OpenDeleteUserModal = function (row) {
-            $tools.ShowModal('@confirmation_modal')
+        self.ShowUserDeletingConfirmationModal = function (row) {
+            $tools.ShowModal('@confirmation_modal');
         }
+
+        self.HideUserDeletingConfirmationModal = function (row) {
+            $tools.ShowModal('@confirmation_modal');
+        }
+
+        self.ShowUserCreationModal = function () {
+            self.ClearValidationData();
+
+            self.CurrentUser = {};
+            $tools.ShowModal('@user_creating_modal');
+        }
+
+        self.HideUserCreationModal = function () {
+            $tools.HideModal('@user_creating_modal');
+        }
+
+        /*------------End modal methods------------*/
+
+        /*------------Data access methods------------*/
 
         self.FetchingData = function() {
             $roles.GetRoles(function(roles) {
@@ -65,7 +93,7 @@
             });
         }
 
-        self.GetUsers = function () {
+        self.GetUsers = function() {
             $users.GetUsers(function (users) {
                 var data = [];
                 angular.forEach(users, function (user) {
@@ -76,45 +104,73 @@
             })
         }
 
-        self.UpdateUserData = function () {
+        self.UpdateUserData = function() {
             if (self.ValidateUserProfileData(self.CurrentUser)) {
-                $users.UpdateUserData(self.CurrentRow, function (result) {
-
+                $users.UpdateUserData(self.CurrentUser, function (result) {
+                    self.FetchingData();
+                    self.HideUserProfileModal();
+                },
+                function(error, status) {
+                    $validation.ServerValidationErrorsParse(error.ModelState);
+                    $validation.ServerValidationNotificationsParse(error.ModelState, self.Notifications);
                 });
             }
         }
 
-        self.CreateUser = function () {
-            $tools.ShowModal('@user_profile_modal');
+        self.Register = function() {
+            if (self.ValidateRegisterUserProfileData(self.CurrentUser)) {
+                $users.Register(self.CurrentUser, function (result) {
+                    self.FetchingData();
+                    self.HideUserCreationModal();
+                },
+                function(error, status) {
+                    $validation.ServerValidationErrorsParse(error.ModelState);
+                    $validation.ServerValidationNotificationsParse(error.ModelState, self.Notifications);
+                });
+            }
         }
 
-        self.OpenDeleteUserModal = function (row) {
-            $tools.ShowModal('@confirmation_modal')
-        }
+        
+
+        /*------------End data access methods------------*/
+
+        /*------------Validation methods------------*/
 
         self.ValidateUserProfileData = function (model) {
-            self.ModelStateFlag = true;
+            self.ClearValidationData();
 
-            self.ModelState.UserName = self.ValidateField(model.UserName);
-            self.ModelState.Email = self.ValidateField(model.Email);
+            self.ModelState.Email = $validation.ValidateField(model.Email, self.ModelStateFlag);
+            self.ModelState.UserName = $validation.ValidateField(model.UserName, self.ModelStateFlag);
+
             self.ModelState.Profile = {};
-            self.ModelState.Profile.Name = self.ValidateField(model.Profile.Name);
+            self.ModelState.Profile.Name = $validation.ValidateField(model.Profile.Name, self.ModelStateFlag);
 
-            return self.ModelStateFlag;
+            return self.ModelStateFlag.Flag
         }
 
+        self.ValidateRegisterUserProfileData = function (model) {
+            self.ClearValidationData();
 
-        self.ValidateField = function (field_value, custom_validation_func) {
-            var result = true & !ToolsService.IsNullOrEmpty(field_value);
-            if (custom_validation_func != undefined)
-                result &= custom_validation_func(field_value);
+            self.ModelState.Email = $validation.ValidateField(model.Email, self.ModelStateFlag);
+            self.ModelState.UserName = $validation.ValidateField(model.UserName, self.ModelStateFlag);
 
-            self.ModelStateFlag &= result;
-            if (!result)
-                return 'border-color : #ff0000';
+            self.ModelState.Initials = $validation.ValidateField(model.Initials, self.ModelStateFlag);
+            self.ModelState.PhoneNumber = $validation.ValidateField(model.PhoneNumber, self.ModelStateFlag);
 
-            return 'border-color : #00ff00';
+            self.ModelState.Password = $validation.ValidateField(model.Password, self.ModelStateFlag);
+            self.ModelState.ConfirmPassword = $validation.ValidateField(model.ConfirmPassword, self.ModelStateFlag);
+
+            return self.ModelStateFlag.Flag;
         }
+
+        self.ClearValidationData = function() {
+            self.ModelState = {};
+            self.ModelStateFlag.Flag = true;
+
+            self.Notifications = [];
+        }
+
+        /*------------End validation methods------------*/
 
 
         self.Initialize()

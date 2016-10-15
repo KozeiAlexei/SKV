@@ -235,6 +235,7 @@
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableAction.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableColumn.cs" />
     <Compile Include="ClientSide\Abstract\Components\IContent.cs" />
+    <Compile Include="ClientSide\Abstract\Components\INotificationList.cs" />
     <Compile Include="ClientSide\Abstract\Features\IIconHaveable.cs" />
     <Compile Include="ClientSide\Abstract\Components\IModal.cs" />
     <Compile Include="ClientSide\Abstract\Components\ITabBody.cs" />
@@ -263,6 +264,8 @@
     <Compile Include="ClientSide\Components\ContentMvc.cs" />
     <Compile Include="ClientSide\Components\Modal\ModalMvc.cs" />
     <Compile Include="ClientSide\Components\Modal\ModalMvcModel.cs" />
+    <Compile Include="ClientSide\Components\NotificationList\NotificationListMvc.cs" />
+    <Compile Include="ClientSide\Components\NotificationList\NotificationListMvcModel.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabsMvc.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabsMvcModels.cs" />
     <Compile Include="ClientSide\Components\Widget\WidgetMvc.cs" />
@@ -1762,6 +1765,7 @@
     <Content Include="Infrastructure\Directives\Widget.js" />
     <Content Include="Infrastructure\DynamicTable\DynamicTableController.js" />
     <Content Include="Infrastructure\Factories\Security\UserDataFactory.js" />
+    <Content Include="Infrastructure\Services\%24validation.js" />
     <Content Include="Infrastructure\Services\Api\%24roles.js" />
     <Content Include="Infrastructure\Services\Api\%24users.js" />
     <Content Include="Infrastructure\Services\Base64Service.js" />
@@ -2956,6 +2960,7 @@
     <Content Include="Views\App\UserManager\TableBottomManagmentPanel.cshtml" />
     <Content Include="Views\App\UserManager\ConfirmationModal.cshtml" />
     <Content Include="Views\App\UserManager\ConfirmationModalBody.cshtml" />
+    <Content Include="Views\ComponentTemplates\NotificationListMvcTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

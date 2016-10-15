@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Newtonsoft.Json;
 using SKV.BLL.Identity;
 using SKV.ML.Concrete.Model.UserModel;
+using SKV.ML.ViewModels.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,8 @@ namespace SKV.PL.Api.Security
     {
         [HttpGet]
         [Route("GetUsers")]
-        public IHttpActionResult GetUsers() =>
-            Json(Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());
+        public async Task<IHttpActionResult> GetUsers() =>
+            Json(await Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());
 
         [HttpPost]
         [Route("UpdateUserData")]
@@ -30,6 +31,21 @@ namespace SKV.PL.Api.Security
                 return BadRequest(ModelState);
 
             var result = await Request.GetOwinContext().GetUserManager<IdentityUserManager>().UpdateUserData(user);
+
+            if (!result.Succeeded)
+                return GetErrorResult(result);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("Register")]
+        public async Task<IHttpActionResult> Register(RegisterAccountViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await Request.GetOwinContext().GetUserManager<IdentityUserManager>().RegisterAsync(model);
 
             if (!result.Succeeded)
                 return GetErrorResult(result);

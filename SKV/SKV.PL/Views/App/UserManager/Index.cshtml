@@ -18,6 +18,7 @@
 
     @Linker.GetServiceExt("$tools")
     @Linker.GetServiceExt("$request")
+    @Linker.GetServiceExt("$validation")
 
     @Linker.GetServiceExt("api/$users")
     @Linker.GetServiceExt("api/$roles")
@@ -57,7 +58,7 @@
                 })
                 .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial("UserManagerController")))
                 .Editable(false)
-                .Filterable(false)
+                .Filterable(true)
                 .Paginable(true)
                 .RowActions(actions =>
                 {

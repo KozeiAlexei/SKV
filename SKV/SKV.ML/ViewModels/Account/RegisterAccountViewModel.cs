@@ -10,22 +10,27 @@ namespace SKV.ML.ViewModels.Account
     public class RegisterAccountViewModel
     {
         [Required]
-        [Display(Name = "Адрес электронной почты")]
+        public string UserName { get; set; }
+
+        [Required]
         public string Email { get; set; }
 
         [Required]
-        [Display(Name = "Имя")]
-        public string Name { get; set; }
+        public string Initials { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "Значение {0} должно содержать не менее {2} символов.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
         [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
+        public uint AsteriskUniqueId { get; set; }
     }
 }

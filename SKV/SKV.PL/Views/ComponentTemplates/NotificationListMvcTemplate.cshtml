@@ -1,0 +1,7 @@
+﻿@model SKV.PL.ClientSide.Components.NotificationList.NotificationListMvcModel
+
+<any ng-repeat="notification in @Model.NotificationsControllerPath">
+    <div class="alert alert-{{ notification.Type }}">
+        {{ notification.Text }}
+    </div>
+</any>

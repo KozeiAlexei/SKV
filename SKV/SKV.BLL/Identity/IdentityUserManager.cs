@@ -62,12 +62,14 @@ namespace SKV.BLL.Identity
             var user = new User()
             {
                 Email = model.Email,
-                UserName = model.Email,
+                UserName = model.UserName,
+                PhoneNumber = model.PhoneNumber,
                 Profile = new UserProfile()
                 {
-                    Name = model.Name,
+                    Name = model.Initials,
                     LastLoginDate = DateTime.Now,
                     RegistrationDate = DateTime.Now,
+                    AsteriskId = (int)model.AsteriskUniqueId
                 }
             };
 
@@ -92,7 +94,7 @@ namespace SKV.BLL.Identity
             return await Task.FromResult(oauth_user);
         }
 
-        public IEnumerable<User> GetUsers() => DbManager.Users.GetUsers();
+        public async Task<IEnumerable<User>> GetUsers() => await Task.Run(() => DbManager.Users.GetUsers());
 
         public async Task<IdentityResult> UpdateUserData(User user)
         {
