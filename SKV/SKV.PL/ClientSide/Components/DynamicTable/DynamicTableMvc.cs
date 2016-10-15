@@ -51,6 +51,8 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IDynamicTable Logic(Action<IContainer> logic) => Chain.Responsibility(() => logic(Model.Logic));
         public IDynamicTable Columns(Action<IContainer> columns) => Chain.Responsibility(() => columns(Model.Columns));
         public IDynamicTable RowActions(Action<IContainer> actions) => Chain.Responsibility(() => actions(Model.RowActions));
+        public IDynamicTable TopManagmentPanel(Action<IContainer> panel) => Chain.Responsibility(() => panel(Model.TopManagmentPanel));
+        public IDynamicTable BottomManagmentPanel(Action<IContainer> panel) => Chain.Responsibility(() => panel(Model.BottomManagmentPanel));
 
         #endregion
 

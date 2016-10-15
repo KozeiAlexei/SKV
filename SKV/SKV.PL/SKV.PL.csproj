@@ -1770,6 +1770,7 @@
     <Content Include="Infrastructure\Services\RequestService.js" />
     <Content Include="Infrastructure\Services\Security\AuthService.js" />
     <Content Include="Infrastructure\Services\Security\LoginService.js" />
+    <Content Include="Infrastructure\Services\%24tools.js" />
     <Content Include="Infrastructure\Services\ToolsService.js" />
     <Content Include="Infrastructure\Services\ValidationService.js" />
     <Content Include="Infrastructure\Templates\DynamicTableTemplate.html" />
@@ -2952,6 +2953,9 @@
     <Content Include="Views\ComponentTemplates\DynamicTableMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\DynamicTableColumnMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\DynamicTableActionMvcTemplate.cshtml" />
+    <Content Include="Views\App\UserManager\TableBottomManagmentPanel.cshtml" />
+    <Content Include="Views\App\UserManager\ConfirmationModal.cshtml" />
+    <Content Include="Views\App\UserManager\ConfirmationModalBody.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

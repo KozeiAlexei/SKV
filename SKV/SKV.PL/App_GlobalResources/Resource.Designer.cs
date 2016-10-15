@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, такую же, как Пожалуйста, подтвердите выполнение действия!.
+        /// </summary>
+        internal static string ActionConfirmation {
+            get {
+                return ResourceManager.GetString("ActionConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, такую же, как Действия.
         /// </summary>
         internal static string Actions {

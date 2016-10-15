@@ -16,6 +16,7 @@
     @Linker.GetService("Request")
     @Linker.GetService("Location")
 
+    @Linker.GetServiceExt("$tools")
     @Linker.GetServiceExt("$request")
 
     @Linker.GetServiceExt("api/$users")
@@ -50,8 +51,9 @@
                 })
                 .Body(b =>
                 {
-                    b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileModal"));
-                    b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserCreatingModal"));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.UserProfileModalName));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.UserCreatingModalName));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.ConfirmationModalName));
                 })
                 .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial("UserManagerController")))
                 .Editable(false)
@@ -72,7 +74,8 @@
                            .Title(string.Empty).Class("btn btn-flat btn-danger  btn-md")
                            .Click(FunctionType.Referrence)
                            .Visible(FunctionType.Custom, @"function (row) { return (row.Id != null) && (row.Id != undefined); }");
-                });
+                })
+                .BottomManagmentPanel(panel => panel.Create<ContentMvc>().FromPartitalView(Html.Partial("TableBottomManagmentPanel")));
         })
         .Render()
 )

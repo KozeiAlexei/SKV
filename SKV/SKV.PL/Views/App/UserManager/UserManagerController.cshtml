@@ -4,20 +4,16 @@
     string controller_name = ClientSideConfiguration.AngularUserManagerControllerName;
 
     string ut_factory = ClientSideConfiguration.AngularUserTableSettingsFactory;
+
+
+    string user_profile_modal = ClientSideConfiguration.UserProfileModalName;
+    string confirmation_modal = ClientSideConfiguration.ConfirmationModalName;
 }
 
 <script type="text/javascript">
-    angular.module('@app').controller('@controller', ['$scope', '@ut_factory', 'ToolsService', '$users', '$roles',
-    function ($scope, @ut_factory, ToolsService, $users, $roles) {
+    angular.module('@app').controller('@controller', ['$scope', '@ut_factory', '$tools', '$users', '$roles',
+    function ($scope, @ut_factory, $tools, $users, $roles) {
         var self = this;
-
-        self.FetchingData = function() {
-            $roles.GetRoles(function(roles) {
-                self.DropdownData.Roles = roles;
-            });
-
-            self.GetUsers();
-        }
 
         self.UISetting = function() {
             $scope.TableManagment.Columns(@(ut_factory).Columns());
@@ -30,14 +26,11 @@
 
             var actions = @(ut_factory).Actions();
 
-            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.ViewActionId', self.OpenUserModal);
-            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.DeleteActionId', self.DeleteUser);
+            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.ViewActionId', self.OpenUserProfileModal);
+            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.DeleteActionId', self.OpenDeleteUserModal);
 
             $scope.TableManagment.SetActions(actions)
-
-            $scope.TableManagment.EnableManagmentPanel(true);
-            $scope.TableManagment.SetTableManagmentPanelCode('<div><button class="btn btn-success btn-flat" ng-click="@(controller_name).CreateUser()"><span class="glyphicon glyphicon-plus"></button></div>');
-
+            $scope.TableManagment.SetTableManagmentPanelCode(@(ut_factory).BottomManagmentPanel());
         }
 
 
@@ -52,15 +45,24 @@
             self.FetchingData();
         };
 
-        self.SaveChangesFunc = function () { return true; }
-
-        self.OpenUserModal = function (row) {
+        self.OpenUserProfileModal = function (row) {
             self.CurrentUser = ToolsService.Copy(row);
-            ToolsService.ShowModal('UserProfileModal');
+            $tools.ShowModal('@user_profile_modal');
         }
 
         self.CloseUserProfileModal = function () {
-            ToolsService.HideModal('UserProfileModal');
+            $tools.HideModal('@user_profile_modal');
+        }
+
+        self.OpenDeleteUserModal = function (row) {
+            $tools.ShowModal('@confirmation_modal')
+        }
+
+        self.FetchingData = function() {
+            $roles.GetRoles(function(roles) {
+                self.DropdownData.Roles = roles;
+                self.GetUsers();
+            });
         }
 
         self.GetUsers = function () {
@@ -74,42 +76,6 @@
             })
         }
 
-        self.LoadUserData = function (row) {
-            self.CurrentUserData = {};
-            if (row.Id != undefined || row.Id != null) {
-                RequestService.Post(self.Requests.LoadUserData, { Id: row.Id }, function (response) {
-                    self.CurrentUserData = response.ResponseData;
-                });
-            }
-        }
-
-        self.RenderContent = function (row) {
-            return '<div ng-include = "\'' + self.UserDataTemplatePath + '\'"></div>'
-        }
-
-        self.AddRole = function (role) {
-            var arr = []; var flag = true;
-            angular.forEach(self.CurrentUserData.Roles, function (item) {
-                if (item == role.Name)
-                    flag = false;
-                else
-                    arr.push(item);
-            });
-
-            if (flag) arr.push(role.Name);
-            self.CurrentUserData.Roles = arr;
-        }
-
-        self.IsExistsRole = function (role) {
-            var result = false;
-            angular.forEach(self.CurrentUserData.Roles, function (item) {
-                if (item == role.Name)
-                    result = true;
-            });
-
-            return result;
-        }
-
         self.UpdateUserData = function () {
             if (self.ValidateUserProfileData(self.CurrentUser)) {
                 $users.UpdateUserData(self.CurrentRow, function (result) {
@@ -119,13 +85,11 @@
         }
 
         self.CreateUser = function () {
-            ToolsService.ShowModal('UserCreatingModal');
+            $tools.ShowModal('@user_profile_modal');
         }
 
-        self.DeleteUser = function (row) {
-            RequestService.Post(self.Requests.DeleteUser, { Id: row.Id }, function (response) {
-                self.LoadUserList();
-            });
+        self.OpenDeleteUserModal = function (row) {
+            $tools.ShowModal('@confirmation_modal')
         }
 
         self.ValidateUserProfileData = function (model) {

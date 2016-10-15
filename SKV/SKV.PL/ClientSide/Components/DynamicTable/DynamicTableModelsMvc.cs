@@ -37,6 +37,8 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IContainer Logic { get; set; } = Tools.CreateContainer();
         public IContainer Columns { get; set; } = Tools.CreateContainer();
         public IContainer RowActions { get; set; } = Tools.CreateContainer();
+        public IContainer TopManagmentPanel { get; set; } = Tools.CreateContainer();
+        public IContainer BottomManagmentPanel { get; set; } = Tools.CreateContainer();
     }
 
     public class DynamicTableColumnModelMvc

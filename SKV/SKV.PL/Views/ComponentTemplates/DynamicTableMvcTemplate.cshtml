@@ -37,6 +37,14 @@
 
             SetActionVisibileById: function (actions, id, func) {
                 this.FindActionById(actions, id).Visibility = func;
+            },
+
+            TopManagmentPanel: function() {
+                return '@MvcHtmlString.Create(Model.TopManagmentPanel.Render().Replace(Environment.NewLine, ""))';
+            },
+
+            BottomManagmentPanel: function () {
+                return '@MvcHtmlString.Create(Model.BottomManagmentPanel.Render().Replace(Environment.NewLine, ""))';
             }
 
         }

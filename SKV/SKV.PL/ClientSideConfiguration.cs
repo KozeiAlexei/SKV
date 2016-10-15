@@ -71,5 +71,29 @@ namespace SKV.PL
                 return Section[nameof(DeleteActionId)];
             }
         }
+
+        public static string UserProfileModalName
+        {
+            get
+            {
+                return Section[nameof(UserProfileModalName)];
+            }
+        }
+
+        public static string UserCreatingModalName
+        {
+            get
+            {
+                return Section[nameof(UserCreatingModalName)];
+            }
+        }
+
+        public static string ConfirmationModalName
+        {
+            get
+            {
+                return Section[nameof(ConfirmationModalName)];
+            }
+        }
     }
 }
