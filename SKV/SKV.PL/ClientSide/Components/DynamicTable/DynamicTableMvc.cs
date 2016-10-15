@@ -30,7 +30,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IDynamicTable Editable(bool editable) => Chain.Responsibility(() => Model.Editable = editable);
         public IDynamicTable Paginable(bool paginable, uint? page_size = null) => Chain.Responsibility(() =>
         {
-            Model.PageSize = page_size.GetValueOrDefault(CRMConfiguration.DefaultTablePageSize);
+            Model.PageSize = page_size.GetValueOrDefault(ClientSideConfiguration.DefaultTablePageSize);
             Model.Paginable = paginable;
         });
         public IDynamicTable Filterable(bool filterable) => Chain.Responsibility(() => Model.Filterable = filterable);
@@ -51,6 +51,8 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IDynamicTable Logic(Action<IContainer> logic) => Chain.Responsibility(() => logic(Model.Logic));
         public IDynamicTable Columns(Action<IContainer> columns) => Chain.Responsibility(() => columns(Model.Columns));
         public IDynamicTable RowActions(Action<IContainer> actions) => Chain.Responsibility(() => actions(Model.RowActions));
+        public IDynamicTable TopManagmentPanel(Action<IContainer> panel) => Chain.Responsibility(() => panel(Model.TopManagmentPanel));
+        public IDynamicTable BottomManagmentPanel(Action<IContainer> panel) => Chain.Responsibility(() => panel(Model.BottomManagmentPanel));
 
         #endregion
 

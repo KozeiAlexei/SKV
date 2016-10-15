@@ -1,9 +1,10 @@
 ﻿@model SKV.PL.ClientSide.Components.DynamicTable.DynamicTableActionModelMvc
 
 {
+    Id: '@Model.Id',
     Icon: '@Model.Icon',
     Title: '@Model.Title',
     Class: '@Model.Class',
-    Click: '@Model.Click',
-    VisibilityFunc: '@Model.Visible'
+    Click: @MvcHtmlString.Create(Model.Click),
+    Visible: @MvcHtmlString.Create(Model.Visible)
 },

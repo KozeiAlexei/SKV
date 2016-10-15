@@ -14,5 +14,7 @@ namespace SKV.PL.ClientSide.Abstract.Components
         IDynamicTable AngularDynamicTableActionsControllerName(string name);
 
         IDynamicTable RowActions(Action<IContainer> body);
+
+        IDynamicTable BottomManagmentPanel(Action<IContainer> panel);
     }
 }

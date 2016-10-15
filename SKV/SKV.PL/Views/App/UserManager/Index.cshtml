@@ -16,6 +16,7 @@
     @Linker.GetService("Request")
     @Linker.GetService("Location")
 
+    @Linker.GetServiceExt("$tools")
     @Linker.GetServiceExt("$request")
 
     @Linker.GetServiceExt("api/$users")
@@ -28,9 +29,9 @@
         .Body(body =>
         {
             body.Create<DynamicTableMvc>()
-                .AngularTableSettingsFactoryName(CRMConfiguration.AngularUserTableSettingsFactory)
-                .AngularDynamicTableActionsController(CRMConfiguration.AngularUserManagerController)
-                .AngularDynamicTableActionsControllerName(CRMConfiguration.AngularUserManagerControllerName)
+                .AngularTableSettingsFactoryName(ClientSideConfiguration.AngularUserTableSettingsFactory)
+                .AngularDynamicTableActionsController(ClientSideConfiguration.AngularUserManagerController)
+                .AngularDynamicTableActionsControllerName(ClientSideConfiguration.AngularUserManagerControllerName)
                 .Columns(columns =>
                 {
                     columns.Create<DynamicTableColumnMvc>().Name("UserName").Title(Resources.Resource.UserName).Width(20)
@@ -50,8 +51,9 @@
                 })
                 .Body(b =>
                 {
-                    b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileModal"));
-                    b.Create<ContentMvc>().FromPartitalView(Html.Partial("UserCreatingModal"));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.UserProfileModalName));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.UserCreatingModalName));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.ConfirmationModalName));
                 })
                 .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial("UserManagerController")))
                 .Editable(false)
@@ -60,19 +62,20 @@
                 .RowActions(actions =>
                 {
                     actions.Create<DynamicTableActionMvc>()
-                           .Id("OpenUserModal")
+                           .Id(ClientSideConfiguration.ViewActionId)
                            .Icon("glyphicon glyphicon-folder-open")
                            .Title(string.Empty).Class("btn btn-flat btn-success  btn-md")
-                           .Click(FunctionType.Referrence, @"self.OpenUserModal")
+                           .Click(FunctionType.Referrence)
                            .Visible(FunctionType.Custom, @"function (row) { return true; }");
 
                     actions.Create<DynamicTableActionMvc>()
-                           .Id("DeleteUser")
+                           .Id(ClientSideConfiguration.DeleteActionId)
                            .Icon("glyphicon glyphicon-remove")
                            .Title(string.Empty).Class("btn btn-flat btn-danger  btn-md")
-                           .Click(FunctionType.Referrence, @"self.DeleteUser")
+                           .Click(FunctionType.Referrence)
                            .Visible(FunctionType.Custom, @"function (row) { return (row.Id != null) && (row.Id != undefined); }");
-                });
+                })
+                .BottomManagmentPanel(panel => panel.Create<ContentMvc>().FromPartitalView(Html.Partial("TableBottomManagmentPanel")));
         })
         .Render()
 )
