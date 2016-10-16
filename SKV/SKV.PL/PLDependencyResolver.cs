@@ -7,6 +7,7 @@ using SKV.PL.ClientSide.Components.DynamicTable;
 using SKV.PL.ClientSide.Components.Modal;
 using SKV.PL.ClientSide.Components.NotificationList;
 using SKV.PL.ClientSide.Components.Tabs;
+using SKV.PL.ClientSide.Components.VerticalFormField;
 using SKV.PL.ClientSide.Components.Widget;
 using SKV.PL.ClientSide.Concrete;
 using System;
@@ -33,6 +34,7 @@ namespace SKV.PL
                 Bind(typeof(IResponsibilityChain<DynamicTableColumnMvc>)).To(typeof(ResponsibilityChain<DynamicTableColumnMvc>));
 
                 Bind(typeof(IResponsibilityChain<TabsMvc>)).To(typeof(ResponsibilityChain<TabsMvc>));
+                Bind(typeof(IResponsibilityChain<VerticalFormFieldMvc>)).To(typeof(ResponsibilityChain<VerticalFormFieldMvc>));
 
                 Bind<IContainer>().To<Container>();
             }

@@ -236,6 +236,7 @@
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableColumn.cs" />
     <Compile Include="ClientSide\Abstract\Components\IContent.cs" />
     <Compile Include="ClientSide\Abstract\Components\INotificationList.cs" />
+    <Compile Include="ClientSide\Abstract\Components\IVerticalFormField.cs" />
     <Compile Include="ClientSide\Abstract\Features\IIconHaveable.cs" />
     <Compile Include="ClientSide\Abstract\Components\IModal.cs" />
     <Compile Include="ClientSide\Abstract\Components\ITabBody.cs" />
@@ -268,6 +269,8 @@
     <Compile Include="ClientSide\Components\NotificationList\NotificationListMvcModel.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabsMvc.cs" />
     <Compile Include="ClientSide\Components\Tabs\TabsMvcModels.cs" />
+    <Compile Include="ClientSide\Components\VerticalFormField\VerticalFormFieldMvc.cs" />
+    <Compile Include="ClientSide\Components\VerticalFormField\VerticalFormFieldMvcModel.cs" />
     <Compile Include="ClientSide\Components\Widget\WidgetMvc.cs" />
     <Compile Include="ClientSide\Components\Widget\WidgetMvcModel.cs" />
     <Compile Include="ClientSide\Concrete\ComponentFactory.cs" />
@@ -2961,6 +2964,7 @@
     <Content Include="Views\App\UserManager\ConfirmationModal.cshtml" />
     <Content Include="Views\App\UserManager\ConfirmationModalBody.cshtml" />
     <Content Include="Views\ComponentTemplates\NotificationListMvcTemplate.cshtml" />
+    <Content Include="Views\ComponentTemplates\VerticalFormFieldMvcTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

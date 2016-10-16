@@ -1,0 +1,15 @@
+﻿@model SKV.PL.ClientSide.Components.VerticalFormField.VerticalFormFieldMvcModel
+
+@{
+    string ctrl = ClientSideConfiguration.AngularUserManagerControllerName;
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group has-feedback">
+            <label class="control-label">@Model.Title:</label>
+            <i class="@Model.IconClass"></i>
+            <input @MvcHtmlString.Create(Model.CustomAttributes) class="form-control" style="{{ @(ctrl).ModelState.@(Model.FieldPath) }}" ng-model="@(ctrl).CurrentUser.@Model.FieldPath" />
+        </div>
+    </div>
+</div>
