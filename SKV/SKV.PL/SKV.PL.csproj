@@ -276,6 +276,7 @@
     <Compile Include="ClientSide\Concrete\ComponentFactory.cs" />
     <Compile Include="ClientSide\Concrete\ComponentRenderer.cs" />
     <Compile Include="ClientSide\Concrete\Container.cs" />
+    <Compile Include="ClientSide\Concrete\ExpressionExtensions.cs" />
     <Compile Include="ClientSide\Concrete\Linker.cs" />
     <Compile Include="ClientSide\Concrete\NameManager.cs" />
     <Compile Include="ClientSide\Concrete\ResponsibilityChain.cs" />

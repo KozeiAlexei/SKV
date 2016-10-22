@@ -11,6 +11,7 @@ using System.Dynamic;
 using System.Text;
 using SKV.ML.Concrete.Model.UserModel;
 using System.Reflection;
+using SKV.ML.Metadata;
 
 namespace SKV.PL.ClientSide.Components.VerticalFormField
 {
@@ -35,10 +36,21 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
         {
             return Chain.Responsibility(() =>
             {
-                var path = field.Body.ToString();
-                path = path.Substring(path.IndexOf('.') + 1);
+                Model.FieldPath = field.GetPathWithoutSource() ;
 
-                Model.FieldPath = path;
+                var icon_md = field.GetAttribute<IconAttribute, TModel, object>();
+                var title_md = field.GetAttribute<TitleAttribute, TModel, object>();
+
+                if (icon_md != null)
+                    Icon(icon_md.IconClass);
+
+                if(title_md != null)
+                {
+                    if (title_md.Source == ParameterSource.Resource)
+                        Title(Tools.GetLocalizedString($"{ typeof(TModel).Name }.{ Model.FieldPath }"));
+                    else
+                        Title(title_md.Title);
+                }
             });
         }
 

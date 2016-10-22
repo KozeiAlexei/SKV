@@ -4,6 +4,7 @@ using Ninject;
 using Ninject.Parameters;
 
 using SKV.PL.ClientSide.Abstract;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace SKV.PL.ClientSide.Concrete
@@ -33,5 +34,10 @@ namespace SKV.PL.ClientSide.Concrete
         }
 
         public static void ThrowIfNull<T>(T obj, string field_name) => ThrowIfCondition(field_name, () => obj == null);
+
+        public static string GetLocalizedString(string key) => Resources.Resource.ResourceManager.GetString(key);
+
+        public static TCustomAttribute GetAttribute<TCustomAttribute, TModel>(TModel model) where TCustomAttribute: Attribute => 
+            (TCustomAttribute)typeof(TModel).GetCustomAttributes(typeof(TCustomAttribute), true).FirstOrDefault();
     }
 }

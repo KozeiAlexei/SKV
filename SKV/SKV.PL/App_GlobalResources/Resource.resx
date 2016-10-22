@@ -207,6 +207,12 @@
   <data name="SystemSettings" xml:space="preserve">
     <value>Настройки системы</value>
   </data>
+  <data name="User.Email" xml:space="preserve">
+    <value>Адрес</value>
+  </data>
+  <data name="User.UserName" xml:space="preserve">
+    <value>Логин</value>
+  </data>
   <data name="UserCreating" xml:space="preserve">
     <value>Создание пользователя</value>
   </data>
