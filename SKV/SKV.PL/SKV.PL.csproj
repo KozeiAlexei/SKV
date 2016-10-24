@@ -214,12 +214,12 @@
   <ItemGroup>
     <Compile Include="Api\Security\AccountController.cs" />
     <Compile Include="Api\Security\UsersController.cs" />
-    <Compile Include="App_GlobalResources\Resource.en-US.designer.cs">
+    <Compile Include="Resources\Resource.en-US.designer.cs">
       <DependentUpon>Resource.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="App_GlobalResources\Resource.Designer.cs">
+    <Compile Include="Resources\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -235,6 +235,8 @@
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableAction.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableColumn.cs" />
     <Compile Include="ClientSide\Abstract\Components\IContent.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IExportToModel.cs" />
+    <Compile Include="ClientSide\Abstract\Features\IImportFromModel.cs" />
     <Compile Include="ClientSide\Abstract\Components\INotificationList.cs" />
     <Compile Include="ClientSide\Abstract\Components\IVerticalFormField.cs" />
     <Compile Include="ClientSide\Abstract\Features\IIconHaveable.cs" />
@@ -2986,15 +2988,19 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="App_GlobalResources\Resource.en-US.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <Folder Include="App_GlobalResources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.en-US.designer.cs</LastGenOutput>
-    </Content>
-    <EmbeddedResource Include="App_GlobalResources\Resource.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

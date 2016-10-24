@@ -85,6 +85,7 @@
     <Compile Include="Abstract\Model\OperationModel\IMoneyTransferData.cs" />
     <Compile Include="Abstract\Model\OperationModel\IOperation.cs" />
     <Compile Include="Abstract\Model\OperationModel\IOperationStatus.cs" />
+    <Compile Include="Abstract\Model\UIModel\IUIComponentData.cs" />
     <Compile Include="Abstract\Model\UIModel\IUICulture.cs" />
     <Compile Include="Abstract\Model\UIModel\IUIMenuItem.cs" />
     <Compile Include="Abstract\Model\UserModel\IUser.cs" />
@@ -93,6 +94,7 @@
     <Compile Include="Abstract\Model\UserModel\IUserRole.cs" />
     <Compile Include="Abstract\Model\WindowModel\IWindow.cs" />
     <Compile Include="Abstract\Model\WindowModel\IWindowCash.cs" />
+    <Compile Include="Concrete\CacheItemClass.cs" />
     <Compile Include="Concrete\Model\CallModel\Call.cs" />
     <Compile Include="Concrete\Model\CallModel\OperatorPhone.cs" />
     <Compile Include="Concrete\Model\ClientModel\Client.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Concrete\Model\OperationModel\MoneyTransfer.cs" />
     <Compile Include="Concrete\Model\OperationModel\MoneyTransferData.cs" />
     <Compile Include="Concrete\Model\OperationModel\OperationStatus.cs" />
+    <Compile Include="Concrete\Model\UIModel\UIComponentData.cs" />
     <Compile Include="Concrete\Model\UIModel\UICulture.cs" />
     <Compile Include="Concrete\Model\UIModel\UIMenuItem.cs" />
     <Compile Include="Concrete\Model\UserModel\User.cs" />
@@ -121,6 +124,7 @@
     <Compile Include="Concrete\Model\UserModel\UserRole.cs" />
     <Compile Include="Concrete\Model\WindowModel\Window.cs" />
     <Compile Include="Concrete\Model\WindowModel\WindowCash.cs" />
+    <Compile Include="Concrete\UIComponentKey.cs" />
     <Compile Include="Metadata\ModelAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Account\OAuthUserModel.cs" />

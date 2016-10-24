@@ -15,7 +15,7 @@ using SKV.ML.Metadata;
 
 namespace SKV.PL.ClientSide.Components.VerticalFormField
 {
-    public class VerticalFormFieldMvc : IVerticalFormField
+    public class VerticalFormFieldMvc : IVerticalFormField<VerticalFormFieldMvcModel>
     {
         #region Constructor
 
@@ -32,36 +32,18 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
 
         #region Component setting
 
-        public IVerticalFormField Field<TModel>(Expression<Func<TModel, object>> field)
+        public IVerticalFormField<VerticalFormFieldMvcModel> Field<TModel>(Expression<Func<TModel, object>> field)
         {
             return Chain.Responsibility(() =>
             {
                 Model.FieldPath = field.GetPathWithoutSource() ;
-
-                var icon_md = field.GetAttribute<IconAttribute, TModel, object>();
-                var title_md = field.GetAttribute<TitleAttribute, TModel, object>();
-
-                if (icon_md != null)
-                    Icon(icon_md.IconClass);
-
-                if(title_md != null)
-                {
-                    if (title_md.Source == ParameterSource.Resource)
-                        Title(Tools.GetLocalizedString($"{ typeof(TModel).Name }.{ Model.FieldPath }"));
-                    else
-                        Title(title_md.Title);
-                }
+                Title(Tools.GetLocalizedString($"{ typeof(TModel).Name }.{ Model.FieldPath }"));
             });
         }
 
-        public IVerticalFormField Icon(string icon) => Chain.Responsibility(() => Model.IconClass = icon);
-        public IVerticalFormField Title(string title) => Chain.Responsibility(() => Model.Title = title);
-
-        #endregion
-
-        public MvcHtmlString Render() => new ComponentRenderer(nameof(VerticalFormFieldMvc)).Render(Model);
-
-        public IVerticalFormField Attributes(dynamic attrs)
+        public IVerticalFormField<VerticalFormFieldMvcModel> Icon(string icon) => Chain.Responsibility(() => Model.IconClass = icon);
+        public IVerticalFormField<VerticalFormFieldMvcModel> Title(string title) => Chain.Responsibility(() => Model.Title = title);
+        public IVerticalFormField<VerticalFormFieldMvcModel> Attributes(dynamic attrs)
         {
             return Chain.Responsibility(() =>
             {
@@ -71,6 +53,24 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
                     builder.Append($"{ attr.Name }=\"{ attr.GetValue(attrs) }\"");
 
                 Model.CustomAttributes = builder.ToString();
+            });
+        }
+
+        #endregion
+
+        public MvcHtmlString Render() => new ComponentRenderer(nameof(VerticalFormFieldMvc)).Render(Model);
+
+        public VerticalFormFieldMvcModel ExportToModel() => Model;
+
+        public IVerticalFormField<VerticalFormFieldMvcModel> ImportFromModel(VerticalFormFieldMvcModel model) 
+        {
+            return Chain.Responsibility(() =>
+            {
+                Model.Title = model.Title;
+                Model.Style = model.Style;
+                Model.FieldPath = model.FieldPath;
+                Model.IconClass = model.IconClass;
+                Model.CustomAttributes = model.CustomAttributes;
             });
         }
     }

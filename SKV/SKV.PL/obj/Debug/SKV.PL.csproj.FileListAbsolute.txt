@@ -119,7 +119,6 @@ E:\Работа\SKV\SKV\SKV.PL\bin\ru\Microsoft.Owin.Security.Twitter.resources.
 E:\Работа\SKV\SKV\SKV.PL\bin\ru\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 E:\Работа\SKV\SKV\SKV.PL\bin\ru\System.Web.Http.Owin.resources.dll
 E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.csprojResolveAssemblyReference.cache
-E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.App_GlobalResources.Resource.resources
 E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.csproj.GenerateResource.Cache
 E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.dll
 E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.pdb
@@ -256,3 +255,7 @@ C:\Users\avkozej.BSS\Test\SKV\SKV.PL\obj\Debug\SKV.PL.App_GlobalResources.Resour
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\obj\Debug\SKV.PL.csproj.GenerateResource.Cache
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\obj\Debug\SKV.PL.dll
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\obj\Debug\SKV.PL.pdb
+E:\Работа\SKV\SKV\SKV.PL\bin\en-US\SKV.PL.resources.dll
+E:\Работа\SKV\SKV\SKV.PL\obj\Debug\en-US\SKV.PL.resources.dll
+E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.Resources.Resource.resources
+E:\Работа\SKV\SKV\SKV.PL\obj\Debug\SKV.PL.Resources.Resource.en-US.resources

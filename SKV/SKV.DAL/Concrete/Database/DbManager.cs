@@ -118,6 +118,9 @@ namespace SKV.DAL.Concrete.Database
         public IUIMenuItemRepository<UIMenuItem, int, int?> UIMenuItems { get; } =
             (IUIMenuItemRepository<UIMenuItem, int, int?>)DALDependencyResolver.Kernel.Get(typeof(IUIMenuItemRepository<UIMenuItem, int, int?>));
 
+        public IUIComponentDataRepository<UIComponentData, int, string> UIComponentData { get; } =
+            (IUIComponentDataRepository<UIComponentData, int, string>)DALDependencyResolver.Kernel.Get(typeof(IUIComponentDataRepository<UIComponentData, int, string>));
+
         public void Refresh()
         {
             var object_context = ((IObjectContextAdapter)context).ObjectContext;
