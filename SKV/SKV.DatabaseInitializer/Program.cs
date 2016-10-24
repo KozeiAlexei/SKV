@@ -80,9 +80,14 @@ namespace SKV.DatabaseInitializer
             db.UIComponentData.Add(new UIComponentData()
             {
                 Id = (int)UIComponentKey.User_UserName_Field,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" })
                                                                                        .Icon("glyphicon glyphicon-user form-control-feedback")
-                                                                                       .Field<User>(m => m.UserName).ExportToModel())
+                                                                                       .Field<User>(m => m.UserName).ExportToModel(), 
+                                                                                       new JsonSerializerSettings
+                                                                                       {
+                                                                                           TypeNameHandling = TypeNameHandling.All
+                                                                                       })
             });
 
             db.SaveChanges();

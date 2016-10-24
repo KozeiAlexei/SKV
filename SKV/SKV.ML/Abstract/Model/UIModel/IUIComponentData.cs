@@ -9,6 +9,8 @@ namespace SKV.ML.Abstract.Model.UIModel
 {
     public interface IUIComponentData<TKey, TComponentData> : IEntity<TKey>, ICloneableFrom<IUIComponentData<TKey, TComponentData>>
     {
+        string TypeName { get; set; }
+
         TComponentData SerializedData { get; set; }
     }
 }

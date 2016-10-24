@@ -125,7 +125,6 @@
     <Compile Include="Concrete\Model\WindowModel\Window.cs" />
     <Compile Include="Concrete\Model\WindowModel\WindowCash.cs" />
     <Compile Include="Concrete\UIComponentKey.cs" />
-    <Compile Include="Metadata\ModelAttributes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Account\OAuthUserModel.cs" />
     <Compile Include="ViewModels\Account\RegisterAccountViewModel.cs" />

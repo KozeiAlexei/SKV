@@ -6,11 +6,14 @@ namespace SKV.ML.Concrete.Model.UIModel
     {
         public int Id { get; set; }
 
+        public string TypeName { get; set; }
+
         public string SerializedData { get; set; }
 
         public void CopyFrom(IUIComponentData<int, string> from)
         {
             Id = from.Id;
+            TypeName = from.TypeName;
             SerializedData = from.SerializedData;
         }
     }
