@@ -1,11 +1,14 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Newtonsoft.Json;
 using SKV.BLL.Identity;
 using SKV.DAL;
 using SKV.DAL.Concrete.EntityFramework;
+using SKV.ML.Concrete;
 using SKV.ML.Concrete.Model.CommonModel;
 using SKV.ML.Concrete.Model.UIModel;
 using SKV.ML.Concrete.Model.UserModel;
+using SKV.PL.ClientSide.Components.VerticalFormField;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +26,7 @@ namespace SKV.DatabaseInitializer
             db.UICulture.Add(new UICulture() { Name = "Русский", Culture = "ru-RU" });
             db.UICulture.Add(new UICulture() { Name = "English", Culture = "en-US" });
 
-          
+
 
             db.UIMenuItems.Add(new UIMenuItem() { Id = 1, Location = 1, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Administration", IconClass = "icon-home-3" });
             db.UIMenuItems.Add(new UIMenuItem() { Id = 2, Location = 2, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Operator", IconClass = "icon-home-3" });
@@ -72,6 +75,17 @@ namespace SKV.DatabaseInitializer
 
 
             var result = user_manager.CreateAsync(user, "Evolution1_").Result;
+
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.User_UserName_Field,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" })
+                                                                                       .Icon("glyphicon glyphicon-user form-control-feedback")
+                                                                                       .Field<User>(m => m.UserName).ExportToModel())
+            });
+
+            db.SaveChanges();
 
             db.Dispose();
         }

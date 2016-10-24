@@ -49,6 +49,10 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -79,6 +83,10 @@
     <ProjectReference Include="..\SKV.ML\SKV.ML.csproj">
       <Project>{48c31015-40e5-4828-b49e-8607e440893e}</Project>
       <Name>SKV.ML</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SKV.PL\SKV.PL.csproj">
+      <Project>{19BA9AD8-84B8-45EE-86BC-B9B254B57D75}</Project>
+      <Name>SKV.PL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

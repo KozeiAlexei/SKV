@@ -2,6 +2,9 @@
 
 @model User
 
+@using SKV.BLL.Other
+@using SKV.ML.Concrete
+
 @using System.Linq.Expressions;
 
 @using SKV.PL.ClientSide.Concrete;
@@ -14,12 +17,12 @@
     string ctrl = ClientSideConfiguration.AngularUserManagerControllerName;
 }
 
-@(ComponentFactory.Create<VerticalFormFieldMvc>().Field<User>(m => m.UserName).Attributes(new { type = "text" }).Render())
-@(ComponentFactory.Create<VerticalFormFieldMvc>().Field<User>(m => m.Email).Attributes(new { type = "text" }).Render())
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.User_UserName_Field)).Render())
 
 
 
-@*<div class="row">
+<div class="row">
     <div class="col-lg-12">
         <div class="form-group has-feedback">
             <label class="control-label">Логин:</label>
@@ -38,7 +41,7 @@
                                                     
             </div>
     </div>
-</div>*@
+</div>
 
 <div class="row">
     <div class="col-lg-12">

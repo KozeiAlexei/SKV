@@ -19,13 +19,13 @@ using SKV.DAL.Abstract.Repositories.UIModel;
 
 namespace SKV.DAL.Abstract.Database
 {
-    public interface IDbManager: IChangeable
+    public interface IDbManager : IChangeable
     {
         ICallRepository<Call, int, CallType> Calls { get; }
 
         IOperatorPhoneRepository<OperatorPhone, int> OperatorPhones { get; }
 
-        
+
         IClientRepository<Client, int, int, string> Clients { get; }
 
         IClientStatusRepository<ClientStatus, int, ClientStatusCode> ClientStatuses { get; }
@@ -35,7 +35,7 @@ namespace SKV.DAL.Abstract.Database
 
         ISystemSettingsRepository<SystemSettings, int, int> SystemSettings { get; }
 
-        
+
         ICurrencyCompetitorRepository<CurrencyCompetitor, int> CurrencyCompetitors { get; }
 
         ICurrencyExchangeRuleRepository<CurrencyExchangeRule, int, int> CurrencyExchangeRules { get; }
@@ -65,7 +65,7 @@ namespace SKV.DAL.Abstract.Database
 
         IOperationStatusRepository<OperationStatus, int, OperationType, int> OperationStatuses { get; }
 
-        
+
         IUserPermissionRepository<UserPermission, int, UserPermissionCode> UserPermissions { get; }
 
         IUserProfileRepository<UserProfile, string> UserProfiles { get; }
@@ -74,7 +74,7 @@ namespace SKV.DAL.Abstract.Database
 
         IUserRoleRepository<UserRole, string, DefaultRole> UserRoles { get; }
 
-        
+
         IWindowRepository<Window, int, WindowStatus> Windows { get; }
 
         IWindowCashRepository<WindowCash, int, int, int> WindowCashes { get; }
@@ -83,5 +83,7 @@ namespace SKV.DAL.Abstract.Database
         IUICultureRepository<UICulture, int> UICultures { get; }
 
         IUIMenuItemRepository<UIMenuItem, int, int?> UIMenuItems { get; }
+
+        IUIComponentDataRepository<UIComponentData, int, string> UIComponentData { get; }
     }
 }

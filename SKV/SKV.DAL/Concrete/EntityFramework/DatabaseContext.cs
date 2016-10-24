@@ -122,6 +122,8 @@ namespace SKV.DAL.Concrete.EntityFramework
 
         public DbSet<UIMenuItem> UIMenuItems { get; set; }
 
+        public DbSet<UIComponentData> UIComponentData { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(DbModelBuilder model_builder)

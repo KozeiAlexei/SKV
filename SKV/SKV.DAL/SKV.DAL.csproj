@@ -92,6 +92,7 @@
     <Compile Include="Abstract\Repositories\OperationModel\ICorrectionRepository.cs" />
     <Compile Include="Abstract\Repositories\OperationModel\IOperationRepository.cs" />
     <Compile Include="Abstract\Repositories\OperationModel\IOperationStatusRepository.cs" />
+    <Compile Include="Abstract\Repositories\UIModel\IUIComponentDataRepository.cs" />
     <Compile Include="Abstract\Repositories\UIModel\IUICultureRepository.cs" />
     <Compile Include="Abstract\Repositories\UIModel\IUIMenuItemRepository.cs" />
     <Compile Include="Abstract\Repositories\UserModel\IUserPermissionRepository.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Concrete\Repositories\OperationModel\MoneyTransferRepository.cs" />
     <Compile Include="Concrete\Repositories\OperationModel\InventarisationRepository.cs" />
     <Compile Include="Concrete\Repositories\OperationModel\OperationStatusRepository.cs" />
+    <Compile Include="Concrete\Repositories\UIModel\UIComponentDataRepository.cs" />
     <Compile Include="Concrete\Repositories\UIModel\UICultureRepository.cs" />
     <Compile Include="Concrete\Repositories\UIModel\UIMenuItemRepository.cs" />
     <Compile Include="Concrete\Repositories\UserModel\UserPermissionRepository.cs" />

@@ -82,7 +82,7 @@ namespace SKV.DAL
 
                 Bind(typeof(IRepository<UICulture, int>)).To(typeof(Repository<UICulture, int>)).InSingletonScope();
                 Bind(typeof(IRepository<UIMenuItem, int>)).To(typeof(Repository<UIMenuItem, int>)).InSingletonScope();
-
+                Bind(typeof(IRepository<UIComponentData, int>)).To(typeof(Repository<UIComponentData, int>)).InSingletonScope();
 
                 Bind(typeof(ICallRepository<Call, int, CallType>)).To<CallRepository>();
                 Bind(typeof(IOperatorPhoneRepository<OperatorPhone, int>)).To<OperatorPhoneRepository>();
@@ -111,6 +111,7 @@ namespace SKV.DAL
 
                 Bind(typeof(IUICultureRepository<UICulture, int>)).To<UICultureRepository>();
                 Bind(typeof(IUIMenuItemRepository<UIMenuItem, int, int?>)).To<UIMenuItemRepository>();
+                Bind(typeof(IUIComponentDataRepository<UIComponentData, int, string>)).To<UIComponentDataRepository>();
 
                 Bind(typeof(IUserRepository<User, string>)).To<UserRepository>();
                 Bind(typeof(IUserRoleRepository<UserRole, string, DefaultRole>)).To<UserRoleRepository>();
