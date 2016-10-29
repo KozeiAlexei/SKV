@@ -8,6 +8,11 @@ namespace SKV.ML.Concrete
 {
     public enum UIComponentKey
     {
-        User_UserName_Field
+        UserManager_UserName_Field,
+        UserManager_Email_Field,
+        UserManager_UserProfile_Name_Field,
+        UserManager_PhoneNumber_Field,
+        UserManager_UserProfile_AsteriskId,
+        UserManager_Roles
     }
 }

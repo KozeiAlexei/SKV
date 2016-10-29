@@ -5,12 +5,7 @@
 @using SKV.BLL.Other
 @using SKV.ML.Concrete
 
-@using System.Linq.Expressions;
-
 @using SKV.PL.ClientSide.Concrete;
-@using SKV.PL.ClientSide.Abstract.Components
-
-@using SKV.PL.ClientSide.Components
 @using SKV.PL.ClientSide.Components.VerticalFormField
 
 @{ 
@@ -18,72 +13,23 @@
 }
 
 @(ComponentFactory.Create<VerticalFormFieldMvc>()
-                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.User_UserName_Field)).Render())
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserManager_UserName_Field)).Render())
 
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserManager_Email_Field)).Render())
 
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserManager_UserProfile_Name_Field)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Логин:</label>
-            <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.UserName}}" ng-model="@(ctrl).CurrentUser.UserName" />
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserManager_PhoneNumber_Field)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Адрес электронной почты:</label>
-            <i class="icon-mail-3 form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.Email}}" ng-model="@(ctrl).CurrentUser.Email" />
-                                                    
-            </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserManager_UserProfile_AsteriskId)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Инициалы:</label>
-            <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.Profile.Name}}" ng-model="@(ctrl).CurrentUser.Profile.Name" />
-                                                    
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserManager_Roles)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Телефон:</label>
-            <i class="glyphicon glyphicon-phone form-control-feedback"></i>
-            <input type="text" class="form-control" ng-model="@(ctrl).CurrentUser.PhoneNumber" />
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Уникальный номер в системе Asterisk:</label>
-            <i class="glyphicon glyphicon-certificate form-control-feedback"></i>
-            <input type="text" class="form-control" ng-model="@(ctrl).CurrentUser.Profile.AsteriskUniqueId" />
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-12">
-        <label><b>Роли: </b></label>
-        <div id="OperationType" class="btn-group btn-group-justified" data-toggle="buttons">
-            <label ng-repeat="role in @(ctrl).DropdownData.Roles" class="btn btn-flat btn-success" ng-click="@(ctrl).AddRole(role)">
-                <input type="checkbox">{{ role }}
-            </label>
-        </div>
-    </div>
-</div>
 
 <br />
 

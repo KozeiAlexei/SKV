@@ -1,11 +1,12 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 using SKVUserModel = SKV.ML.Abstract.Model.UserModel;
-using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace SKV.ML.Concrete.Model.UserModel
 {

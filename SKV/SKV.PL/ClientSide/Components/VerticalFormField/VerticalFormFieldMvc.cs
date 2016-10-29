@@ -14,7 +14,7 @@ using System.Reflection;
 
 namespace SKV.PL.ClientSide.Components.VerticalFormField
 {
-    public class VerticalFormFieldMvc : IVerticalFormField<VerticalFormFieldMvcModel>
+    public class VerticalFormFieldMvc : IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType>
     {
         #region Constructor
 
@@ -31,18 +31,31 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
 
         #region Component setting
 
-        public IVerticalFormField<VerticalFormFieldMvcModel> Field<TModel>(Expression<Func<TModel, object>> field)
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> Field<TModel>(Expression<Func<TModel, object>> field)
         {
             return Chain.Responsibility(() =>
             {
-                Model.FieldPath = field.GetPathWithoutSource() ;
-                Title(Tools.GetLocalizedString($"{ typeof(TModel).Name }.{ Model.FieldPath }"));
+                Model.FieldPath = field.GetPathWithoutSource().Replace(")", string.Empty); //fix reflection bug
+                Title($"{ typeof(TModel).Name }.{ Model.FieldPath }");
             });
         }
 
-        public IVerticalFormField<VerticalFormFieldMvcModel> Icon(string icon) => Chain.Responsibility(() => Model.IconClass = icon);
-        public IVerticalFormField<VerticalFormFieldMvcModel> Title(string title) => Chain.Responsibility(() => Model.Title = title);
-        public IVerticalFormField<VerticalFormFieldMvcModel> Attributes(dynamic attrs)
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> Field<TModel>(string field)
+        {
+            return Chain.Responsibility(() =>
+            {
+                Model.FieldPath = field;
+                Title($"{ typeof(TModel).Name }.{ Model.FieldPath }");
+            });
+        }
+
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> Icon(string icon) => Chain.Responsibility(() => Model.IconClass = icon);
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> Title(string title) => Chain.Responsibility(() =>
+        {
+            Model.Title = title;
+            Model.LocalizedTitle = Tools.GetLocalizedString(Model.Title);
+        });
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> Attributes(dynamic attrs)
         {
             return Chain.Responsibility(() =>
             {
@@ -61,16 +74,29 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
 
         public VerticalFormFieldMvcModel ExportToModel() => Model;
 
-        public IVerticalFormField<VerticalFormFieldMvcModel> ImportFromModel(VerticalFormFieldMvcModel model) 
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> ImportFromModel(VerticalFormFieldMvcModel model) 
         {
             return Chain.Responsibility(() =>
             {
-                Model.Title = model.Title;
+                Model.Title = model.Title; Title(model.Title);
                 Model.Style = model.Style;
                 Model.FieldPath = model.FieldPath;
                 Model.IconClass = model.IconClass;
                 Model.CustomAttributes = model.CustomAttributes;
+
+                Model.Type = model.Type;
+                Model.ButtonTitleFieldPath = model.ButtonTitleFieldPath;
+                Model.ButtonClickFunctionName = model.ButtonClickFunctionName;
             });
         }
+
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> Type(UIFieldType type) => 
+            Chain.Responsibility(() => Model.Type = type);
+
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> ButtonTitleFieldPath(string path) =>
+            Chain.Responsibility(() => Model.ButtonTitleFieldPath = $".{ path }");
+
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> ButtonClickFunctionName(string name) =>
+           Chain.Responsibility(() => Model.ButtonClickFunctionName = name);
     }
 }

@@ -8,6 +8,7 @@ using SKV.ML.Concrete;
 using SKV.ML.Concrete.Model.CommonModel;
 using SKV.ML.Concrete.Model.UIModel;
 using SKV.ML.Concrete.Model.UserModel;
+using SKV.PL.ClientSide.Abstract.Components;
 using SKV.PL.ClientSide.Components.VerticalFormField;
 using System;
 using System.Collections.Generic;
@@ -76,18 +77,64 @@ namespace SKV.DatabaseInitializer
 
             var result = user_manager.CreateAsync(user, "Evolution1_").Result;
 
-
+            var ssetings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
             db.UIComponentData.Add(new UIComponentData()
             {
-                Id = (int)UIComponentKey.User_UserName_Field,
+                Id = (int)UIComponentKey.UserManager_UserName_Field,
                 TypeName = typeof(VerticalFormFieldMvc).Name,
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" })
                                                                                        .Icon("glyphicon glyphicon-user form-control-feedback")
-                                                                                       .Field<User>(m => m.UserName).ExportToModel(), 
-                                                                                       new JsonSerializerSettings
-                                                                                       {
-                                                                                           TypeNameHandling = TypeNameHandling.All
-                                                                                       })
+                                                                                       .Field<User>(m => m.UserName).Type(UIFieldType.Input).ExportToModel(), 
+                                                                                       ssetings)
+            });
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.UserManager_Email_Field,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" })
+                                                                                       .Icon("icon-mail-3 form-control-feedback")
+                                                                                       .Field<User>(m => m.Email).Type(UIFieldType.Input).ExportToModel(),
+                                                                                       ssetings)
+            });
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.UserManager_UserProfile_Name_Field,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" })
+                                                                                       .Icon("glyphicon glyphicon-user form-control-feedback")
+                                                                                       .Field<User>(m => m.Profile.Name).Type(UIFieldType.Input).ExportToModel(),
+                                                                                       ssetings)
+            });
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.UserManager_PhoneNumber_Field,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" })
+                                                                                       .Icon("glyphicon glyphicon-phone form-control-feedback")
+                                                                                       .Field<User>(m => m.PhoneNumber).Type(UIFieldType.Input).ExportToModel(),
+                                                                                       ssetings)
+            });
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.UserManager_UserProfile_AsteriskId,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" })
+                                                                                       .Icon("glyphicon glyphicon-certificate form-control-feedback")
+                                                                                       .Field<User>(m => m.Profile.AsteriskId).Type(UIFieldType.Input).ExportToModel(),
+                                                                                       ssetings)
+            });
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.UserManager_Roles,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ButtonClickFunctionName("AddRole")
+                                                                                       .Field<User>("Roles").Type(UIFieldType.Buttons).ExportToModel(),
+                                                                                       ssetings)
             });
 
             db.SaveChanges();
