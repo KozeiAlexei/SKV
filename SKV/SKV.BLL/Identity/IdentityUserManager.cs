@@ -57,7 +57,7 @@ namespace SKV.BLL.Identity
         public async Task<IdentityResult> ChangePasswordAsync(string user_id, string old_password, string new_password) =>
             await UserManager.ChangePasswordAsync(user_id, old_password, new_password);
 
-        public async Task<IdentityResult> RegisterAsync(RegisterAccountViewModel model)
+        public async Task<IdentityResult> RegisterAsync(UserCreatingViewModel model)
         {
             var user = new User()
             {
@@ -69,7 +69,7 @@ namespace SKV.BLL.Identity
                     Name = model.Initials,
                     LastLoginDate = DateTime.Now,
                     RegistrationDate = DateTime.Now,
-                    AsteriskId = (int)model.AsteriskUniqueId
+                    AsteriskId = (int)model.AsteriskId
                 }
             };
 
@@ -100,12 +100,22 @@ namespace SKV.BLL.Identity
         {
             var identity_user = UserManager.FindById(user.Id);
 
-            identity_user.UserName = user.UserName;
             identity_user.Email = user.Email;
+            identity_user.UserName = user.UserName;
             identity_user.PhoneNumber = user.PhoneNumber;
+
             identity_user.Profile.Name = user.Profile.Name;
+            identity_user.Profile.AsteriskId = user.Profile.AsteriskId;
 
             return await UserManager.UpdateAsync(identity_user);
+        }
+
+        public async Task<IdentityResult> DeleteUserAsync(string user_id)
+        {
+            var user = await UserManager.FindByIdAsync(user_id);
+            var user_profile = DbManager.UserProfiles.Repository.Delete(user_id); DbManager.SaveChanges();
+
+            return await UserManager.DeleteAsync(user);
         }
 
         public void Dispose() => UserManager.Dispose();

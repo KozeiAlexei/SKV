@@ -54,7 +54,6 @@
                 {
                     b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.UserProfileModalName));
                     b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.UserCreatingModalName));
-                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.ConfirmationModalName));
                 })
                 .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial("UserManagerController")))
                 .Editable(false)

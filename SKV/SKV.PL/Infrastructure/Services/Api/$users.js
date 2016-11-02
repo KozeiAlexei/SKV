@@ -27,5 +27,21 @@
                 errorCallback(error, status);
             });
         },
+
+        ChangePassword: function (passwordChangingData, successCallback, errorCallback) {
+            $request.Post('/api/Security/Users/ChangePassword', passwordChangingData, function (response) {
+                successCallback(response);
+            }, function (error, status) {
+                errorCallback(error, status);
+            });
+        },
+
+        DeleteUser: function (user, successCallback, errorCallback) {
+            $request.Post('/api/Security/Users/DeleteUser', user, function (response) {
+                successCallback(response);
+            }, function (error, status) {
+                errorCallback(error, status);
+            });
+        }
     }
 }]);

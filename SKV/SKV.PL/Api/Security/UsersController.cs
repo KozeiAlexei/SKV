@@ -16,12 +16,13 @@ namespace SKV.PL.Api.Security
 {
     [Authorize]
     [RoutePrefix("api/Security/Users")]
-    public class UsersController : ApiController
+    public class UsersController : ApiControllerExt
     {
+        private IdentityUserManager UserManager { get { return Request.GetOwinContext().GetUserManager<IdentityUserManager>(); } }
+
         [HttpGet]
         [Route("GetUsers")]
-        public async Task<IHttpActionResult> GetUsers() =>
-            Json(await Request.GetOwinContext().GetUserManager<IdentityUserManager>().GetUsers());
+        public async Task<IHttpActionResult> GetUsers() => Json(await UserManager.GetUsers());
 
         [HttpPost]
         [Route("UpdateUserData")]
@@ -30,7 +31,7 @@ namespace SKV.PL.Api.Security
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await Request.GetOwinContext().GetUserManager<IdentityUserManager>().UpdateUserData(user);
+            var result = await UserManager.UpdateUserData(user);
 
             if (!result.Succeeded)
                 return GetErrorResult(result);
@@ -40,12 +41,12 @@ namespace SKV.PL.Api.Security
 
         [HttpPost]
         [Route("Register")]
-        public async Task<IHttpActionResult> Register(RegisterAccountViewModel model)
+        public async Task<IHttpActionResult> Register(UserCreatingViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await Request.GetOwinContext().GetUserManager<IdentityUserManager>().RegisterAsync(model);
+            var result = await UserManager.RegisterAsync(model);
 
             if (!result.Succeeded)
                 return GetErrorResult(result);
@@ -53,26 +54,37 @@ namespace SKV.PL.Api.Security
             return Ok();
         }
 
-        private IHttpActionResult GetErrorResult(IdentityResult result)
+        [HttpPost]
+        [Route("ChangePassword")]
+        public async Task<IHttpActionResult> ChangePassword(UserPasswordChangingViewModel model)
         {
-            if (result == null)
-                return InternalServerError();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
 
             if (!result.Succeeded)
-            {
-                if (result.Errors != null)
-                {
-                    foreach (string error in result.Errors)
-                        ModelState.AddModelError("", error);
-                }
+                return GetErrorResult(result);
 
-                if (ModelState.IsValid)
-                    return BadRequest();
+            return Ok();
+        }
 
+        [HttpPost]
+        [Route("DeleteUser")]
+        public async Task<IHttpActionResult> DeleteUser(User user)
+        {
+            if(user.Id == null)
+                ModelState.AddModelError(nameof(user.Id), "User identefier must be not null!");
+
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            }
 
-            return null;
+            var result = await UserManager.DeleteUserAsync(user.Id);
+
+            if (!result.Succeeded)
+                return GetErrorResult(result);
+
+            return Ok();
         }
     }
 }

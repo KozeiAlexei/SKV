@@ -212,6 +212,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiUtility.cs" />
+    <Compile Include="Api\ApiControllerExt.cs" />
     <Compile Include="Api\Security\AccountController.cs" />
     <Compile Include="Api\Security\UsersController.cs" />
     <Compile Include="Resources\Resource.en-US.designer.cs">
@@ -2964,8 +2966,6 @@
     <Content Include="Views\ComponentTemplates\DynamicTableColumnMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\DynamicTableActionMvcTemplate.cshtml" />
     <Content Include="Views\App\UserManager\TableBottomManagmentPanel.cshtml" />
-    <Content Include="Views\App\UserManager\ConfirmationModal.cshtml" />
-    <Content Include="Views\App\UserManager\ConfirmationModalBody.cshtml" />
     <Content Include="Views\ComponentTemplates\NotificationListMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\VerticalFormFieldMvcTemplate.cshtml" />
   </ItemGroup>

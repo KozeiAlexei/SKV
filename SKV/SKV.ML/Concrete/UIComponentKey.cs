@@ -13,6 +13,20 @@ namespace SKV.ML.Concrete
         UserManager_UserProfile_Name_Field,
         UserManager_PhoneNumber_Field,
         UserManager_UserProfile_AsteriskId,
-        UserManager_Roles
+        UserManager_Roles,
+
+        UserCreating_UserName_Field,
+        UserCreating_Email_Field,
+        UserCreating_Initials_Field,
+        UserCreating_PhoneNumber_Field,
+        UserCreating_AsteriskId,
+        UserCreating_Roles,
+        UserCreating_Password,
+        UserCreating_PasswordConfirm,
+
+        PasswordChanging_OldPassword,
+        PasswordChanging_NewPassword,
+        PasswordChanging_NewPasswordConfirm
+
     }
 }

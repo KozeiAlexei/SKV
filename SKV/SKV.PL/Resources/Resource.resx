@@ -189,6 +189,9 @@
   <data name="PasswordChanging" xml:space="preserve">
     <value>Смена пароля</value>
   </data>
+  <data name="PasswordChangingSuccess" xml:space="preserve">
+    <value>Пароль успешно изменен!</value>
+  </data>
   <data name="PhoneNumber" xml:space="preserve">
     <value>Номер телефона</value>
   </data>
@@ -228,6 +231,30 @@
   <data name="UserCreating" xml:space="preserve">
     <value>Создание пользователя</value>
   </data>
+  <data name="UserCreatingViewModel.AsteriskId" xml:space="preserve">
+    <value>Идентификатор в системе Asterisk</value>
+  </data>
+  <data name="UserCreatingViewModel.ConfirmPassword" xml:space="preserve">
+    <value>Подтверждение пароля</value>
+  </data>
+  <data name="UserCreatingViewModel.Email" xml:space="preserve">
+    <value>Адрес электронной почты</value>
+  </data>
+  <data name="UserCreatingViewModel.Initials" xml:space="preserve">
+    <value>Инициалы</value>
+  </data>
+  <data name="UserCreatingViewModel.Password" xml:space="preserve">
+    <value>Пароль</value>
+  </data>
+  <data name="UserCreatingViewModel.PhoneNumber" xml:space="preserve">
+    <value>Номер телефона</value>
+  </data>
+  <data name="UserCreatingViewModel.Roles" xml:space="preserve">
+    <value>Роли</value>
+  </data>
+  <data name="UserCreatingViewModel.UserName" xml:space="preserve">
+    <value>Логин</value>
+  </data>
   <data name="UserInitials" xml:space="preserve">
     <value>Инициалы</value>
   </data>
@@ -236,6 +263,15 @@
   </data>
   <data name="UserName" xml:space="preserve">
     <value>Логин</value>
+  </data>
+  <data name="UserPasswordChangingViewModel.NewPassword" xml:space="preserve">
+    <value>Новый пароль</value>
+  </data>
+  <data name="UserPasswordChangingViewModel.NewPasswordConfirm" xml:space="preserve">
+    <value>Подтверждение нового пароля</value>
+  </data>
+  <data name="UserPasswordChangingViewModel.OldPassword" xml:space="preserve">
+    <value>Старый пароль</value>
   </data>
   <data name="UserProfile" xml:space="preserve">
     <value>Профиль пользователя</value>

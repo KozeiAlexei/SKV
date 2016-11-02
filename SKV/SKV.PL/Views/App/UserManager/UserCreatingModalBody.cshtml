@@ -1,89 +1,47 @@
-﻿@{
-    var ctrl = ClientSideConfiguration.AngularUserManagerControllerName;
+﻿@using SKV.ML.Concrete.Model.UserModel;
+
+@model User
+
+@using SKV.BLL.Other
+@using SKV.ML.Concrete
+
+@using SKV.PL.ClientSide.Concrete;
+@using SKV.PL.ClientSide.Components.VerticalFormField
+
+@{
+    string ctrl = ClientSideConfiguration.AngularUserManagerControllerName;
 }
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Логин:</label>
-            <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.UserName}}" ng-model="@(ctrl).CurrentUser.UserName" />
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_UserName_Field)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Адрес электронной почты:</label>
-            <i class="icon-mail-3 form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.Email}}" ng-model="@(ctrl).CurrentUser.Email" />
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_Email_Field)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Инициалы:</label>
-            <i class="glyphicon glyphicon-user form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.Initials}}" ng-model="@(ctrl).CurrentUser.Initials" />
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_Initials_Field)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Телефон:</label>
-            <i class="glyphicon glyphicon-phone form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.PhoneNumber}}" ng-model="@(ctrl).CurrentUser.PhoneNumber" />
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_PhoneNumber_Field)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Уникальный номер в системе Asterisk:</label>
-            <i class="glyphicon glyphicon-certificate form-control-feedback"></i>
-            <input type="text" class="form-control" style="{{@(ctrl).ModelState.AsteriskUniqueId}}" ng-model="@(ctrl).CurrentUser.AsteriskUniqueId" />
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_AsteriskId)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <label id="initials"><b>Роли: </b></label>
-        <div id="OperationType" class="btn-group btn-group-justified" data-toggle="buttons" style="{{@(ctrl).ModelState.UserName}}">
-            <label ng-repeat="role in @(ctrl).DropdownData.Roles" class="btn btn-flat btn-success" ng-click="@(ctrl).AddRole(role)">
-                <input type="checkbox">{{ role }}
-            </label>
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_Roles)).Render())
 
-<br />
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_Password)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Пароль:</label>
-            <i class="icon-keyboard form-control-feedback"></i>
-            <input type="password" class="form-control" ng-model="@(ctrl).CurrentUser.Password" style="{{@(ctrl).ModelState.Password}}"/>
-        </div>
-    </div>
-</div>
+@(ComponentFactory.Create<VerticalFormFieldMvc>()
+                  .ImportFromModel(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.UserCreating_PasswordConfirm)).Render())
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="form-group has-feedback">
-            <label class="control-label">Подтверждение пароля:</label>
-            <i class="icon-keyboard form-control-feedback"></i>
-            <input type="password" class="form-control" ng-model="@(ctrl).CurrentUser.ConfirmPassword" style="{{@(ctrl).ModelState.ConfirmPassword}}"/>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
 
 <div class="row">
     <div class="col-lg-6">

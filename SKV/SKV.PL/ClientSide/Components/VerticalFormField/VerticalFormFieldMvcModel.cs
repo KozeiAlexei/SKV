@@ -29,6 +29,8 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
         public UIFieldType Type { get; set; }
 
 
+        public string ModelPath { get; set; }
+
         public string ButtonTitleFieldPath { get; set; }
 
         public string ButtonClickFunctionName { get; set; }

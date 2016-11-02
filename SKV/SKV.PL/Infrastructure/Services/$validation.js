@@ -42,6 +42,10 @@
             angular.forEach(serverModelState[''], function (value, key) {
                 clientNotifications.push({ Type: notificationType.Error, Text: value });
             });
+        },
+
+        AddSuccessNotification: function (notificationText, clientNotifications) {
+            clientNotifications.push({ Type: notificationType.Success, Text: notificationText });
         }
 
     }

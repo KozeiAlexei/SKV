@@ -70,7 +70,7 @@ namespace SKV.Api.Security
 
 
         [Route("Register")] [AllowAnonymous]
-        public async Task<IHttpActionResult> Register(RegisterAccountViewModel model)
+        public async Task<IHttpActionResult> Register(UserCreatingViewModel model)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

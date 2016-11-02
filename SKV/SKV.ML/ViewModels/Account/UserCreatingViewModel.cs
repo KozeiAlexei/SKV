@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SKV.ML.ViewModels.Account
 {
-    public class RegisterAccountViewModel
+    public class UserCreatingViewModel
     {
         [Required]
         public string UserName { get; set; }
@@ -31,6 +31,6 @@ namespace SKV.ML.ViewModels.Account
         [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }
 
-        public uint AsteriskUniqueId { get; set; }
+        public uint AsteriskId { get; set; }
     }
 }

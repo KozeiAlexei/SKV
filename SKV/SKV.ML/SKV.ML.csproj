@@ -127,8 +127,8 @@
     <Compile Include="Concrete\UIComponentKey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Account\OAuthUserModel.cs" />
-    <Compile Include="ViewModels\Account\RegisterAccountViewModel.cs" />
-    <Compile Include="ViewModels\Account\UserViewModel.cs" />
+    <Compile Include="ViewModels\Account\UserCreatingViewModel.cs" />
+    <Compile Include="ViewModels\Account\UserPasswordChangingViewModel.cs" />
     <Compile Include="ViewModels\Common\UICultureView.cs" />
     <Compile Include="ViewModels\Common\UIMenuItemView.cs" />
   </ItemGroup>

@@ -5,10 +5,11 @@
 
     string ut_factory = ClientSideConfiguration.AngularUserTableSettingsFactory;
 
-
     string user_profile_modal = ClientSideConfiguration.UserProfileModalName;
     string confirmation_modal = ClientSideConfiguration.ConfirmationModalName;
     string user_creating_modal = ClientSideConfiguration.UserCreatingModalName;
+
+    string password_changing_success = Resources.Resource.PasswordChangingSuccess;
 }
 
 <script type="text/javascript">
@@ -28,7 +29,7 @@
             var actions = @(ut_factory).Actions();
 
             @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.ViewActionId', self.ShowUserProfileModal);
-            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.DeleteActionId', self.ShowUserDeletingConfirmationModal);
+            @(ut_factory).SetActionClickById(actions, '@ClientSideConfiguration.DeleteActionId', self.DeleteUser);
 
             $scope.TableManagment.SetActions(actions)
             $scope.TableManagment.SetTableManagmentPanelCode(@(ut_factory).BottomManagmentPanel());
@@ -37,6 +38,7 @@
         self.Initialize = function () {
             self.CurrentUser = {};
             self.DropdownData = {}
+            self.PasswordChangingModel = {};
 
             self.ModelState = {};
             self.ModelStateFlag = {
@@ -64,7 +66,8 @@
         }
 
         self.ShowUserDeletingConfirmationModal = function (row) {
-            $tools.ShowModal('@confirmation_modal');
+            self.CurrentUser = row;
+            self.DeleteUser();
         }
 
         self.HideUserDeletingConfirmationModal = function (row) {
@@ -111,7 +114,7 @@
                     self.HideUserProfileModal();
                 },
                 function(error, status) {
-                    $validation.ServerValidationErrorsParse(error.ModelState);
+                    $validation.ServerValidationErrorsParse(error.ModelState, self.ModelState);
                     $validation.ServerValidationNotificationsParse(error.ModelState, self.Notifications);
                 });
             }
@@ -124,10 +127,27 @@
                     self.HideUserCreationModal();
                 },
                 function(error, status) {
+                    $validation.ServerValidationErrorsParse(error.ModelState, self.ModelState);
+                    $validation.ServerValidationNotificationsParse(error.ModelState, self.Notifications);
+                });
+            }
+        }
+
+        self.ChangePassword = function() {
+            if(self.ValidatePasswordChangingData(self.PasswordChangingModel)) {
+                $users.ChangePassword(self.PasswordChangingModel, function(result) {
+                    $validation.AddSuccessNotification('@password_changing_success', self.Notifications);
+                }, function(error, status) {
                     $validation.ServerValidationErrorsParse(error.ModelState);
                     $validation.ServerValidationNotificationsParse(error.ModelState, self.Notifications);
                 });
             }
+        }
+
+        self.DeleteUser = function(row) {
+            $users.DeleteUser(row, function(result) {
+                self.FetchingData();
+            }, function(error, status) {});
         }
 
         
@@ -135,6 +155,16 @@
         /*------------End data access methods------------*/
 
         /*------------Validation methods------------*/
+
+        self.ValidatePasswordChangingData = function(model) {
+            self.ClearValidationData();
+
+            self.ModelState.OldPassword = $validation.ValidateField(model.OldPassword, self.ModelStateFlag);
+            self.ModelState.NewPassword = $validation.ValidateField(model.NewPassword, self.ModelStateFlag);
+            self.ModelState.NewPasswordConfirm = $validation.ValidateField(model.NewPasswordConfirm, self.ModelStateFlag);
+
+            return self.ModelStateFlag.Flag;
+        }
 
         self.ValidateUserProfileData = function (model) {
             self.ClearValidationData();

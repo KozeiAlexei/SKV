@@ -13,7 +13,7 @@
             <div class="form-group has-feedback">
                 <label class="control-label"><b>@Model.LocalizedTitle:</b></label>
                 <i class="@Model.IconClass"></i>
-                <input @MvcHtmlString.Create(Model.CustomAttributes) class="form-control" style="{{ @(ctrl).ModelState.@(Model.FieldPath) }}" ng-model="@(ctrl).CurrentUser.@Model.FieldPath" />
+                <input @MvcHtmlString.Create(Model.CustomAttributes) class="form-control" style="{{ @(ctrl).ModelState.@(Model.FieldPath) }}" ng-model="@(ctrl).@Model.ModelPath.@Model.FieldPath" />
             </div>
         }
         else if (Model.Type == UIFieldType.Dropdown)
@@ -24,7 +24,7 @@
         {
             <label><b>@Model.LocalizedTitle: </b></label>
             <div class="btn-group btn-group-justified" data-toggle="buttons" style="{{ @(ctrl).ModelState.@(Model.FieldPath) }}">
-                <label ng-repeat="item in @(ctrl).DropdownData.@Model.FieldPath" class="btn btn-flat btn-success" ng-click="@(ctrl).@(Model.ButtonClickFunctionName)(role)">
+                <label ng-repeat="item in @(ctrl).DropdownData.@Model.FieldPath" class="btn btn-flat btn-success" ng-click="@(ctrl).@(Model.ButtonClickFunctionName)(item)">
                     <input type="checkbox">{{ item@(Model.ButtonTitleFieldPath) }}
                 </label>
             </div>
