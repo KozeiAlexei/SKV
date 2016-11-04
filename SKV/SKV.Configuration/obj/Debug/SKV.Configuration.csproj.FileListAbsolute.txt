@@ -1,5 +1,11 @@
 E:\Работа\SKV\SKV\SKV.Configuration\bin\Debug\SKV.Configuration.dll
 E:\Работа\SKV\SKV\SKV.Configuration\bin\Debug\SKV.Configuration.pdb
+E:\Работа\SKV\SKV\Build\Configuration\CRMCore.config
+E:\Работа\SKV\SKV\Build\Configuration\SKV.Configuration.dll
+E:\Работа\SKV\SKV\Build\Configuration\SKV.Configuration.pdb
+E:\Работа\SKV\SKV\SKV.PL\Components\Configurator\CRMCore.config
+E:\Работа\SKV\SKV\SKV.PL\Components\Configurator\SKV.Configuration.dll
+E:\Работа\SKV\SKV\SKV.PL\Components\Configurator\SKV.Configuration.pdb
+E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.csprojResolveAssemblyReference.cache
 E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.dll
 E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.pdb
-E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.csprojResolveAssemblyReference.cache

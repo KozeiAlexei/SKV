@@ -34,9 +34,9 @@
         .Body(body =>
         {
             body.Create<DynamicTableMvc>()
-                .AngularTableSettingsFactoryName(Config.AngularFactoryNames.AngularRoleTableSettingsFactory)
-                .AngularDynamicTableActionsController(Config.AngularControllerNames.AngularRoleManagerController)
-                .AngularDynamicTableActionsControllerName(Config.AngularControllerAs.AngularRoleManagerControllerAs)
+                .AngularTableSettingsFactoryName(Config.AngularFactoryNames.RoleTableSettingsFactory)
+                .AngularDynamicTableActionsController(Config.AngularControllerNames.RoleManagerController)
+                .AngularDynamicTableActionsControllerName(Config.AngularControllerAs.RoleManagerControllerAs)
                 .Columns(columns =>
                 {
                     columns.Create<DynamicTableColumnMvc>().Field<UserRole>(u => u.Name).Width(20)
@@ -53,7 +53,7 @@
                 //    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleProfileModalName));
                 //    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleCreatingModalName));
                 //})
-                .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial(Config.AngularControllerNames.AngularRoleManagerController)))
+                .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial(Config.AngularControllerNames.RoleManagerController)))
                 .Editable(false)
                 .Filterable(true)
                 .Paginable(true)

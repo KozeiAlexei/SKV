@@ -5,13 +5,13 @@ namespace SKV.Configuration
 {
     public class AngularMain
     {
-        private static ClassLibraryConfigSection Section { get; } = SectionHelper.GetSection("Angular.Main");
+        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("Angular.Main");
 
         public static string ApplicationName
         {
             get
             {
-                return Section[nameof(ApplicationName)];
+                return section[nameof(ApplicationName)];
             }
         }
 
@@ -19,7 +19,7 @@ namespace SKV.Configuration
         {
             get
             {
-                return Section[nameof(DynamicTableControllerAs)];
+                return section[nameof(DynamicTableControllerAs)];
             }
         }
     }

@@ -5,13 +5,13 @@ namespace SKV.Configuration
 {
     public class CRMMain
     {
-        private static ClassLibraryConfigSection Section { get; } = SectionHelper.GetSection("CRM.Main");
+        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("CRM.Main");
 
         public static uint DefaultTablePageSize
         {
             get
             {
-                return uint.Parse(Section[nameof(DefaultTablePageSize)]);
+                return uint.Parse(section[nameof(DefaultTablePageSize)]);
             }
         }
 
@@ -19,7 +19,7 @@ namespace SKV.Configuration
         {
             get
             {
-                return Section[nameof(ClientSideTemplatesPath)];
+                return section[nameof(ClientSideTemplatesPath)];
             }
         }
     }

@@ -5,21 +5,21 @@ namespace SKV.Configuration
 {
     public static class AngularControllerNames
     {
-        private static ClassLibraryConfigSection Section { get; } = SectionHelper.GetSection("Angular.ControllerNames");
+        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("Angular.ControllerNames");
 
-        public static string AngularUserManagerController
+        public static string UserManagerController
         {
             get
             {
-                return Section[nameof(AngularUserManagerController)];
+                return section[nameof(UserManagerController)];
             }
         }
 
-        public static string AngularRoleManagerController
+        public static string RoleManagerController
         {
             get
             {
-                return Section[nameof(AngularRoleManagerController)];
+                return section[nameof(RoleManagerController)];
             }
         }
     }

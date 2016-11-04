@@ -5,13 +5,13 @@ namespace SKV.Configuration
 {
     public static class AngularTableActionIds
     {
-        private static ClassLibraryConfigSection Section { get; } = SectionHelper.GetSection("Angular.TableActionIds");
+        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("Angular.TableActionIds");
 
         public static string ViewActionId
         {
             get
             {
-                return Section[nameof(ViewActionId)];
+                return section[nameof(ViewActionId)];
             }
         }
 
@@ -19,7 +19,7 @@ namespace SKV.Configuration
         {
             get
             {
-                return Section[nameof(DeleteActionId)];
+                return section[nameof(DeleteActionId)];
             }
         }
     }

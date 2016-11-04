@@ -79,6 +79,7 @@
     <ProjectReference Include="..\SKV.Configuration\SKV.Configuration.csproj">
       <Project>{ebee6181-0abf-47c0-8ac4-ce36e56acf93}</Project>
       <Name>SKV.Configuration</Name>
+      <Private>True</Private>
     </ProjectReference>
     <ProjectReference Include="..\SKV.DAL\SKV.DAL.csproj">
       <Project>{ebf46c7c-cb1c-4cd0-80cd-47ae32c9fa0e}</Project>

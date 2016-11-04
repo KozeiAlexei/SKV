@@ -1,5 +1,0 @@
-E:\Работа\SKV\SKV\SKV.VML\bin\Debug\SKV.VML.dll
-E:\Работа\SKV\SKV\SKV.VML\bin\Debug\SKV.VML.pdb
-E:\Работа\SKV\SKV\SKV.VML\obj\Debug\SKV.VML.dll
-E:\Работа\SKV\SKV\SKV.VML\obj\Debug\SKV.VML.pdb
-E:\Работа\SKV\SKV\SKV.VML\obj\Debug\SKV.VML.csprojResolveAssemblyReference.cache

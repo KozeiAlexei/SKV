@@ -34,8 +34,8 @@
         .Body(body =>
         {
             body.Create<DynamicTableMvc>()
-                .AngularTableSettingsFactoryName(Config.AngularFactoryNames.AngularUserTableSettingsFactory)
-                .AngularDynamicTableActionsController(Config.AngularControllerNames.AngularUserManagerController)
+                .AngularTableSettingsFactoryName(Config.AngularFactoryNames.UserTableSettingsFactory)
+                .AngularDynamicTableActionsController(Config.AngularControllerNames.UserManagerController)
                 .AngularDynamicTableActionsControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                 .Columns(columns =>
                 {

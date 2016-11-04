@@ -5,21 +5,21 @@ namespace SKV.Configuration
 {
     public static class AngularFactoryNames
     {
-        private static ClassLibraryConfigSection Section { get; } = SectionHelper.GetSection("Angular.FactoryNames");
+        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("Angular.FactoryNames");
 
-        public static string AngularUserTableSettingsFactory
+        public static string UserTableSettingsFactory
         {
             get
             {
-                return Section[nameof(AngularUserTableSettingsFactory)];
+                return section[nameof(UserTableSettingsFactory)];
             }
         }
 
-        public static string AngularRoleTableSettingsFactory
+        public static string RoleTableSettingsFactory
         {
             get
             {
-                return Section[nameof(AngularRoleTableSettingsFactory)];
+                return section[nameof(RoleTableSettingsFactory)];
             }
         }
     }

@@ -5,13 +5,13 @@ namespace SKV.Configuration
 {
     public static class AngularModalNames
     {
-        private static ClassLibraryConfigSection Section { get; } = SectionHelper.GetSection("Angular.ModalNames");
+        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("Angular.ModalNames");
 
         public static string UserProfileModalName
         {
             get
             {
-                return Section[nameof(UserProfileModalName)];
+                return section[nameof(UserProfileModalName)];
             }
         }
 
@@ -19,7 +19,7 @@ namespace SKV.Configuration
         {
             get
             {
-                return Section[nameof(UserCreatingModalName)];
+                return section[nameof(UserCreatingModalName)];
             }
         }
 
@@ -27,7 +27,7 @@ namespace SKV.Configuration
         {
             get
             {
-                return Section[nameof(RoleProfileModalName)];
+                return section[nameof(RoleProfileModalName)];
             }
         }
 
@@ -35,7 +35,7 @@ namespace SKV.Configuration
         {
             get
             {
-                return Section[nameof(RoleCreatingModalName)];
+                return section[nameof(RoleCreatingModalName)];
             }
         }
 
@@ -43,7 +43,7 @@ namespace SKV.Configuration
         {
             get
             {
-                return Section[nameof(ConfirmationModalName)];
+                return section[nameof(ConfirmationModalName)];
             }
         }
     }
