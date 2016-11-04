@@ -3,7 +3,7 @@
 
 {
     Name: '@Model.FieldPath',
-    Title: '@Model.Title',
+    Title: '@Model.Title.Value',
     Width: @Model.Width,
     Filter: @Model.Filterable.ToString().ToLower(),
     DataType: '@Enum.GetName(typeof(TableColumnDataType), Model.Type)',

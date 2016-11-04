@@ -216,6 +216,10 @@
     <Compile Include="Api\ApiControllerExt.cs" />
     <Compile Include="Api\Security\RolesController.cs" />
     <Compile Include="Api\Security\UsersController.cs" />
+    <Compile Include="ClientSide\Abstract\Features\ILocalizedTitle.cs" />
+    <Compile Include="ClientSide\Abstract\ILocalizedDataProvider.cs" />
+    <Compile Include="ClientSide\Concrete\LocalizedDataProvider.cs" />
+    <Compile Include="ClientSide\Concrete\LocalizedName.cs" />
     <Compile Include="Controllers\Account\LoginController.cs" />
     <Compile Include="Controllers\Administration\Security\RoleManagerController.cs" />
     <Compile Include="Resources\Resource.en-US.designer.cs">

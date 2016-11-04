@@ -49,7 +49,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public string FieldPath { get; set; }
 
         [Required]
-        public string Title { get; set; }
+        public LocalizedData Title { get; set; }
 
         public uint Width { get; set; }
 

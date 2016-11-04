@@ -15,7 +15,7 @@ namespace SKV.PL.ClientSide.Abstract.Components
     }
 
     public interface IDynamicTableColumn : IComponent, 
-                                           /*INameable<IDynamicTableColumn>, */ITitleable<IDynamicTableColumn>, IWidthable<IDynamicTableColumn>,
+                                           /*INameable<IDynamicTableColumn>, */ILocalizedTitle<IDynamicTableColumn>, IWidthable<IDynamicTableColumn>,
                                            IEditable<IDynamicTableColumn>, IFilterable<IDynamicTableColumn>, 
                                            ITypeable<IDynamicTableColumn, TableColumnDataType>
     {

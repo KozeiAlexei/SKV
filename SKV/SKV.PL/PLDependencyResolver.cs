@@ -37,6 +37,7 @@ namespace SKV.PL
                 Bind(typeof(IResponsibilityChain<VerticalFormFieldMvc>)).To(typeof(ResponsibilityChain<VerticalFormFieldMvc>));
 
                 Bind<IContainer>().To<Container>();
+                Bind<ILocalizedDataProvider<string, string>>().To<LocalizedDataProvider>();
             }
         }
 

@@ -39,19 +39,19 @@
                 .AngularDynamicTableActionsControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                 .Columns(columns =>
                 {
-                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.UserName).Title(Resources.Resource.UserName).Width(20)
+                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.UserName).Width(20)
                                     .Type(TableColumnDataType.Text).Editable(true).Filterable(true);
 
-                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.Email).Title(Resources.Resource.Email).Width(20)
+                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.Email).Width(20)
                                     .Type(TableColumnDataType.Text).Editable(true).Filterable(true);
 
-                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.PhoneNumber).Title(Resources.Resource.PhoneNumber).Width(20)
+                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.PhoneNumber).Width(20)
                                     .Type(TableColumnDataType.Text).Editable(true).Filterable(true);
 
-                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.Profile.Name).Title(Resources.Resource.UserInitials).Width(20)
+                    columns.Create<DynamicTableColumnMvc>().Field<User>(u => u.Profile.Name).Width(20)
                                     .Type(TableColumnDataType.Text).Editable(true).Filterable(true);
 
-                    columns.Create<DynamicTableColumnMvc>().Field<User>("Actions").Title(Resources.Resource.Actions).Width(20)
+                    columns.Create<DynamicTableColumnMvc>().Field<User>("Actions").Width(20)
                                     .Type(TableColumnDataType.Actions).Editable(true).Filterable(false);
                 })
                 .Body(b =>

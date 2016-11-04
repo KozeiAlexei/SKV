@@ -26,7 +26,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         #region Component setting
 
         //public IDynamicTableColumn Name(string name) => Chain.Responsibility(() => Model.FieldPath = name);
-        public IDynamicTableColumn Title(string title) => Chain.Responsibility(() => Model.Title = title);
+        public IDynamicTableColumn TitleKey(string key) => Chain.Responsibility(() => Model.Title = new LocalizedData(key));
 
         public IDynamicTableColumn Width(uint width) => Chain.Responsibility(() => Model.Width = width);
 
@@ -40,7 +40,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
             return Chain.Responsibility(() =>
             {
                 Model.FieldPath = field.GetPathWithoutSource().Replace(")", string.Empty); //fix reflection bug
-                Title($"{ typeof(TModel).Name }.{ Model.FieldPath }");
+                TitleKey($"{ typeof(TModel).Name }.{ Model.FieldPath }");
             });
         }
 
@@ -49,7 +49,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
             return Chain.Responsibility(() =>
             {
                 Model.FieldPath = field;
-                Title($"{ typeof(TModel).Name }.{ Model.FieldPath }");
+                TitleKey($"{ typeof(TModel).Name }.{ Model.FieldPath }");
             });
         }
 
