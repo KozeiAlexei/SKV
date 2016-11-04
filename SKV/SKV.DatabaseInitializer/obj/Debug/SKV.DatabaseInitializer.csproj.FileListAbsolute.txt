@@ -192,3 +192,5 @@ C:\Users\avkozej.BSS\Test\SKV\SKV.DatabaseInitializer\bin\Debug\ru\System.Web.Ra
 C:\Users\avkozej.BSS\Test\SKV\SKV.DatabaseInitializer\bin\Debug\ru\System.Web.WebPages.Razor.resources.dll
 C:\Users\avkozej.BSS\Test\SKV\SKV.DatabaseInitializer\bin\Debug\ru\System.Net.Http.Formatting.resources.dll
 C:\Users\avkozej.BSS\Test\SKV\SKV.DatabaseInitializer\bin\Debug\ru\System.Web.WebPages.Deployment.resources.dll
+E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.Configuration.dll
+E:\Работа\SKV\SKV\SKV.DatabaseInitializer\bin\Debug\SKV.Configuration.pdb

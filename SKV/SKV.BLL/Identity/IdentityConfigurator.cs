@@ -13,6 +13,7 @@ namespace SKV.BLL.Identity
         {
             app.CreatePerOwinContext(DatabaseContext.Create);
             app.CreatePerOwinContext<IdentityUserManager>(IdentityUserManager.Create);
+            app.CreatePerOwinContext<IdentityRoleManager>(IdentityRoleManager.Create);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions());
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

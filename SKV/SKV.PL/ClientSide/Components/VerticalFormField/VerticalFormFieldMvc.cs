@@ -83,6 +83,7 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
                 Model.ModelPath = model.ModelPath;
                 Model.FieldPath = model.FieldPath;
                 Model.IconClass = model.IconClass;
+                Model.ControllerName = model.ControllerName;
                 Model.CustomAttributes = model.CustomAttributes;
 
                 Model.Type = model.Type;
@@ -102,5 +103,8 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
 
         public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> ModelPath(string path) =>
             Chain.Responsibility(() => Model.ModelPath = path);
+
+        public IVerticalFormField<VerticalFormFieldMvcModel, UIFieldType> ControllerName(string name) =>
+            Chain.Responsibility(() => Model.ControllerName = name);
     }
 }

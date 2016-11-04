@@ -1,0 +1,83 @@
+﻿@using SKV.PL.ClientSide.Concrete;
+@using SKV.PL.ClientSide.Abstract.Components
+
+@using SKV.PL.ClientSide.Components
+@using SKV.PL.ClientSide.Components.Widget
+@using SKV.PL.ClientSide.Components.DynamicTable
+
+@using SKV.ML.Concrete.Model.UserModel
+
+@using Config = SKV.Configuration;
+
+@section Scripts {
+    @Linker.GetDirective("Widget")
+    @Linker.GetDirective("CompileHtml")
+    @Linker.GetDirective("DynamicTable")
+
+    @Linker.DynamicTableModule()
+
+    @Linker.GetService("Tools")
+    @Linker.GetService("Request")
+    @Linker.GetService("Location")
+
+    @Linker.GetServiceExt("$tools")
+    @Linker.GetServiceExt("$request")
+    @Linker.GetServiceExt("$validation")
+
+    @Linker.GetServiceExt("api/$users")
+    @Linker.GetServiceExt("api/$roles")
+}
+
+@(ComponentFactory.Create<WidgetMvc>()
+        .Id("RoleManagerWidget")
+        .Title(NameManager.GetName("RoleManager"))
+        .Body(body =>
+        {
+            body.Create<DynamicTableMvc>()
+                .AngularTableSettingsFactoryName(Config.AngularFactoryNames.AngularRoleTableSettingsFactory)
+                .AngularDynamicTableActionsController(Config.AngularControllerNames.AngularRoleManagerController)
+                .AngularDynamicTableActionsControllerName(Config.AngularControllerAs.AngularRoleManagerControllerAs)
+                .Columns(columns =>
+                {
+                    columns.Create<DynamicTableColumnMvc>().Field<UserRole>(u => u.Name).Width(20)
+                                    .Type(TableColumnDataType.Text).Filterable(true);
+
+                    columns.Create<DynamicTableColumnMvc>().Field<UserRole>(u => u.PageInstance.Name).Width(20)
+                                    .Type(TableColumnDataType.Text).Filterable(false);
+
+                    columns.Create<DynamicTableColumnMvc>().Field<UserRole>(u => u.PageInstance.URL).Width(20)
+                                    .Type(TableColumnDataType.Text).Filterable(false);
+                })
+                //.Body(b =>
+                //{
+                //    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleProfileModalName));
+                //    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleCreatingModalName));
+                //})
+                .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial(Config.AngularControllerNames.AngularRoleManagerController)))
+                .Editable(false)
+                .Filterable(true)
+                .Paginable(true)
+                .RowActions(actions =>
+                {
+                    actions.Create<DynamicTableActionMvc>()
+                           .Id(Config.AngularTableActionIds.ViewActionId)
+                           .Icon("glyphicon glyphicon-folder-open")
+                           .Title(string.Empty).Class("btn btn-flat btn-success  btn-md")
+                           .Click(FunctionType.Referrence)
+                           .Visible(FunctionType.Custom, @"function (row) { return true; }");
+
+                    actions.Create<DynamicTableActionMvc>()
+                           .Id(Config.AngularTableActionIds.DeleteActionId)
+                           .Icon("glyphicon glyphicon-remove")
+                           .Title(string.Empty).Class("btn btn-flat btn-danger  btn-md")
+                           .Click(FunctionType.Referrence)
+                           .Visible(FunctionType.Custom, @"function (row) { return (row.Id != null) && (row.Id != undefined); }");
+                })
+                .BottomManagmentPanel(panel => panel.Create<ContentMvc>().FromPartitalView(Html.Partial("TableBottomManagmentPanel")));
+        })
+        .Render()
+)
+
+
+
+

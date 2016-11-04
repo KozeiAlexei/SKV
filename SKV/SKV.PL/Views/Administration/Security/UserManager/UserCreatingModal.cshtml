@@ -1,0 +1,31 @@
+﻿@using SKV.PL.ClientSide.Concrete
+@using SKV.PL.ClientSide.Components
+@using SKV.PL.ClientSide.Components.Tabs
+@using SKV.PL.ClientSide.Components.Modal
+@using SKV.PL.ClientSide.Components.NotificationList
+
+@using Config = SKV.Configuration;
+
+@*Tabs setting*@
+@{
+    var user_creationg_tab = new TabMvcModel() { Id = "UserCreationWindow", Active = true, Title = Resources.Resource.UserCreating };
+    user_creationg_tab.Body.Create<ContentMvc>().FromPartitalView(Html.Partial("UserCreatingModalBody"));
+}
+
+@(ComponentFactory.Create<ModalMvc>()
+        .Id(Config.AngularModalNames.UserCreatingModalName)
+        .Title(Resources.Resource.UserCreating)
+        .Body(body =>
+        {
+            body.Create<NotificationListMvc>().NotificationsControllerPath($"{ Config.AngularControllerAs.UserManagerControllerAs }.Notifications");
+
+            body.Create<TabsMvc>()
+                    .Id("UserProfileTabs")
+                    .Tabs(tabs =>
+                    {
+                        tabs.Add(user_creationg_tab);
+                    });
+        })
+        .ManualClosing(true)
+        .Render()
+)

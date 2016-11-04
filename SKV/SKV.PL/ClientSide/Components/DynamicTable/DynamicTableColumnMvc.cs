@@ -3,6 +3,8 @@
 using SKV.PL.ClientSide.Concrete;
 using SKV.PL.ClientSide.Abstract;
 using SKV.PL.ClientSide.Abstract.Components;
+using System.Linq.Expressions;
+using System;
 
 namespace SKV.PL.ClientSide.Components.DynamicTable
 {
@@ -23,7 +25,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
 
         #region Component setting
 
-        public IDynamicTableColumn Name(string name) => Chain.Responsibility(() => Model.Name = name);
+        //public IDynamicTableColumn Name(string name) => Chain.Responsibility(() => Model.FieldPath = name);
         public IDynamicTableColumn Title(string title) => Chain.Responsibility(() => Model.Title = title);
 
         public IDynamicTableColumn Width(uint width) => Chain.Responsibility(() => Model.Width = width);
@@ -32,6 +34,24 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public IDynamicTableColumn Filterable(bool filterable) => Chain.Responsibility(() => Model.Filterable = filterable);
 
         public IDynamicTableColumn Type(TableColumnDataType type) => Chain.Responsibility(() => Model.Type = type);
+
+        public IDynamicTableColumn Field<TModel>(Expression<Func<TModel, object>> field)
+        {
+            return Chain.Responsibility(() =>
+            {
+                Model.FieldPath = field.GetPathWithoutSource().Replace(")", string.Empty); //fix reflection bug
+                Title($"{ typeof(TModel).Name }.{ Model.FieldPath }");
+            });
+        }
+
+        public IDynamicTableColumn Field<TModel>(string field)
+        {
+            return Chain.Responsibility(() =>
+            {
+                Model.FieldPath = field;
+                Title($"{ typeof(TModel).Name }.{ Model.FieldPath }");
+            });
+        }
 
         #endregion
 

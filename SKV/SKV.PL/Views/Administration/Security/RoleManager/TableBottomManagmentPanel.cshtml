@@ -1,0 +1,11 @@
+﻿@using Config = SKV.Configuration
+
+@{ 
+    var ctrl = Config.AngularControllerAs.AngularRoleManagerControllerAs;
+}
+
+<div>
+    <button class="btn btn-success btn-flat" ng-click="@(ctrl).ShowUserCreationModal()">
+        <span class="glyphicon glyphicon-plus">
+    </button>
+</div>

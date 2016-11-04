@@ -29,5 +29,7 @@ namespace SKV.PL.ClientSide.Abstract.Components
 
         IVerticalFormField<TComponentModel, TFieldType> ButtonTitleFieldPath(string path);
         IVerticalFormField<TComponentModel, TFieldType> ButtonClickFunctionName(string name);
+
+        IVerticalFormField<TComponentModel, TFieldType> ControllerName(string name);
     }
 }

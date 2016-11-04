@@ -13,8 +13,12 @@ namespace SKV.PL
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("ModuleRoute", "{module}/{controller}/{action}",
-                defaults: new { module = "Security", controller = "Account", action = "Index" });
+            routes.MapRoute("ModuleRoute0", "{controller}/{action}");
+
+            routes.MapRoute("ModuleRoute1", "{module}/{controller}/{action}",
+                defaults: new { module = "Account", controller = "Login", action = "Index" });
+
+            routes.MapRoute("ModuleRoute2", "{module}/{submodule}/{controller}/{action}");
         }
     }
 }

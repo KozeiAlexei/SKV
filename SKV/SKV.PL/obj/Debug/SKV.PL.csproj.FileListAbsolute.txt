@@ -262,3 +262,5 @@ C:\Users\avkozej.BSS\Test\SKV\SKV.PL\bin\en-US\SKV.PL.resources.dll
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\obj\Debug\SKV.PL.Resources.Resource.resources
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\obj\Debug\SKV.PL.Resources.Resource.en-US.resources
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\obj\Debug\en-US\SKV.PL.resources.dll
+E:\Работа\SKV\SKV\SKV.PL\bin\SKV.Configuration.dll
+E:\Работа\SKV\SKV\SKV.PL\bin\SKV.Configuration.pdb

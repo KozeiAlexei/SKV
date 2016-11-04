@@ -276,4 +276,13 @@
   <data name="UserProfile" xml:space="preserve">
     <value>Профиль пользователя</value>
   </data>
+  <data name="UserRole.Name" xml:space="preserve">
+    <value>Наименование</value>
+  </data>
+  <data name="UserRole.PageInstance.Name" xml:space="preserve">
+    <value>Наименование страницы по умолчанию</value>
+  </data>
+  <data name="UserRole.PageInstance.URL" xml:space="preserve">
+    <value>URL страницы по умолчанию</value>
+  </data>
 </root>

@@ -1,0 +1,34 @@
+﻿@using SKV.PL.ClientSide.Concrete
+@using SKV.PL.ClientSide.Components
+@using SKV.PL.ClientSide.Components.Tabs
+@using SKV.PL.ClientSide.Components.Modal
+@using SKV.PL.ClientSide.Components.NotificationList
+
+@using Config = SKV.Configuration;
+
+@*Tabs setting*@
+@{ 
+    var user_profile_tab = new TabMvcModel() { Id = "UserProfile", Active = true, Title = Resources.Resource.UserProfile };
+    var password_changing_tab = new TabMvcModel() { Id = "PasswordChanging", Active = false, Title = Resources.Resource.PasswordChanging };
+
+    user_profile_tab.Body.Create<ContentMvc>().FromPartitalView(Html.Partial("UserProfileTab"));
+    password_changing_tab.Body.Create<ContentMvc>().FromPartitalView(Html.Partial("PasswordChangingTab"));
+}
+
+@(ComponentFactory.Create<ModalMvc>()
+        .Id("UserProfileModal")
+        .Title(Resources.Resource.UserProfile)
+        .Body(body =>
+        {
+            body.Create<NotificationListMvc>().NotificationsControllerPath($"{ Config.AngularControllerAs.UserManagerControllerAs }.Notifications");
+            body.Create<TabsMvc>()
+                    .Id("UserProfileTabs")
+                    .Tabs(tabs =>
+                    {
+                        tabs.Add(user_profile_tab);
+                        tabs.Add(password_changing_tab);
+                    });
+        })
+        .ManualClosing(true)
+        .Render()
+)

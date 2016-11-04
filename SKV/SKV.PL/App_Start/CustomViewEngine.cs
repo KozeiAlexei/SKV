@@ -8,8 +8,9 @@ namespace SKV.PL.App_Start
         {
             var view_locations = new[]
             {
-                "~/Views/Security/{1}/{0}.cshtml",
-                "~/Views/App/{1}/{0}.cshtml"
+                "~/Views/Account/{1}/{0}.cshtml",
+
+                "~/Views/Administration/Security/{1}/{0}.cshtml"
             };
 
             ViewLocationFormats = view_locations;

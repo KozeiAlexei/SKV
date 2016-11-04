@@ -1,0 +1,5 @@
+E:\Работа\SKV\SKV\SKV.Configuration\bin\Debug\SKV.Configuration.dll
+E:\Работа\SKV\SKV\SKV.Configuration\bin\Debug\SKV.Configuration.pdb
+E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.dll
+E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.pdb
+E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.csprojResolveAssemblyReference.cache

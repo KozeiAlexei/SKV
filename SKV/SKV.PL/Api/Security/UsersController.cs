@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security.Cookies;
 using Newtonsoft.Json;
 using SKV.BLL.Identity;
 using SKV.ML.Concrete.Model.UserModel;
@@ -84,6 +85,14 @@ namespace SKV.PL.Api.Security
             if (!result.Succeeded)
                 return GetErrorResult(result);
 
+            return Ok();
+        }
+
+        [HttpGet]
+        [Route("Logout")]
+        public IHttpActionResult Logout()
+        {
+            Request.GetOwinContext().Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
     }

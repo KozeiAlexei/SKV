@@ -4,6 +4,8 @@ using SKV.PL.ClientSide.Abstract;
 using SKV.PL.ClientSide.Concrete;
 using SKV.PL.ClientSide.Abstract.Components;
 
+using Config = SKV.Configuration;
+
 namespace SKV.PL.ClientSide.Components.DynamicTable
 {
     public class DynamicTableModelMvc
@@ -16,16 +18,16 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
         public bool Filterable { get; set; } = false;
 
         public bool Paginable { get; set; } = true;
-        public uint PageSize { get; set; } = ClientSideConfiguration.DefaultTablePageSize;
+        public uint PageSize { get; set; } = Config.CRMMain.DefaultTablePageSize;
 
         [Required]
-        public string AngularApplicationName { get; set; } = ClientSideConfiguration.AngularApplicationName;
+        public string AngularApplicationName { get; set; } = Config.AngularMain.ApplicationName;
 
         [Required]
         public string AngularTableSettingsFactoryName { get; set; }
 
         [Required]
-        public string AngularDynamicTableControllerName { get; set; } = ClientSideConfiguration.AngularDynamicTableControllerName;
+        public string AngularDynamicTableControllerName { get; set; } = Config.AngularMain.DynamicTableControllerAs;
 
         [Required]
         public string AngularDynamicTableActionsController { get; set; }
@@ -44,7 +46,7 @@ namespace SKV.PL.ClientSide.Components.DynamicTable
     public class DynamicTableColumnModelMvc
     {
         [Required]
-        public string Name { get; set; }
+        public string FieldPath { get; set; }
 
         [Required]
         public string Title { get; set; }

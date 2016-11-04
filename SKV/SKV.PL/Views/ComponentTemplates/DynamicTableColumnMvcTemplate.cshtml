@@ -2,7 +2,7 @@
 @model SKV.PL.ClientSide.Components.DynamicTable.DynamicTableColumnModelMvc
 
 {
-    Name: '@Model.Name',
+    Name: '@Model.FieldPath',
     Title: '@Model.Title',
     Width: @Model.Width,
     Filter: @Model.Filterable.ToString().ToLower(),

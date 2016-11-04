@@ -30,7 +30,7 @@ function (ToolsService, LoginService) {
                         $('#LoginError').hide();
                         $("#LoginSuccessfull").show().animate({ "opacity": "1", "bottom": "-80px" }, 400);
 
-                        location.href = '/App/Home/Index';
+                        location.href = '/Home/Index';
                     }
                 });         
             } else { $("#Password").css({ "border-color": "#ff0000" }); }

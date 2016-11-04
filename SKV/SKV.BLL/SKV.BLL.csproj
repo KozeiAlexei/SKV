@@ -98,6 +98,7 @@
     <Compile Include="CurrencyRates\ForexParser.cs" />
     <Compile Include="Identity\IdentityConfigurator.cs" />
     <Compile Include="Identity\IdentityExt.cs" />
+    <Compile Include="Identity\IdentityRoleManager.cs" />
     <Compile Include="Identity\IdentityUserManager.cs" />
     <Compile Include="Other\CacheObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

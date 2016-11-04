@@ -1,4 +1,6 @@
 ﻿using SKV.PL.ClientSide.Abstract.Features;
+using System;
+using System.Linq.Expressions;
 
 namespace SKV.PL.ClientSide.Abstract.Components
 {
@@ -13,9 +15,13 @@ namespace SKV.PL.ClientSide.Abstract.Components
     }
 
     public interface IDynamicTableColumn : IComponent, 
-                                           INameable<IDynamicTableColumn>, ITitleable<IDynamicTableColumn>, IWidthable<IDynamicTableColumn>,
+                                           /*INameable<IDynamicTableColumn>, */ITitleable<IDynamicTableColumn>, IWidthable<IDynamicTableColumn>,
                                            IEditable<IDynamicTableColumn>, IFilterable<IDynamicTableColumn>, 
                                            ITypeable<IDynamicTableColumn, TableColumnDataType>
-    {       
+    {
+        IDynamicTableColumn Field<TModel>(Expression<Func<TModel, object>> field);
+
+        IDynamicTableColumn Field<TModel>(string field);
+
     }
 }

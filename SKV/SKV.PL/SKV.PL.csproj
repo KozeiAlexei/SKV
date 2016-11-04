@@ -214,8 +214,10 @@
   <ItemGroup>
     <Compile Include="ApiUtility.cs" />
     <Compile Include="Api\ApiControllerExt.cs" />
-    <Compile Include="Api\Security\AccountController.cs" />
+    <Compile Include="Api\Security\RolesController.cs" />
     <Compile Include="Api\Security\UsersController.cs" />
+    <Compile Include="Controllers\Account\LoginController.cs" />
+    <Compile Include="Controllers\Administration\Security\RoleManagerController.cs" />
     <Compile Include="Resources\Resource.en-US.designer.cs">
       <DependentUpon>Resource.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -232,7 +234,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="ClientSideConfiguration.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTable.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableAction.cs" />
     <Compile Include="ClientSide\Abstract\Components\IDynamicTableColumn.cs" />
@@ -288,9 +289,7 @@
     <Compile Include="ClientSide\Concrete\ViewRenderer.cs" />
     <Compile Include="Controllers\ControllerExt.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
-    <Compile Include="Controllers\Home\UserManagerController.cs" />
-    <Compile Include="Controllers\Security\AccountController.cs" />
-    <Compile Include="CRMConfiguration.cs" />
+    <Compile Include="Controllers\Administration\Security\UserManagerController.cs" />
     <Compile Include="ErrorHandler\AiHandleErrorAttribute.cs" />
     <Compile Include="Filters\LocalizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -2939,9 +2938,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Security\Account\Index.cshtml" />
     <Content Include="Scripts\version.json" />
-    <Content Include="Views\App\Home\Index.cshtml" />
     <Content Include="Views\Shared\AdditionalSidebarPartital.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\LanguageSidebarPartital.cshtml" />
@@ -2951,28 +2948,37 @@
     <Content Include="Views\Shared\RightSidebarPartital.cshtml" />
     <Content Include="Views\Shared\UserProfileInfoPartital.cshtml" />
     <Content Include="Views\Shared\UserSidebarPartital.cshtml" />
-    <Content Include="Views\Security\Account\IncludedDataPartital.cshtml" />
-    <Content Include="Views\App\UserManager\Index.cshtml" />
-    <Content Include="Views\App\UserManager\UserManagerController.cshtml" />
-    <Content Include="Views\App\UserManager\UserProfileModal.cshtml" />
-    <Content Include="Views\App\UserManager\UserProfileTab.cshtml" />
-    <Content Include="Views\App\UserManager\PasswordChangingTab.cshtml" />
-    <Content Include="Views\App\UserManager\UserCreatingModal.cshtml" />
-    <Content Include="Views\App\UserManager\UserCreatingModalBody.cshtml" />
     <Content Include="Views\ComponentTemplates\ModalMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\WidgetMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\TabsMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\DynamicTableMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\DynamicTableColumnMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\DynamicTableActionMvcTemplate.cshtml" />
-    <Content Include="Views\App\UserManager\TableBottomManagmentPanel.cshtml" />
     <Content Include="Views\ComponentTemplates\NotificationListMvcTemplate.cshtml" />
     <Content Include="Views\ComponentTemplates\VerticalFormFieldMvcTemplate.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\Index.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\PasswordChangingTab.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\TableBottomManagmentPanel.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\UserCreatingModal.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\UserCreatingModalBody.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\UserManagerController.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\UserProfileModal.cshtml" />
+    <Content Include="Views\Administration\Security\UserManager\UserProfileTab.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login\Index.cshtml" />
+    <Content Include="Views\Account\Login\IncludedDataPartital.cshtml" />
+    <Content Include="Views\Administration\Security\RoleManager\Index.cshtml" />
+    <Content Include="Views\Administration\Security\RoleManager\RoleManagerController.cshtml" />
+    <Content Include="Views\Administration\Security\RoleManager\TableBottomManagmentPanel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">
       <Project>{9759D337-D424-4166-8978-657F6ACCA2A2}</Project>
       <Name>SKV.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SKV.Configuration\SKV.Configuration.csproj">
+      <Project>{ebee6181-0abf-47c0-8ac4-ce36e56acf93}</Project>
+      <Name>SKV.Configuration</Name>
     </ProjectReference>
     <ProjectReference Include="..\SKV.ML\SKV.ML.csproj">
       <Project>{48c31015-40e5-4828-b49e-8607e440893e}</Project>

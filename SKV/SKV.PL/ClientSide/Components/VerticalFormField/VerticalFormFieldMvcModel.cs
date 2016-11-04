@@ -24,6 +24,9 @@ namespace SKV.PL.ClientSide.Components.VerticalFormField
 
         public string IconClass { get; set; }
 
+        [Required]
+        public string ControllerName { get; set; }
+
 
         [Required]
         public UIFieldType Type { get; set; }

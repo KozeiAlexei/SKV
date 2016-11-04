@@ -2,6 +2,6 @@
     return {
         scope: false,
         restrict: 'E',
-        templateUrl: '../../Infrastructure/Templates/DynamicTableTemplate.html'
+        templateUrl: '../../../../../Infrastructure/Templates/DynamicTableTemplate.html'
     }
 });

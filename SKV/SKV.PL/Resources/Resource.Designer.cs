@@ -536,5 +536,32 @@ namespace Resources {
                 return ResourceManager.GetString("UserProfile", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Наименование.
+        /// </summary>
+        public static string UserRole_Name {
+            get {
+                return ResourceManager.GetString("UserRole.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Наименование страницы по умолчанию.
+        /// </summary>
+        public static string UserRole_PageInstance_Name {
+            get {
+                return ResourceManager.GetString("UserRole.PageInstance.Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на URL страницы по умолчанию.
+        /// </summary>
+        public static string UserRole_PageInstance_URL {
+            get {
+                return ResourceManager.GetString("UserRole.PageInstance.URL", resourceCulture);
+            }
+        }
     }
 }
