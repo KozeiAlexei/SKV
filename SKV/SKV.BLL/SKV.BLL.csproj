@@ -91,6 +91,9 @@
   <ItemGroup>
     <Compile Include="Abstract\CurrencyRates\IForexParser.cs" />
     <Compile Include="Abstract\CurrencyRates\ICurrencyRateManager.cs" />
+    <Compile Include="Abstract\Identity\IIdentityPermissionManager.cs" />
+    <Compile Include="Abstract\Identity\IIdentityRoleManager.cs" />
+    <Compile Include="Abstract\Identity\IIdentityUserManager.cs" />
     <Compile Include="Abstract\UI\IUICultureManager.cs" />
     <Compile Include="Abstract\UI\IUIMenuItemView.cs" />
     <Compile Include="BLLDependencyResolver.cs" />
@@ -98,6 +101,7 @@
     <Compile Include="CurrencyRates\ForexParser.cs" />
     <Compile Include="Identity\IdentityConfigurator.cs" />
     <Compile Include="Identity\IdentityExt.cs" />
+    <Compile Include="Identity\IdentityPermissionManager.cs" />
     <Compile Include="Identity\IdentityRoleManager.cs" />
     <Compile Include="Identity\IdentityUserManager.cs" />
     <Compile Include="Other\CacheObject.cs" />

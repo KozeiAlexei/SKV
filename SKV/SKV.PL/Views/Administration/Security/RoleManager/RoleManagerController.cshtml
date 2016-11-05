@@ -5,39 +5,38 @@
     string controller = Config.AngularControllerNames.RoleManagerController;
     string controller_name = Config.AngularControllerAs.RoleManagerControllerAs;
 
-    string ut_factory = Config.AngularFactoryNames.RoleTableSettingsFactory;
+    string ts_factory = Config.AngularFactoryNames.RoleTableSettingsFactory;
 
     string profile_modal = Config.AngularModalNames.RoleProfileModalName;
     string creating_modal = Config.AngularModalNames.RoleCreatingModalName;
 }
 
 <script type="text/javascript">
-    angular.module('@app').controller('@controller', ['$scope', '@ut_factory', '$tools', '$users', '$roles', '$validation',
-    function ($scope, @ut_factory, $tools, $users, $roles, $validation) {
+    angular.module('@app').controller('@controller', ['$scope', '@ts_factory', '$tools', '$roles', '$validation', '$permissions',
+    function ($scope, @ts_factory, $tools, $roles, $validation, $permissions) {
         var self = this;
 
         self.UISetting = function() {
-            $scope.TableManagment.Columns(@(ut_factory).Columns());
+            $scope.TableManagment.Columns(@(ts_factory).Columns());
 
-            $scope.TableManagment.Editable(@(ut_factory).Editable());
-            $scope.TableManagment.Paginable(@(ut_factory).Paginable());
-            $scope.TableManagment.Filterable(@(ut_factory).Filterable());
+            $scope.TableManagment.Editable(@(ts_factory).Editable());
+            $scope.TableManagment.Paginable(@(ts_factory).Paginable());
+            $scope.TableManagment.Filterable(@(ts_factory).Filterable());
 
-            $scope.TableManagment.PageSize(@(ut_factory).PageSize());
+            $scope.TableManagment.PageSize(@(ts_factory).PageSize());
 
-            var actions = @(ut_factory).Actions();
+            var actions = @(ts_factory).Actions();
 
-            @(ut_factory).SetActionClickById(actions, '@Config.AngularTableActionIds.ViewActionId', self.ShowUserProfileModal);
-            @(ut_factory).SetActionClickById(actions, '@Config.AngularTableActionIds.DeleteActionId', self.DeleteUser);
+            @(ts_factory).SetActionClickById(actions, '@Config.AngularTableActionIds.ViewActionId', self.ShowRoleProfileModal);
+            @(ts_factory).SetActionClickById(actions, '@Config.AngularTableActionIds.DeleteActionId', self.DeleteRole);
 
             $scope.TableManagment.SetActions(actions)
-            $scope.TableManagment.SetTableManagmentPanelCode(@(ut_factory).BottomManagmentPanel());
+            $scope.TableManagment.SetTableManagmentPanelCode(@(ts_factory).BottomManagmentPanel());
         }
 
         self.Initialize = function () {
-            self.CurrentUser = {};
             self.DropdownData = {}
-            self.PasswordChangingModel = {};
+            self.CurrentRole = {};
 
             self.ModelState = {};
             self.ModelStateFlag = {
@@ -53,26 +52,26 @@
 
         /*------------Modal methods------------*/
 
-        self.ShowUserProfileModal = function (row) {
+        self.ShowRoleProfileModal = function (row) {
             self.ClearValidationData();
 
-            self.CurrentUser = $tools.Copy(row);
+            self.CurrentRole = $tools.Copy(row);
             $tools.ShowModal('@profile_modal');
         }
 
-        self.HideUserProfileModal = function () {
+        self.HideRoleProfileModal = function () {
             $tools.HideModal('@profile_modal');
         }
 
-        self.ShowUserDeletingConfirmationModal = function (row) {
-            self.CurrentUser = row;
-            self.DeleteUser();
+        self.ShowRoleDeletingConfirmationModal = function (row) {
+            self.CurrentRole = row;
+            self.DeleteRole();
         }
 
-        self.ShowUserCreationModal = function () {
+        self.ShowRoleCreationModal = function () {
             self.ClearValidationData();
 
-            self.CurrentUser = {};
+            self.CurrentRole = {};
             $tools.ShowModal('@creating_modal');
         }
 
@@ -86,27 +85,24 @@
 
         self.FetchingData = function() {
             $roles.GetRoles(function(roles) {
-                self.DropdownData.Roles = roles;
-                self.GetUsers();
-            });
-        }
-
-        self.GetUsers = function() {
-            $users.GetUsers(function (users) {
                 var data = [];
-                angular.forEach(users, function (user) {
-                    data.push({ Data: user });
+                angular.forEach(roles, function (role) {
+                    data.push({ Data: role });
                 });
 
                 $scope.TableManagment.LoadData(data);
-            })
+
+                $permissions.GetPermissions(function(permissions) {
+                    self.DropdownData.Permissions = permissions;
+                })
+            });
         }
 
-        self.UpdateUserData = function() {
-            if (self.ValidateUserProfileData(self.CurrentUser)) {
-                $users.UpdateUserData(self.CurrentUser, function (result) {
+        self.UpdateRoleData = function() {
+            if (self.ValidateRoleProfileData(self.CurrentRole)) {
+                $users.UpdateRoleData(self.CurrentRole, function (result) {
                     self.FetchingData();
-                    self.HideUserProfileModal();
+                    self.HideRoleProfileModal();
                 },
                 function(error, status) {
                     $validation.ServerValidationErrorsParse(error.ModelState, self.ModelState);
@@ -115,11 +111,11 @@
             }
         }
 
-        self.Register = function() {
-            if (self.ValidateRegisterUserProfileData(self.CurrentUser)) {
-                $users.Register(self.CurrentUser, function (result) {
+        self.Create = function() {
+            if (self.ValidateCreatingRoleProfileData(self.CurrentRole)) {
+                $roles.Create(self.CurrentRole, function (result) {
                     self.FetchingData();
-                    self.HideUserCreationModal();
+                    self.HideRoleCreationModal();
                 },
                 function(error, status) {
                     $validation.ServerValidationErrorsParse(error.ModelState, self.ModelState);
@@ -128,8 +124,8 @@
             }
         }
 
-        self.DeleteUser = function(row) {
-            $users.DeleteUser(row, function(result) {
+        self.DeleteRole = function(row) {
+            $roles.DeleteRole(row, function(result) {
                 self.FetchingData();
             }, function(error, status) {});
         }
@@ -140,17 +136,7 @@
 
         /*------------Validation methods------------*/
 
-        self.ValidatePasswordChangingData = function(model) {
-            self.ClearValidationData();
-
-            self.ModelState.OldPassword = $validation.ValidateField(model.OldPassword, self.ModelStateFlag);
-            self.ModelState.NewPassword = $validation.ValidateField(model.NewPassword, self.ModelStateFlag);
-            self.ModelState.NewPasswordConfirm = $validation.ValidateField(model.NewPasswordConfirm, self.ModelStateFlag);
-
-            return self.ModelStateFlag.Flag;
-        }
-
-        self.ValidateUserProfileData = function (model) {
+        self.ValidateRoleProfileData = function (model) {
             self.ClearValidationData();
 
             self.ModelState.Email = $validation.ValidateField(model.Email, self.ModelStateFlag);
@@ -162,7 +148,7 @@
             return self.ModelStateFlag.Flag
         }
 
-        self.ValidateRegisterUserProfileData = function (model) {
+        self.ValidateCreatingRoleProfileData = function (model) {
             self.ClearValidationData();
 
             self.ModelState.Email = $validation.ValidateField(model.Email, self.ModelStateFlag);

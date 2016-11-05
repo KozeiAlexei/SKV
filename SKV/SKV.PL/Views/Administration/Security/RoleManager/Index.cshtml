@@ -24,8 +24,9 @@
     @Linker.GetServiceExt("$request")
     @Linker.GetServiceExt("$validation")
 
-    @Linker.GetServiceExt("api/$users")
-    @Linker.GetServiceExt("api/$roles")
+    @Linker.GetServiceExt("Api/Administration/Security/$users")
+    @Linker.GetServiceExt("Api/Administration/Security/$roles")
+    @Linker.GetServiceExt("Api/Administration/Security/$permissions")
 }
 
 @(ComponentFactory.Create<WidgetMvc>()
@@ -47,6 +48,9 @@
 
                     columns.Create<DynamicTableColumnMvc>().Field<UserRole>(u => u.PageInstance.URL).Width(20)
                                     .Type(TableColumnDataType.Text).Filterable(false);
+
+                    columns.Create<DynamicTableColumnMvc>().Field<UserRole>("Actions").Width(20)
+                                    .Type(TableColumnDataType.Actions).Editable(true).Filterable(false);
                 })
                 //.Body(b =>
                 //{

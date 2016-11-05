@@ -24,8 +24,8 @@
     @Linker.GetServiceExt("$request")
     @Linker.GetServiceExt("$validation")
 
-    @Linker.GetServiceExt("api/$users")
-    @Linker.GetServiceExt("api/$roles")
+    @Linker.GetServiceExt("Api/Administration/Security/$users")
+    @Linker.GetServiceExt("Api/Administration/Security/$roles")
 }
 
 @(ComponentFactory.Create<WidgetMvc>()

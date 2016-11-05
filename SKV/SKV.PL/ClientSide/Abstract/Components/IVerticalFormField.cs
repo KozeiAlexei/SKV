@@ -8,7 +8,8 @@ namespace SKV.PL.ClientSide.Abstract.Components
     {
         Input,
         Buttons,
-        Dropdown
+        Dropdown,
+        SelectListBox
     }
 
     public interface IVerticalFormField<TComponentModel, TFieldType> : IComponent, 

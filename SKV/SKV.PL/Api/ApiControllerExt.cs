@@ -30,5 +30,12 @@ namespace SKV.PL.Api
 
             return null;
         }
+
+        protected void ThrowIfNull<TObject>(TObject obj, string name, Action postback) where TObject : class
+        {
+            if (obj == null)
+                throw new ArgumentNullException(name);
+            postback();
+        }
     }
 }

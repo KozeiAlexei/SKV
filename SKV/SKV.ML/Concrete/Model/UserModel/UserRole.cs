@@ -15,16 +15,13 @@ namespace SKV.ML.Concrete.Model.UserModel
 
         Lead,
         Manager,
-        Cashier
+        Cashier,
+
+        Custom
     }
 
     public class UserRole : IdentityRole, IUserRole<string, DefaultRole>
     {
-        [Key]
-        public new string Id { get; set; }
-
-        public new string Name { get; set; }
-
         public int DefaultPageId { get; set; }
 
         [ForeignKey(nameof(DefaultPageId))]

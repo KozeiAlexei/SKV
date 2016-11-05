@@ -14,6 +14,7 @@ using SKV.PL.ClientSide.Abstract.Components;
 using SKV.PL.ClientSide.Components.VerticalFormField;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -81,6 +82,32 @@ namespace SKV.DatabaseInitializer
 
             var result = user_manager.CreateAsync(user, "Evolution1_").Result;
 
+            db.Pages.Add(new Page() { Name = "Главная", URL = "Home/Index" });
+            db.SaveChanges();
+
+
+            var role_manager = new RoleManager<UserRole>(new RoleStore<UserRole>(db));
+            var role = new UserRole()
+            {
+                DefaultRoleCode = DefaultRole.Admin,
+                DefaultPageId = 1,
+                Name = "Admin",
+            };
+            var role_result = role_manager.Create(role);
+
+            var perm1 = new UserPermission() { Name = "Показ пункта меню \"Администрирование\"", Code = UserPermissionCode.ShowAdministrationMenuItem };
+            var perm2 = new UserPermission() { Name = "Показ пункта меню \"Оператор\"", Code = UserPermissionCode.ShowOperatorMenuItem };
+
+            db.UserPermissions.Add(perm1);
+            db.UserPermissions.Add(perm2);
+
+            db.SaveChanges();
+
+            role = db.Roles.OfType<UserRole>().Include(e => e.Permissions).Where(e => e.DefaultRoleCode == DefaultRole.Admin).First();
+            role.Permissions.Add(perm1);
+            role.Permissions.Add(perm2);
+
+
             #region UIData
             var ssetings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
             var current_user = "CurrentUser";
@@ -141,7 +168,7 @@ namespace SKV.DatabaseInitializer
                 Id = (int)UIComponentKey.UserManager_Roles,
                 TypeName = typeof(VerticalFormFieldMvc).Name,
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ButtonClickFunctionName("AddRole").ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
-                                                                                       .Field<User>("Roles").Type(UIFieldType.Buttons).ExportToModel(),
+                                                                                       .Field<User>("Roles").Type(UIFieldType.Buttons).ButtonTitleFieldPath(nameof(UserRole.Name)).ExportToModel(),
                                                                                        ssetings)
             });
 
@@ -203,7 +230,7 @@ namespace SKV.DatabaseInitializer
             {
                 Id = (int)UIComponentKey.UserCreating_Roles,
                 TypeName = typeof(VerticalFormFieldMvc).Name,
-                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ButtonClickFunctionName("AddRole").ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ButtonClickFunctionName("AddRole").ButtonTitleFieldPath(nameof(UserRole.Name)).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Field<UserCreatingViewModel>("Roles").Type(UIFieldType.Buttons).ExportToModel(),
                                                                                        ssetings)
             });

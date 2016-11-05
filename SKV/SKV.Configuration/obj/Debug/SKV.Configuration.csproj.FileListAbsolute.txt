@@ -9,3 +9,9 @@ E:\Работа\SKV\SKV\SKV.PL\Components\Configurator\SKV.Configuration.pdb
 E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.csprojResolveAssemblyReference.cache
 E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.dll
 E:\Работа\SKV\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.pdb
+C:\Users\avkozej.BSS\Test\SKV\SKV.PL\Components\Configurator\CRMCore.config
+C:\Users\avkozej.BSS\Test\SKV\SKV.PL\Components\Configurator\SKV.Configuration.dll
+C:\Users\avkozej.BSS\Test\SKV\SKV.PL\Components\Configurator\SKV.Configuration.pdb
+C:\Users\avkozej.BSS\Test\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.csprojResolveAssemblyReference.cache
+C:\Users\avkozej.BSS\Test\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.dll
+C:\Users\avkozej.BSS\Test\SKV\SKV.Configuration\obj\Debug\SKV.Configuration.pdb
