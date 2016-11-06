@@ -15,6 +15,8 @@ namespace SKV.PL.App_Start
     using BLL.Abstract.Identity;
 
     using ML.Concrete.Model.UserModel;
+    using ML.ViewModels.Account;
+    using Microsoft.AspNet.Identity.Owin;
 
     public static class NinjectWebCommon 
     {
@@ -54,7 +56,11 @@ namespace SKV.PL.App_Start
 
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind(typeof(IIdentityRoleManager<UserRole>)).To<IdentityRoleManager>();
             kernel.Bind(typeof(IIdentityPermissionManager<UserPermission>)).To<IdentityPermissionManager>();
+
+            kernel.Bind(typeof(IIdentityUserManager<User, UserCreatingViewModel>)).ToMethod(m => 
+                new HttpContextWrapper(HttpContext.Current).GetOwinContext().GetUserManager<IdentityUserManager>());
         }        
     }
 }

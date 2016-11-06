@@ -293,3 +293,10 @@ C:\Users\avkozej.BSS\Test\SKV\SKV.PL\bin\WebActivatorEx.dll
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\bin\Ninject.Web.Common.xml
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\bin\Ninject.Web.WebApi.xml
 C:\Users\avkozej.BSS\Test\SKV\SKV.PL\bin\Ninject.Web.WebApi.WebHost.xml
+E:\Работа\SKV\SKV\SKV.PL\bin\Ninject.Web.Common.dll
+E:\Работа\SKV\SKV\SKV.PL\bin\Ninject.Web.WebApi.dll
+E:\Работа\SKV\SKV\SKV.PL\bin\Ninject.Web.WebApi.WebHost.dll
+E:\Работа\SKV\SKV\SKV.PL\bin\WebActivatorEx.dll
+E:\Работа\SKV\SKV\SKV.PL\bin\Ninject.Web.Common.xml
+E:\Работа\SKV\SKV\SKV.PL\bin\Ninject.Web.WebApi.xml
+E:\Работа\SKV\SKV\SKV.PL\bin\Ninject.Web.WebApi.WebHost.xml

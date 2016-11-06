@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Newtonsoft.Json;
+using SKV.BLL.Abstract.Identity;
 using SKV.BLL.Identity;
 using SKV.ML.Concrete.Model.UserModel;
 using SKV.ML.ViewModels.Account;
@@ -19,11 +20,16 @@ namespace SKV.PL.Api.Security
     [RoutePrefix("api/Administration/Security/Users")]
     public class UsersController : ApiControllerExt
     {
-        private IdentityUserManager UserManager { get { return Request.GetOwinContext().GetUserManager<IdentityUserManager>(); } }
+        private IIdentityUserManager<User, UserCreatingViewModel> UserManager { get; set; }
+
+        public UsersController(IIdentityUserManager<User, UserCreatingViewModel> user_manager)
+        {
+            ThrowIfNull(user_manager, nameof(user_manager), postback: () => UserManager = user_manager);
+        }
 
         [HttpGet]
         [Route("GetUsers")]
-        public async Task<IHttpActionResult> GetUsers() => Json(await UserManager.GetUsers());
+        public async Task<IHttpActionResult> GetUsers() => Json(await UserManager.GetUsersAsync());
 
         [HttpPost]
         [Route("UpdateUserData")]
@@ -32,7 +38,7 @@ namespace SKV.PL.Api.Security
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await UserManager.UpdateUserData(user);
+            var result = await UserManager.UpdateUserDataAsync(user);
 
             if (!result.Succeeded)
                 return GetErrorResult(result);
