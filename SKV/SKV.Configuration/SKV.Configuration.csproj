@@ -47,6 +47,7 @@
     <Compile Include="AngularFactoryNames.cs" />
     <Compile Include="AngularMain.cs" />
     <Compile Include="AngularModalNames.cs" />
+    <Compile Include="AngularObjectNames.cs" />
     <Compile Include="AngularTableActionIds.cs" />
     <Compile Include="CRMMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

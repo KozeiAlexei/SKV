@@ -1,5 +1,7 @@
 ﻿@using Config = SKV.Configuration;
 
+@using SKV.PL.ClientSide.Concrete;
+
 @{
     string app = Config.AngularMain.ApplicationName;
     string controller = Config.AngularControllerNames.RoleManagerController;
@@ -7,7 +9,7 @@
 
     string ts_factory = Config.AngularFactoryNames.RoleTableSettingsFactory;
 
-    string profile_modal = Config.AngularModalNames.RoleProfileModalName;
+    string profile_modal = NamesGenerator.GetModalId(Config.AngularObjectNames.RoleProfile);
     string creating_modal = Config.AngularModalNames.RoleCreatingModalName;
 }
 

@@ -1,6 +1,7 @@
 ﻿using SKV.BLL.Abstract.Identity;
 using SKV.BLL.Identity;
 using SKV.ML.Concrete.Model.UserModel;
+using SKV.ML.ViewModels.Administration.Security.Role;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,5 +26,53 @@ namespace SKV.PL.Api.Security
         [HttpGet]
         [Route("GetRoles")]
         public async Task<IHttpActionResult> GetRoles() => Json(await RoleManager.GetRolesAsync());
+
+        [HttpPost]
+        [Route("UpdateRoleData")]
+        public async Task<IHttpActionResult> UpdateRoleData(UserRole role)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await RoleManager.UpdateRoleDataAsync(role);
+
+            if (!result.Succeeded)
+                return GetErrorResult(result);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("Create")]
+        public async Task<IHttpActionResult> CreateRole(RoleCreatingViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await RoleManager.CreateAsync(model);
+
+            if (!result.Succeeded)
+                return GetErrorResult(result);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("Delete")]
+        public async Task<IHttpActionResult> DeleteRole(UserRole role)
+        {
+            if (role.Id == null)
+                ModelState.AddModelError(nameof(role.Id), "Role identefier must be not null!");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var result = await RoleManager.DeleteRoleAsync(role.Id);
+
+            if (!result.Succeeded)
+                return GetErrorResult(result);
+
+            return Ok();
+        }
     }
 }

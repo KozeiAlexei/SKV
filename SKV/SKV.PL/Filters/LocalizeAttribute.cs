@@ -2,35 +2,48 @@
 using System.Web.Mvc;
 using System.Threading;
 using System.Globalization;
+
 using SKV.BLL.Abstract.UI;
-using SKV.BLL;
-using Ninject;
 
 using SKV.ML.Concrete.Model.UIModel;
+
+using CRMConfig = SKV.Configuration;
+using Ninject;
+using SKV.PL.App_Start;
 
 namespace SKV.PL.Filters
 {
     public class LocalizeAttribute : FilterAttribute, IActionFilter
     {
-        private IUICultureManager ui_culture_manager = BLLDependencyResolver.Kernel.Get<IUICultureManager>();
+        private IUICultureManager UICultureManager { get; set; }
 
-        public void OnActionExecuted(ActionExecutedContext filter_context)
+        public LocalizeAttribute()
         {
-            var current_culture = default(UICulture);
-            var default_culture = ui_culture_manager.GetDefaultCulture();
+            UICultureManager = NinjectWebCommon.Bootstrapper.Kernel.Get<IUICultureManager>(); 
+        }
 
-            var cultures = ui_culture_manager.GetUICultures();
+        public LocalizeAttribute(IUICultureManager uiCultureManager)
+        {
+            PLUtility.ThrowIfNull(uiCultureManager, nameof(uiCultureManager), () => UICultureManager = uiCultureManager);
+        }
 
-            var culture_cookie = filter_context.HttpContext.Request.Cookies[PLStaticData.CultureCookieName];
-            if (culture_cookie != null)
-                current_culture = cultures.First(c => c.Culture == culture_cookie.Value);
+        public void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            var currentCulture = default(UICulture);
+            var defaultCulture = UICultureManager.GetDefaultCulture();
+
+            var cultures = UICultureManager.GetUICultures();
+
+            var cultureCookie = filterContext.HttpContext.Request.Cookies[CRMConfig.CRMMain.CultureCookieName];
+            if (cultureCookie != null)
+                currentCulture = cultures.First(c => c.Culture == cultureCookie.Value);
             else
-                current_culture = default_culture;
+                currentCulture = defaultCulture;
 
-            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(current_culture.Culture);
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(current_culture.Culture);
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture(currentCulture.Culture);
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.CreateSpecificCulture(currentCulture.Culture);
 
-            filter_context.Controller.ViewBag.CurrentUICulture = current_culture.Name;
+            filterContext.Controller.ViewBag.CurrentUICulture = currentCulture.Name;
         }
 
         public void OnActionExecuting(ActionExecutingContext filterContext) { }

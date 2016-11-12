@@ -129,6 +129,7 @@
     <Compile Include="ViewModels\Account\OAuthUserModel.cs" />
     <Compile Include="ViewModels\Account\UserCreatingViewModel.cs" />
     <Compile Include="ViewModels\Account\UserPasswordChangingViewModel.cs" />
+    <Compile Include="ViewModels\Administration\Security\Role\RoleCreatingViewModel.cs" />
     <Compile Include="ViewModels\Common\UICultureView.cs" />
     <Compile Include="ViewModels\Common\UIMenuItemView.cs" />
   </ItemGroup>

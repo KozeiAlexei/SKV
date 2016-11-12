@@ -5,7 +5,13 @@ using System.Web;
 
 namespace SKV.PL
 {
-    public class ApiUtility
+    public class PLUtility
     {
+        public static void ThrowIfNull<TObject>(TObject obj, string name, Action postback) where TObject : class
+        {
+            if (obj == null)
+                throw new ArgumentNullException(name);
+            postback();
+        }
     }
 }

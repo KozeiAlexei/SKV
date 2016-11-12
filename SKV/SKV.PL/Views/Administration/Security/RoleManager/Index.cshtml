@@ -52,11 +52,11 @@
                     columns.Create<DynamicTableColumnMvc>().Field<UserRole>("Actions").Width(20)
                                     .Type(TableColumnDataType.Actions).Editable(true).Filterable(false);
                 })
-                //.Body(b =>
-                //{
-                //    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleProfileModalName));
-                //    b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleCreatingModalName));
-                //})
+                .Body(b =>
+                {
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(NamesGenerator.GetModalId(Config.AngularObjectNames.RoleProfile)));
+                    //b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleCreatingModalName));
+                })
                 .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial(Config.AngularControllerNames.RoleManagerController)))
                 .Editable(false)
                 .Filterable(true)

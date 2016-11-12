@@ -17,22 +17,25 @@ namespace SKV.PL.App_Start
     using ML.Concrete.Model.UserModel;
     using ML.ViewModels.Account;
     using Microsoft.AspNet.Identity.Owin;
+    using BLL.Abstract.UI;
+    using BLL.UI;
 
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        public static Bootstrapper Bootstrapper { get; } = new Bootstrapper();
 
         public static void Start() 
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
 
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
+
         }
 
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
         
         private static IKernel CreateKernel()
@@ -56,6 +59,9 @@ namespace SKV.PL.App_Start
 
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IUICultureManager>().To<UICultureManager>();
+            kernel.Bind<IUIMenuItemManager>().To<UIMenuItemManager>();
+
             kernel.Bind(typeof(IIdentityRoleManager<UserRole>)).To<IdentityRoleManager>();
             kernel.Bind(typeof(IIdentityPermissionManager<UserPermission>)).To<IdentityPermissionManager>();
 

@@ -22,5 +22,13 @@ namespace SKV.Configuration
                 return section[nameof(ClientSideTemplatesPath)];
             }
         }
+
+        public static string CultureCookieName
+        {
+            get
+            {
+                return section[nameof(CultureCookieName)];
+            }
+        }
     }
 }

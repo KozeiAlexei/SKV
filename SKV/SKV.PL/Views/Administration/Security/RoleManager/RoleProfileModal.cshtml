@@ -1,0 +1,25 @@
+﻿@using SKV.PL.ClientSide.Concrete
+@using SKV.PL.ClientSide.Components
+@using SKV.PL.ClientSide.Components.Tabs
+@using SKV.PL.ClientSide.Components.Modal
+@using SKV.PL.ClientSide.Components.NotificationList
+
+@using CRMConfig = SKV.Configuration;
+
+
+@(ComponentFactory.Create<ModalMvc>().Id((string)ViewBag.RoleProfileModalId)
+        .Title(Resources.Resource.RoleManager)
+        .Body(body =>
+        {
+            body.Create<NotificationListMvc>().NotificationsControllerPath(ViewBag.RoleControllerNotificationsPath);
+            body.Create<TabsMvc>()
+                    .Id((string)ViewBag.RoleProfileTabsId)
+                    .Tabs(tabs =>
+                    {
+                        tabs.Add((TabMvcModel)ViewData[CRMConfig.AngularObjectNames.RolePermissionsTab]);
+                        tabs.Add((TabMvcModel)ViewData[CRMConfig.AngularObjectNames.RoleMainPropertiesTab]);
+                    });
+        })
+        .ManualClosing(true)
+        .Render()
+)

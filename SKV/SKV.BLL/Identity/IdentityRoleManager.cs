@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SKV.ML.ViewModels.Administration.Security.Role;
 
 namespace SKV.BLL.Identity
 {
@@ -33,5 +34,20 @@ namespace SKV.BLL.Identity
         public async Task<IEnumerable<UserRole>> GetRolesAsync() => await Task.Run(() => GetRoles());
 
         public void Dispose() => RoleManager.Dispose();
+
+        public Task<IdentityResult> UpdateRoleDataAsync(UserRole role)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IdentityResult> CreateAsync(RoleCreatingViewModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IdentityResult> DeleteRoleAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

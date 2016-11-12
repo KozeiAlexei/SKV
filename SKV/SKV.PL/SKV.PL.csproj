@@ -240,6 +240,7 @@
     <Compile Include="ClientSide\Abstract\ILocalizedDataProvider.cs" />
     <Compile Include="ClientSide\Concrete\LocalizedDataProvider.cs" />
     <Compile Include="ClientSide\Concrete\LocalizedName.cs" />
+    <Compile Include="ClientSide\Concrete\NamesGenerator.cs" />
     <Compile Include="Controllers\Account\LoginController.cs" />
     <Compile Include="Controllers\Administration\Security\RoleManagerController.cs" />
     <Compile Include="Resources\Resource.en-US.designer.cs">
@@ -328,7 +329,6 @@
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="PLStaticData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\ace\assets\avatars\avatar.png" />
@@ -2995,6 +2995,9 @@
     <Content Include="Views\Administration\Security\RoleManager\Index.cshtml" />
     <Content Include="Views\Administration\Security\RoleManager\RoleManagerController.cshtml" />
     <Content Include="Views\Administration\Security\RoleManager\TableBottomManagmentPanel.cshtml" />
+    <Content Include="Views\Administration\Security\RoleManager\RoleProfileModal.cshtml" />
+    <Content Include="Views\Administration\Security\RoleManager\RolePermissionsTab.cshtml" />
+    <Content Include="Views\Administration\Security\RoleManager\RoleMainPropertiesTab.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

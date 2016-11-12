@@ -53,17 +53,7 @@ namespace SKV.PL.ClientSide.Concrete
         {
             var validation_result = new List<ValidationResult>();
             if (Validator.TryValidateObject(model, new ValidationContext(model, null, null), validation_result))
-            {
                 return MvcHtmlString.Create(new ViewRenderer().RenderPartialViewToString($"~/Views/ComponentTemplates/{ ComponentTemplateName }Template.cshtml", model));
-
-                //var service = Engine.Razor;
-                //var template_key = new NameOnlyTemplateKey(ComponentTemplateName, ResolveType.Layout, null);
-
-                //service.AddTemplate(template_key, ComponentTemplate);
-                //service.Compile(template_key, typeof(TModel));
-
-                //return MvcHtmlString.Create(service.Run(template_key, typeof(TModel), model));
-            }
             else
                 throw new Exception($"ComponentModel has some validation errors");
         }
