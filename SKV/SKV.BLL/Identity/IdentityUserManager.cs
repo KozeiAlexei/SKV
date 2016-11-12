@@ -1,25 +1,30 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
+
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Microsoft.AspNet.Identity.EntityFramework;
+
 using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
+using Microsoft.Owin.Security.Cookies;
+
 using Ninject;
+
 using SKV.DAL;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Concrete.EntityFramework;
-using SKV.ML.Concrete.Model.UserModel;
+
 using SKV.ML.ViewModels.Account;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+using SKV.ML.Concrete.Model.UserModel;
+
+using SKV.BLL.Abstract.Identity;
 
 namespace SKV.BLL.Identity
 {
-    public class IdentityUserManager : IDisposable
+    public class IdentityUserManager : IIdentityUserManager<User, UserCreatingViewModel>
     {
         private UserManager<User> UserManager { get; set; }
 
@@ -53,13 +58,15 @@ namespace SKV.BLL.Identity
                 UserManager.UserTokenProvider = new DataProtectorTokenProvider<User>(data_protection_provider.Create("DPP"));
         }
 
+        public IdentityResult ChangePassword(string user_id, string old_password, string new_password) =>
+            UserManager.ChangePassword(user_id, old_password, new_password);
 
         public async Task<IdentityResult> ChangePasswordAsync(string user_id, string old_password, string new_password) =>
             await UserManager.ChangePasswordAsync(user_id, old_password, new_password);
 
-        public async Task<IdentityResult> RegisterAsync(UserCreatingViewModel model)
+        private User UserCreatingModelPreparing(UserCreatingViewModel model)
         {
-            var user = new User()
+            return new User()
             {
                 Email = model.Email,
                 UserName = model.UserName,
@@ -72,10 +79,13 @@ namespace SKV.BLL.Identity
                     AsteriskId = (int)model.AsteriskId
                 }
             };
-
-
-            return await UserManager.CreateAsync(user, model.Password);
         }
+
+        public IdentityResult Register(UserCreatingViewModel model) =>
+            UserManager.Create(UserCreatingModelPreparing(model), model.Password);
+
+        public async Task<IdentityResult> RegisterAsync(UserCreatingViewModel model) =>
+            await UserManager.CreateAsync(UserCreatingModelPreparing(model), model.Password);
 
         public async Task<OAuthUserModel> OAuthUserFindAsync(string user_name, string password)
         {
@@ -94,12 +104,12 @@ namespace SKV.BLL.Identity
             return await Task.FromResult(oauth_user);
         }
 
-        public async Task<IEnumerable<User>> GetUsers() => await Task.Run(() => DbManager.Users.GetUsers());
+        public IEnumerable<User> GetUsers() => DbManager.Users.GetUsers();
 
-        public async Task<IdentityResult> UpdateUserData(User user)
+        public async Task<IEnumerable<User>> GetUsersAsync() => await Task.Run(() => GetUsers());
+
+        private User PrepareUserUpdating(User identity_user, User user)
         {
-            var identity_user = UserManager.FindById(user.Id);
-
             identity_user.Email = user.Email;
             identity_user.UserName = user.UserName;
             identity_user.PhoneNumber = user.PhoneNumber;
@@ -107,16 +117,27 @@ namespace SKV.BLL.Identity
             identity_user.Profile.Name = user.Profile.Name;
             identity_user.Profile.AsteriskId = user.Profile.AsteriskId;
 
-            return await UserManager.UpdateAsync(identity_user);
+            return identity_user;
         }
 
-        public async Task<IdentityResult> DeleteUserAsync(string user_id)
+        public IdentityResult UpdateUserData(User user) =>
+            UserManager.Update(PrepareUserUpdating(UserManager.FindById(user.Id), user));
+
+        public async Task<IdentityResult> UpdateUserDataAsync(User user) =>
+            await UserManager.UpdateAsync(PrepareUserUpdating(await UserManager.FindByIdAsync(user.Id), user));
+
+        private void DeleteUserProfile(string user_id)
         {
-            var user = await UserManager.FindByIdAsync(user_id);
-            var user_profile = DbManager.UserProfiles.Repository.Delete(user_id); DbManager.SaveChanges();
-
-            return await UserManager.DeleteAsync(user);
+            DbManager.UserProfiles.Repository.Delete(user_id);
+            DbManager.SaveChanges();
         }
+
+        public IdentityResult DeleteUser(string user_id) =>
+            Tools.ReturnWithAction(() => DeleteUserProfile(user_id), () => UserManager.Delete(UserManager.FindById(user_id)));
+
+        public async Task<IdentityResult> DeleteUserAsync(string user_id) =>
+            await Tools.ReturnWithAction(() => DeleteUserProfile(user_id), 
+                                   async () => await UserManager.DeleteAsync(await UserManager.FindByIdAsync(user_id)));
 
         public void Dispose() => UserManager.Dispose();
     }

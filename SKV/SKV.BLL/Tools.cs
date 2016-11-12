@@ -19,5 +19,10 @@ namespace SKV.BLL
         }
 
         public static decimal Inverse(decimal val) => 1.0M / val;
+
+        public static TResult ReturnWithAction<TResult>(Action preback, Func<TResult> postback)
+        {
+            preback(); return postback();
+        }
     }
 }

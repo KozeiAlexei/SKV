@@ -15,7 +15,7 @@ namespace SKV.PL.Api.Administration.Security
     [RoutePrefix("api/Administration/Security/Permissions")]
     public class PermissionsController : ApiControllerExt
     {
-        private IIdentityPermissionManager<UserPermission> PermissionManager { get; set; } = default(IIdentityPermissionManager<UserPermission>);
+        private IIdentityPermissionManager<UserPermission> PermissionManager { get; set; }
 
         public PermissionsController(IIdentityPermissionManager<UserPermission> manager)
         {

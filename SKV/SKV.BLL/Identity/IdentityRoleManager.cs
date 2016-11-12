@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Ninject;
+using SKV.BLL.Abstract.Identity;
 using SKV.DAL;
 using SKV.DAL.Abstract.Database;
 using SKV.DAL.Concrete.EntityFramework;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SKV.BLL.Identity
 {
-    public class IdentityRoleManager : IDisposable
+    public class IdentityRoleManager : IIdentityRoleManager<UserRole>
     {
         private RoleManager<UserRole> RoleManager { get; set; }
 
@@ -27,7 +28,9 @@ namespace SKV.BLL.Identity
             RoleManager = new RoleManager<UserRole>(new RoleStore<UserRole>(new DatabaseContext()));
         }
 
-        public async Task<IEnumerable<UserRole>> GetRolesAsync() => await Task.Run(() => DbManager.UserRoles.GetRoles());
+        public IEnumerable<UserRole> GetRoles() => DbManager.UserRoles.GetRoles();
+
+        public async Task<IEnumerable<UserRole>> GetRolesAsync() => await Task.Run(() => GetRoles());
 
         public void Dispose() => RoleManager.Dispose();
     }
