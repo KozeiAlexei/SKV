@@ -1,1 +1,31 @@
-﻿
+﻿@using SKV.ML.Concrete.Model.UserModel;
+
+@using SKV.BLL.Other
+@using SKV.ML.Concrete
+
+@using SKV.PL.ClientSide.Concrete;
+@using SKV.PL.ClientSide.Components.VerticalFormField
+
+@using Config = SKV.Configuration;
+
+@model SKV.PL.Models.PartialViewModels.Administration.Security.RoleMainPropertiesTabModel
+
+@{
+    string ctrl = Config.AngularControllerAs.RoleManagerControllerAs;
+}
+
+@foreach (var field in Model.Fields)
+{
+    @(ComponentFactory.Create<VerticalFormFieldMvc>().ImportFromModel(field).Render())
+}
+
+<br />
+
+<div class="row">
+    <div class="col-lg-6">
+        <button class="btn btn-flat btn-primary btn-block" ng-click="@(ctrl).UpdateUserData()">Сохранить</button>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-flat btn-primary btn-block" ng-click="@(ctrl).HideUserProfileModal()">Отмена</button>
+    </div>
+</div>

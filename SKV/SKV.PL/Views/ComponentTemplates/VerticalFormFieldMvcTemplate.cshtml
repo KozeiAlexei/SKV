@@ -18,7 +18,12 @@
         }
         else if (Model.Type == UIFieldType.Dropdown)
         {
-
+            <label><b>@Model.LocalizedTitle: </b></label>
+            <select class="form-control">
+                <option ng-repeat="item in @(ctrl).DropdownData.@Model.FieldPath">
+                    {{ item@(Model.ButtonTitleFieldPath) }}
+                </option>
+            </select>
         }
         else if (Model.Type == UIFieldType.Buttons)
         {
@@ -28,6 +33,10 @@
                     <input type="checkbox">{{ item@(Model.ButtonTitleFieldPath) }}
                 </label>
             </div>
+        }
+        else if(Model.Type == UIFieldType.SelectListBox)
+        {
+
         }
     </div>
 </div>

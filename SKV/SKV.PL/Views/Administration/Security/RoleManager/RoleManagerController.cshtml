@@ -9,13 +9,13 @@
 
     string ts_factory = Config.AngularFactoryNames.RoleTableSettingsFactory;
 
-    string profile_modal = NamesGenerator.GetModalId(Config.AngularObjectNames.RoleProfile);
+    string profile_modal = NamesGenerator.GetModalId(Config.UIObjectNames.RoleProfile);
     string creating_modal = Config.AngularModalNames.RoleCreatingModalName;
 }
 
 <script type="text/javascript">
-    angular.module('@app').controller('@controller', ['$scope', '@ts_factory', '$tools', '$roles', '$validation', '$permissions',
-    function ($scope, @ts_factory, $tools, $roles, $validation, $permissions) {
+    angular.module('@app').controller('@controller', ['$scope', '@ts_factory', '$tools', '$roles', '$validation', '$permissions', '$pages',
+    function ($scope, @ts_factory, $tools, $roles, $validation, $permissions, $pages) {
         var self = this;
 
         self.UISetting = function() {
@@ -96,6 +96,10 @@
 
                 $permissions.GetPermissions(function(permissions) {
                     self.DropdownData.Permissions = permissions;
+
+                    $pages.GetPages(function(pages) {
+                        self.DropdownData.Pages = pages;
+                    })
                 })
             });
         }

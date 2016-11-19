@@ -233,6 +233,7 @@
     <Compile Include="Api\ApiControllerExt.cs" />
     <Compile Include="Api\Administration\Security\RolesController.cs" />
     <Compile Include="Api\Administration\Security\UsersController.cs" />
+    <Compile Include="Api\Common\PagesController.cs" />
     <Compile Include="App_Start\Dependencies\NInjectDependencyResolver.cs" />
     <Compile Include="App_Start\Dependencies\NInjectDependencyScope.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
@@ -243,6 +244,7 @@
     <Compile Include="ClientSide\Concrete\NamesGenerator.cs" />
     <Compile Include="Controllers\Account\LoginController.cs" />
     <Compile Include="Controllers\Administration\Security\RoleManagerController.cs" />
+    <Compile Include="Models\PartialViewModels\Administration\Security\RoleManagerPartialViewModel.cs" />
     <Compile Include="Resources\Resource.en-US.designer.cs">
       <DependentUpon>Resource.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -1800,6 +1802,7 @@
     <Content Include="Infrastructure\Services\Api\Administration\Security\%24permissions.js" />
     <Content Include="Infrastructure\Services\Api\Administration\Security\%24roles.js" />
     <Content Include="Infrastructure\Services\Api\Administration\Security\%24users.js" />
+    <Content Include="Infrastructure\Services\Api\Common\%24pages.js" />
     <Content Include="Infrastructure\Services\Base64Service.js" />
     <Content Include="Infrastructure\Services\LocationService.js" />
     <Content Include="Infrastructure\Services\%24request.js" />

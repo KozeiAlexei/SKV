@@ -16,8 +16,8 @@
                     .Id((string)ViewBag.RoleProfileTabsId)
                     .Tabs(tabs =>
                     {
-                        tabs.Add((TabMvcModel)ViewData[CRMConfig.AngularObjectNames.RolePermissionsTab]);
-                        tabs.Add((TabMvcModel)ViewData[CRMConfig.AngularObjectNames.RoleMainPropertiesTab]);
+                        tabs.Add((TabMvcModel)ViewData[CRMConfig.UIObjectNames.RoleMainPropertiesTab]);
+                        tabs.Add((TabMvcModel)ViewData[CRMConfig.UIObjectNames.RolePermissionsTab]);
                     });
         })
         .ManualClosing(true)

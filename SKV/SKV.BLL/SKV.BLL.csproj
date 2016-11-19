@@ -89,6 +89,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\Common\IPageManager.cs" />
     <Compile Include="Abstract\CurrencyRates\IForexParser.cs" />
     <Compile Include="Abstract\CurrencyRates\ICurrencyRateManager.cs" />
     <Compile Include="Abstract\Identity\IIdentityPermissionManager.cs" />
@@ -97,6 +98,7 @@
     <Compile Include="Abstract\UI\IUICultureManager.cs" />
     <Compile Include="Abstract\UI\IUIMenuItemView.cs" />
     <Compile Include="BLLDependencyResolver.cs" />
+    <Compile Include="Common\PageManager.cs" />
     <Compile Include="CurrencyRates\CurrencyRateManager.cs" />
     <Compile Include="CurrencyRates\ForexParser.cs" />
     <Compile Include="Identity\IdentityConfigurator.cs" />

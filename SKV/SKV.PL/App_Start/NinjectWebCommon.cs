@@ -19,6 +19,8 @@ namespace SKV.PL.App_Start
     using Microsoft.AspNet.Identity.Owin;
     using BLL.Abstract.UI;
     using BLL.UI;
+    using BLL.Abstract.Common;
+    using BLL.Common;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +63,8 @@ namespace SKV.PL.App_Start
         {
             kernel.Bind<IUICultureManager>().To<UICultureManager>();
             kernel.Bind<IUIMenuItemManager>().To<UIMenuItemManager>();
+
+            kernel.Bind<IPageManager>().To<PageManager>();
 
             kernel.Bind(typeof(IIdentityRoleManager<UserRole>)).To<IdentityRoleManager>();
             kernel.Bind(typeof(IIdentityPermissionManager<UserPermission>)).To<IdentityPermissionManager>();

@@ -26,7 +26,10 @@ namespace SKV.ML.Concrete
 
         PasswordChanging_OldPassword,
         PasswordChanging_NewPassword,
-        PasswordChanging_NewPasswordConfirm
+        PasswordChanging_NewPasswordConfirm,
 
+        RoleManager_Name_Field,
+        RoleManager_PageInstance_Name_Field,
+        RoleManager_Permissions
     }
 }

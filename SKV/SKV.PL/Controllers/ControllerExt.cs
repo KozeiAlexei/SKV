@@ -66,8 +66,8 @@ namespace SKV.PL.Controllers
             SettingUICustom();
         }
 
-        public virtual void SettingUICustom() { }
+        protected virtual void SettingUICustom() { }
 
-        public virtual string GetViewPath(string viewName) { return viewName; }
+        protected virtual string GetViewPath(string viewName) { return viewName; }
     }
 }

@@ -24,6 +24,7 @@
     @Linker.GetServiceExt("$request")
     @Linker.GetServiceExt("$validation")
 
+    @Linker.GetServiceExt("Api/Common/$pages")
     @Linker.GetServiceExt("Api/Administration/Security/$users")
     @Linker.GetServiceExt("Api/Administration/Security/$roles")
     @Linker.GetServiceExt("Api/Administration/Security/$permissions")
@@ -54,7 +55,7 @@
                 })
                 .Body(b =>
                 {
-                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(NamesGenerator.GetModalId(Config.AngularObjectNames.RoleProfile)));
+                    b.Create<ContentMvc>().FromPartitalView(Html.Partial(NamesGenerator.GetModalId(Config.UIObjectNames.RoleProfile)));
                     //b.Create<ContentMvc>().FromPartitalView(Html.Partial(ClientSideConfiguration.RoleCreatingModalName));
                 })
                 .Logic(logic => logic.Create<ContentMvc>().FromPartitalView(Html.Partial(Config.AngularControllerNames.RoleManagerController)))

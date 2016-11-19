@@ -29,6 +29,9 @@ namespace SKV.PL.ClientSide.Components
         public IContent FromPartitalView<TModel>(string partitalName, TModel model = null) where TModel : class =>
             FromPartitalView(MvcHtmlString.Create(ViewRenderer.RenderPartialView(partitalName, model, null)));
 
+        public IContent FromPartitalView<TModel>(string partitalName, ControllerContext controllerContext, TModel model = null) where TModel : class =>
+            FromPartitalView(MvcHtmlString.Create(ViewRenderer.RenderPartialView(partitalName, model, controllerContext)));
+
         #endregion
 
         public MvcHtmlString Render() => ComponentLogic;

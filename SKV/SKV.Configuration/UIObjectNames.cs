@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SKV.Configuration
 {
-    public class AngularObjectNames
+    public class UIObjectNames
     {
-        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("Angular.ObjectNames");
+        private static CRMCoreConfigurationSection section = CRMCoreConfigurationManager.GetSection("UI.ObjectNames");
 
         public static string RolePermissionsTab
         {
@@ -39,6 +39,14 @@ namespace SKV.Configuration
             get
             {
                 return section[nameof(RoleProfile)];
+            }
+        }
+
+        public static string RoleProfileMainPropertiesFields
+        {
+            get
+            {
+                return section[nameof(RoleProfileMainPropertiesFields)];
             }
         }
     }

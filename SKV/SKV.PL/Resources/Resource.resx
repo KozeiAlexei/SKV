@@ -204,6 +204,12 @@
   <data name="RoleManager" xml:space="preserve">
     <value>Менеджер ролей</value>
   </data>
+  <data name="RoleProfileMainPropertiesTab" xml:space="preserve">
+    <value>Основные настройки</value>
+  </data>
+  <data name="RoleProfilePermissionsTab" xml:space="preserve">
+    <value>Разрешения</value>
+  </data>
   <data name="SystemLoading" xml:space="preserve">
     <value>Загрузка системы</value>
   </data>
@@ -284,5 +290,11 @@
   </data>
   <data name="UserRole.PageInstance.URL" xml:space="preserve">
     <value>URL страницы по умолчанию</value>
+  </data>
+  <data name="UserRole.Pages" xml:space="preserve">
+    <value>Отображаемая при входе страница</value>
+  </data>
+  <data name="UserRole.Permissions" xml:space="preserve">
+    <value>Разрешения</value>
   </data>
 </root>

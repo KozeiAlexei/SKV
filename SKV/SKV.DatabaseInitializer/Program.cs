@@ -83,6 +83,10 @@ namespace SKV.DatabaseInitializer
             var result = user_manager.CreateAsync(user, "Evolution1_").Result;
 
             db.Pages.Add(new Page() { Name = "Главная", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Менеджер пользователей", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Менеджер ролей", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Тест1", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Тест2", URL = "Home/Index" });
             db.SaveChanges();
 
 
@@ -109,8 +113,9 @@ namespace SKV.DatabaseInitializer
 
 
             #region UIData
-            var ssetings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
             var current_user = "CurrentUser";
+            var currentRole = "CurrentRole";
             #region UserProfile
 
             db.UIComponentData.Add(new UIComponentData()
@@ -120,7 +125,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-user form-control-feedback")
                                                                                        .Field<User>(m => m.UserName).Type(UIFieldType.Input).ExportToModel(), 
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -130,7 +135,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("icon-mail-3 form-control-feedback")
                                                                                        .Field<User>(m => m.Email).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -140,7 +145,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-user form-control-feedback")
                                                                                        .Field<User>(m => m.Profile.Name).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -150,7 +155,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-phone form-control-feedback")
                                                                                        .Field<User>(m => m.PhoneNumber).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -160,7 +165,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-certificate form-control-feedback")
                                                                                        .Field<User>(m => m.Profile.AsteriskId).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -169,7 +174,7 @@ namespace SKV.DatabaseInitializer
                 TypeName = typeof(VerticalFormFieldMvc).Name,
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ButtonClickFunctionName("AddRole").ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Field<User>("Roles").Type(UIFieldType.Buttons).ButtonTitleFieldPath(nameof(UserRole.Name)).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             #endregion
@@ -183,7 +188,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-user form-control-feedback")
                                                                                        .Field<UserCreatingViewModel>(m => m.UserName).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -193,7 +198,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("icon-mail-3 form-control-feedback")
                                                                                        .Field<UserCreatingViewModel>(m => m.Email).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -203,7 +208,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-user form-control-feedback")
                                                                                        .Field<UserCreatingViewModel>(m => m.Initials).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -213,7 +218,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-phone form-control-feedback")
                                                                                        .Field<UserCreatingViewModel>(m => m.PhoneNumber).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -223,7 +228,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("glyphicon glyphicon-certificate form-control-feedback")
                                                                                        .Field<UserCreatingViewModel>(m => m.AsteriskId).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -232,7 +237,7 @@ namespace SKV.DatabaseInitializer
                 TypeName = typeof(VerticalFormFieldMvc).Name,
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ButtonClickFunctionName("AddRole").ButtonTitleFieldPath(nameof(UserRole.Name)).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Field<UserCreatingViewModel>("Roles").Type(UIFieldType.Buttons).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -242,7 +247,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "password" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("icon-keyboard form-control-feedback")
                                                                                        .Field<UserCreatingViewModel>(m => m.Password).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -252,7 +257,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "password" }).ModelPath(current_user).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("icon-keyboard form-control-feedback")
                                                                                        .Field<UserCreatingViewModel>(m => m.ConfirmPassword).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             #endregion
@@ -268,7 +273,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "password" }).ModelPath(pc_model).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("icon-keyboard form-control-feedback")
                                                                                        .Field<UserPasswordChangingViewModel>(m => m.OldPassword).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -278,7 +283,7 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "password" }).ModelPath(pc_model).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("icon-keyboard form-control-feedback")
                                                                                        .Field<UserPasswordChangingViewModel>(m => m.NewPassword).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             db.UIComponentData.Add(new UIComponentData()
@@ -288,10 +293,47 @@ namespace SKV.DatabaseInitializer
                 SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "password" }).ModelPath(pc_model).ControllerName(Config.AngularControllerAs.UserManagerControllerAs)
                                                                                        .Icon("icon-keyboard form-control-feedback")
                                                                                        .Field<UserPasswordChangingViewModel>(m => m.NewPasswordConfirm).Type(UIFieldType.Input).ExportToModel(),
-                                                                                       ssetings)
+                                                                                       settings)
             });
 
             #endregion
+
+            #region RoleMainSettings
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.RoleManager_Name_Field,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().Attributes(new { type = "text" }).ModelPath(currentRole).ControllerName(Config.AngularControllerAs.RoleManagerControllerAs)
+                                                                                       .Icon("glyphicon glyphicon-user form-control-feedback")
+                                                                                       .Field<UserRole>(m => m.Name).Type(UIFieldType.Input).ExportToModel(),
+                                                                                       settings)
+            });
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.RoleManager_PageInstance_Name_Field,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ModelPath(currentRole).ControllerName(Config.AngularControllerAs.RoleManagerControllerAs)
+                                                                                       .Icon("glyphicon glyphicon-user form-control-feedback")
+                                                                                       .Field<UserRole>("Pages")
+                                                                                       .ButtonTitleFieldPath(nameof(Page.Name)).Type(UIFieldType.Dropdown).ExportToModel(),
+                                                                                       settings)
+            });
+
+            db.UIComponentData.Add(new UIComponentData()
+            {
+                Id = (int)UIComponentKey.RoleManager_Permissions,
+                TypeName = typeof(VerticalFormFieldMvc).Name,
+                SerializedData = JsonConvert.SerializeObject(new VerticalFormFieldMvc().ModelPath(currentRole).ControllerName(Config.AngularControllerAs.RoleManagerControllerAs)
+                                                                                       .Icon("glyphicon glyphicon-user form-control-feedback")
+                                                                                       .Field<UserRole>(m => m.Permissions).ButtonTitleFieldPath(nameof(UserPermission.Name))
+                                                                                       .Type(UIFieldType.Dropdown).ExportToModel(),
+                                                                                       settings)
+            });
+
+            #endregion
+
 
             #endregion
 
