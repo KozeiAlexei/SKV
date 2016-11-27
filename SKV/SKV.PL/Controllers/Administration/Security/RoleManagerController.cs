@@ -45,13 +45,14 @@ namespace SKV.PL.Controllers.Administration.Security
                 Active = true, Title = Resources.Resource.RoleProfileMainPropertiesTab
             };
 
+            var roleProfilePermissionsTabModel = new RolePermissionsTabModel();
             var roleProfileMainPropertiesTabModel = new RoleMainPropertiesTabModel();
 
+            roleProfilePermissionsTabModel.Fields.Add(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.RoleManager_Permissions));
             roleProfileMainPropertiesTabModel.Fields.Add(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.RoleManager_Name_Field));
-            //roleProfileMainPropertiesTabModel.Fields.Add(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.RoleManager_Permissions));
             roleProfileMainPropertiesTabModel.Fields.Add(CacheObject.Get<VerticalFormFieldMvcModel>(CacheItemClass.UI, (int)UIComponentKey.RoleManager_PageInstance_Name_Field));
 
-            roleProfilePermissionsTab.Body.Create<ContentMvc>().FromPartitalView(GetViewPath(roleProfilePermissionsTabName), default(object));
+            roleProfilePermissionsTab.Body.Create<ContentMvc>().FromPartitalView(GetViewPath(roleProfilePermissionsTabName), roleProfilePermissionsTabModel);
             roleProfileMainPropertiesTab.Body.Create<ContentMvc>().FromPartitalView(GetViewPath(roleProfileMainPropertiesTabName), roleProfileMainPropertiesTabModel);
 
             ViewData[roleProfilePermissionsTabName] = roleProfilePermissionsTab;

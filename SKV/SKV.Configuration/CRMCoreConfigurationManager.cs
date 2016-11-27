@@ -20,7 +20,7 @@ namespace SKV.Configuration
         static CRMCoreConfigurationManager()
         {
             var path = Path.Combine(Path.GetDirectoryName(typeof(CRMCoreConfigurationManager).Assembly.Location), config_name);
-            if (path.Contains(nameof(Microsoft)))
+            if (path.Contains(nameof(Microsoft)) || path.Contains("AppData"))
                 path = System.Web.Hosting.HostingEnvironment.MapPath($"~/Components/Configurator/{ config_name }");
 
             config = new XmlDocument(); config.Load(path);

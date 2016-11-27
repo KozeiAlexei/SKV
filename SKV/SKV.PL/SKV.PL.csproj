@@ -3001,6 +3001,7 @@
     <Content Include="Views\Administration\Security\RoleManager\RoleProfileModal.cshtml" />
     <Content Include="Views\Administration\Security\RoleManager\RolePermissionsTab.cshtml" />
     <Content Include="Views\Administration\Security\RoleManager\RoleMainPropertiesTab.cshtml" />
+    <Content Include="Views\Administration\Security\RoleManager\RoleProfileModalFooter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SKV.BLL\SKV.BLL.csproj">

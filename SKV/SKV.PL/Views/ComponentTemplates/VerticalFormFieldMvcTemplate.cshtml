@@ -34,9 +34,13 @@
                 </label>
             </div>
         }
-        else if(Model.Type == UIFieldType.SelectListBox)
+        else if (Model.Type == UIFieldType.SelectListBox)
         {
-
+            <div style="overflow-y: scroll; height:400px;">
+                <div ng-repeat="item in @(ctrl).DropdownData.@Model.FieldPath" class="checkbox">
+                    <label><input type="checkbox" value=""> {{ item@(Model.ButtonTitleFieldPath) }}</label>
+                </div>
+            </div>
         }
     </div>
 </div>

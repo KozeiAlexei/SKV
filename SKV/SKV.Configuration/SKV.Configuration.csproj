@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AngularControllerDefaults.cs" />
     <Compile Include="AngularControllerNames.cs" />
     <Compile Include="AngularControllerAs.cs" />
     <Compile Include="AngularFactoryNames.cs" />

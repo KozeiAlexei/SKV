@@ -1,25 +1,12 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Newtonsoft.Json;
-using SKV.BLL.Identity;
-using SKV.DAL;
-using SKV.DAL.Concrete.EntityFramework;
-using SKV.ML.Concrete;
-using SKV.ML.Concrete.Model.CommonModel;
-using SKV.ML.Concrete.Model.UIModel;
-using SKV.ML.Concrete.Model.UserModel;
-using SKV.ML.ViewModels.Account;
-using SKV.PL;
-using SKV.PL.ClientSide.Abstract.Components;
-using SKV.PL.ClientSide.Components.VerticalFormField;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-using Config = SKV.Configuration;
+using SKV.DAL.Concrete.EntityFramework;
+
+using SKV.DatabaseInitializer.Abstract;
+using SKV.DatabaseInitializer.InitializationParts.Common;
+using SKV.DatabaseInitializer.InitializationParts.UI.Common;
+using SKV.DatabaseInitializer.InitializationParts.UI.RoleManager;
+using SKV.DatabaseInitializer.InitializationParts.UI.UserManager;
 
 namespace SKV.DatabaseInitializer
 {
@@ -27,95 +14,30 @@ namespace SKV.DatabaseInitializer
     {
         public static void Main(string[] args)
         {
-            var db = new DatabaseContext();
-
-            db.UICulture.Add(new UICulture() { Name = "Русский", Culture = "ru-RU" });
-            db.UICulture.Add(new UICulture() { Name = "English", Culture = "en-US" });
-
-
-
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 1, Location = 1, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Administration", IconClass = "icon-home-3" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 2, Location = 2, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Operator", IconClass = "icon-home-3" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 3, Location = 3, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Reports", IconClass = "icon-home-3" });
-
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 4, Location = 1, ParentId = 1, Name = "SystemSettings" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 5, Location = 2, ParentId = 1, Name = "MenuSettings" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 6, Location = 3, ParentId = 1, Name = "EventJournal" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 7, Location = 4, ParentId = 1, Name = "RoleManager", Controller = "Administration/Security/RoleManager", Action = "Index" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 8, Location = 5, ParentId = 1, Name = "UserManager", Controller = "Administration/Security/UserManager", Action = "Index" });
-
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 9, Location = 1, ParentId = 2, Name = "MonitoringSystem" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 10, Location = 2, ParentId = 2, Name = "Exchange" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 11, Location = 3, ParentId = 2, Name = "Correction" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 12, Location = 4, ParentId = 2, Name = "Inventarisation" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 13, Location = 5, ParentId = 2, Name = "MoneyTransfer" });
-
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 14, Location = 1, ParentId = 3, Name = "CashRemainsReport" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 15, Location = 2, ParentId = 3, Name = "InventarisationReport" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 16, Location = 3, ParentId = 3, Name = "ProfitReport" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 17, Location = 3, ParentId = 3, Name = "DealReport" });
-            db.UIMenuItems.Add(new UIMenuItem() { Id = 18, Location = 3, ParentId = 3, Name = "CanceledOrdersReport" });
-
-
-            db.SaveChanges();
-
-            db.SystemSettings.Add(new SystemSettings()
+            var initializers = new List<IEntityInitializer>()
             {
-                DefaultCultureId = 1
-            });
+                new UserMenuInitializer(new DatabaseContext()),
+                new UserCulturesInitializer(new DatabaseContext()),
+                new UserManagerFormFieldsInitializer(new DatabaseContext()),
+                new RoleManagerFormFieldsInitializer(new DatabaseContext()),
 
-            db.SaveChanges();
+                new PagesInitializer(new DatabaseContext()),
+                new SystemSettingsInitializer(new DatabaseContext()),
 
-            var user_manager = new UserManager<User>(new UserStore<User>(db));
-            var user = new User()
-            {
-                Email = string.Empty,
-                UserName = "Admin",
-                Profile = new UserProfile()
-                {
-                    Name = "Администратор",
-                    LastLoginDate = DateTime.Now,
-                    RegistrationDate = DateTime.Now,
-                }
+                new UsersInitializer(new DatabaseContext()),
+                new RolesInitializer(new DatabaseContext()),
+                new PermissionsInitializer(new DatabaseContext())
             };
 
-
-            var result = user_manager.CreateAsync(user, "Evolution1_").Result;
-
-            db.Pages.Add(new Page() { Name = "Главная", URL = "Home/Index" });
-            db.Pages.Add(new Page() { Name = "Менеджер пользователей", URL = "Home/Index" });
-            db.Pages.Add(new Page() { Name = "Менеджер ролей", URL = "Home/Index" });
-            db.Pages.Add(new Page() { Name = "Тест1", URL = "Home/Index" });
-            db.Pages.Add(new Page() { Name = "Тест2", URL = "Home/Index" });
-            db.SaveChanges();
+            foreach (var initialzer in initializers)
+                initialzer.Initialize();
 
 
-            var role_manager = new RoleManager<UserRole>(new RoleStore<UserRole>(db));
-            var role = new UserRole()
-            {
-                DefaultRoleCode = DefaultRole.Admin,
-                DefaultPageId = 1,
-                Name = "Admin",
-            };
-            var role_result = role_manager.Create(role);
-
-            var perm1 = new UserPermission() { Name = "Показ пункта меню \"Администрирование\"", Code = UserPermissionCode.ShowAdministrationMenuItem };
-            var perm2 = new UserPermission() { Name = "Показ пункта меню \"Оператор\"", Code = UserPermissionCode.ShowOperatorMenuItem };
-
-            db.UserPermissions.Add(perm1);
-            db.UserPermissions.Add(perm2);
-
-            db.SaveChanges();
-
-            role = db.Roles.OfType<UserRole>().Include(e => e.Permissions).Where(e => e.DefaultRoleCode == DefaultRole.Admin).First();
-            role.Permissions.Add(perm1);
-            role.Permissions.Add(perm2);
-
-
-            #region UIData
-            var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
+            #region OLD
+            /* OLD
+              var settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
             var current_user = "CurrentUser";
-            var currentRole = "CurrentRole";
+
             #region UserProfile
 
             db.UIComponentData.Add(new UIComponentData()
@@ -298,6 +220,115 @@ namespace SKV.DatabaseInitializer
 
             #endregion
 
+
+
+            db.UICulture.Add(new UICulture() { Name = "Русский", Culture = "ru-RU" });
+            db.UICulture.Add(new UICulture() { Name = "English", Culture = "en-US" });
+
+
+
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 1, Location = 1, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Administration", IconClass = "icon-home-3" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 2, Location = 2, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Operator", IconClass = "icon-home-3" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 3, Location = 3, ParentId = DALStaticData.UIMenuItemTopParentId, Name = "Reports", IconClass = "icon-home-3" });
+
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 4, Location = 1, ParentId = 1, Name = "SystemSettings" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 5, Location = 2, ParentId = 1, Name = "MenuSettings" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 6, Location = 3, ParentId = 1, Name = "EventJournal" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 7, Location = 4, ParentId = 1, Name = "RoleManager", Controller = "Administration/Security/RoleManager", Action = "Index" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 8, Location = 5, ParentId = 1, Name = "UserManager", Controller = "Administration/Security/UserManager", Action = "Index" });
+
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 9, Location = 1, ParentId = 2, Name = "MonitoringSystem" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 10, Location = 2, ParentId = 2, Name = "Exchange" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 11, Location = 3, ParentId = 2, Name = "Correction" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 12, Location = 4, ParentId = 2, Name = "Inventarisation" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 13, Location = 5, ParentId = 2, Name = "MoneyTransfer" });
+
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 14, Location = 1, ParentId = 3, Name = "CashRemainsReport" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 15, Location = 2, ParentId = 3, Name = "InventarisationReport" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 16, Location = 3, ParentId = 3, Name = "ProfitReport" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 17, Location = 3, ParentId = 3, Name = "DealReport" });
+            db.UIMenuItems.Add(new UIMenuItem() { Id = 18, Location = 3, ParentId = 3, Name = "CanceledOrdersReport" });
+
+
+            db.SaveChanges();
+
+            db.SystemSettings.Add(new SystemSettings()
+            {
+                DefaultCultureId = 1
+            });
+
+            db.SaveChanges();
+
+            var user_manager = new UserManager<User>(new UserStore<User>(db));
+            var user = new User()
+            {
+                Email = string.Empty,
+                UserName = "Admin",
+                Profile = new UserProfile()
+                {
+                    Name = "Администратор",
+                    LastLoginDate = DateTime.Now,
+                    RegistrationDate = DateTime.Now,
+                }
+            };
+
+
+            var result = user_manager.CreateAsync(user, "Evolution1_").Result;
+
+            db.Pages.Add(new Page() { Name = "Главная", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Менеджер пользователей", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Менеджер ролей", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Тест1", URL = "Home/Index" });
+            db.Pages.Add(new Page() { Name = "Тест2", URL = "Home/Index" });
+            db.SaveChanges();
+
+
+            var role_manager = new RoleManager<UserRole>(new RoleStore<UserRole>(db));
+            var role = new UserRole()
+            {
+                DefaultRoleCode = DefaultRole.Admin,
+                DefaultPageId = 1,
+                Name = "Admin",
+            };
+            var role_result = role_manager.Create(role);
+
+            var perm1 = new UserPermission() { Name = "Показ пункта меню \"Администрирование\"", Code = UserPermissionCode.ShowAdministrationMenuItem };
+            var perm2 = new UserPermission() { Name = "Показ пункта меню \"Оператор\"", Code = UserPermissionCode.ShowOperatorMenuItem };
+
+            db.UserPermissions.Add(perm1);
+            db.UserPermissions.Add(perm2);
+
+            db.SaveChanges();
+
+            role = db.Roles.OfType<UserRole>().Include(e => e.Permissions).Where(e => e.DefaultRoleCode == DefaultRole.Admin).First();
+            role.Permissions.Add(perm1);
+            role.Permissions.Add(perm2);
+
+
+            #region UIData
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            var currentRole = "CurrentRole";
+
+
+           
+
             #region RoleMainSettings
 
             db.UIComponentData.Add(new UIComponentData()
@@ -340,6 +371,16 @@ namespace SKV.DatabaseInitializer
             db.SaveChanges();
 
             db.Dispose();
+
+
+
+
+
+
+
+             */
+
+            #endregion
         }
     }
 }

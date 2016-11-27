@@ -36,6 +36,6 @@ C:\Users\avkozej.BSS\Test\SKV\SKV.ML\bin\Debug\Microsoft.AspNet.Identity.EntityF
 C:\Users\avkozej.BSS\Test\SKV\SKV.ML\bin\Debug\Newtonsoft.Json.xml
 C:\Users\avkozej.BSS\Test\SKV\SKV.ML\bin\Debug\ru\Microsoft.AspNet.Identity.Core.resources.dll
 C:\Users\avkozej.BSS\Test\SKV\SKV.ML\bin\Debug\ru\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\avkozej.BSS\Test\SKV\SKV.ML\obj\Debug\SKV.ML.csprojResolveAssemblyReference.cache
 C:\Users\avkozej.BSS\Test\SKV\SKV.ML\obj\Debug\SKV.ML.dll
 C:\Users\avkozej.BSS\Test\SKV\SKV.ML\obj\Debug\SKV.ML.pdb
-C:\Users\avkozej.BSS\Test\SKV\SKV.ML\obj\Debug\SKV.ML.csprojResolveAssemblyReference.cache

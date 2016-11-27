@@ -10,4 +10,9 @@ namespace SKV.PL.Models.PartialViewModels.Administration.Security
     {
         public List<VerticalFormFieldMvcModel> Fields { get; } = new List<VerticalFormFieldMvcModel>();
     }
+
+    public class RolePermissionsTabModel
+    {
+        public List<VerticalFormFieldMvcModel> Fields { get; } = new List<VerticalFormFieldMvcModel>();
+    }
 }

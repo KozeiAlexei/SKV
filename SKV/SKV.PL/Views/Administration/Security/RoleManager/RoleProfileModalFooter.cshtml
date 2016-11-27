@@ -1,0 +1,14 @@
+﻿@using Config = SKV.Configuration;
+
+@{
+    string ctrl = Config.AngularControllerAs.RoleManagerControllerAs;
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <button class="btn btn-flat btn-primary btn-block" ng-click="@(ctrl).UpdateRoleData()">Сохранить</button>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-flat btn-primary btn-block" ng-click="@(ctrl).HideRoleProfileModal()">Отмена</button>
+    </div>
+</div>

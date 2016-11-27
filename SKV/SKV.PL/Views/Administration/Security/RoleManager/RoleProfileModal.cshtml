@@ -12,13 +12,13 @@
         .Body(body =>
         {
             body.Create<NotificationListMvc>().NotificationsControllerPath(ViewBag.RoleControllerNotificationsPath);
-            body.Create<TabsMvc>()
-                    .Id((string)ViewBag.RoleProfileTabsId)
-                    .Tabs(tabs =>
-                    {
-                        tabs.Add((TabMvcModel)ViewData[CRMConfig.UIObjectNames.RoleMainPropertiesTab]);
-                        tabs.Add((TabMvcModel)ViewData[CRMConfig.UIObjectNames.RolePermissionsTab]);
-                    });
+            body.Create<TabsMvc>().Id((string)ViewBag.RoleProfileTabsId).Tabs(tabs =>
+            {
+                tabs.Add((TabMvcModel)ViewData[CRMConfig.UIObjectNames.RoleMainPropertiesTab]);
+                tabs.Add((TabMvcModel)ViewData[CRMConfig.UIObjectNames.RolePermissionsTab]);
+            });
+
+            body.Create<ContentMvc>().FromPartitalView<object>("RoleProfileModalFooter.cshtml");
         })
         .ManualClosing(true)
         .Render()

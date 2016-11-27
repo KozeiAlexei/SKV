@@ -1,1 +1,20 @@
-﻿
+﻿@using SKV.ML.Concrete.Model.UserModel;
+
+@using SKV.BLL.Other
+@using SKV.ML.Concrete
+
+@using SKV.PL.ClientSide.Concrete;
+@using SKV.PL.ClientSide.Components.VerticalFormField
+
+@using Config = SKV.Configuration;
+
+@model SKV.PL.Models.PartialViewModels.Administration.Security.RolePermissionsTabModel
+
+@{
+    string ctrl = Config.AngularControllerAs.RoleManagerControllerAs;
+}
+
+@foreach (var field in Model.Fields)
+{
+    @(ComponentFactory.Create<VerticalFormFieldMvc>().ImportFromModel(field).Render())
+}

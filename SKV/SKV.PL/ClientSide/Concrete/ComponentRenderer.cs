@@ -29,7 +29,9 @@ namespace SKV.PL.ClientSide.Concrete
                         using (var reader = new StreamReader($"{ TemplatesRoot }{ template_name }Template.cshtml"))
                             template = reader.ReadToEnd();
 
-                        TemplateCache.Add(template_name, template);
+                        #if (!DEBUG)
+                            TemplateCache.Add(template_name, template);
+                        #endif
                     }
                     else
                         TemplateCache.TryGetValue(template_name, out template);
